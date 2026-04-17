@@ -3,6 +3,9 @@ import Hero from '@/components/Hero';
 import BrandsCarousel from '@/components/BrandsCarousel';
 import CountInfo from '@/components/CountInfo';
 import LayerSlider from '@/components/LayerSlider';
+import CallToAction from '@/components/CallToAction';
+import Footer from '@/components/Footer';
+import PoweredBy from '@/components/PoweredBy';
 
 const misBanners = [
   {
@@ -59,6 +62,7 @@ const data = [
 const slides = [
   {
     id: "banner-1",
+    title: "TE ACOMPAÑAMOS",
     layers: [
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436540/derecha_mjoz4a.png', delay: 0.25, type: 'fadeInRight' },
@@ -71,6 +75,7 @@ const slides = [
   },
   {
     id: "banner-2",
+    title: "TE VISITAMOS",
     layers: [
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776438174/derecha_lt59nk.png', delay: 0.25, type: 'fadeInRight' },
@@ -80,6 +85,7 @@ const slides = [
   },
   {
     id: "banner-3",
+    title: "TE ASESORAMOS",
     layers: [
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776439581/derecha_abbi1v.png', delay: 0.25, type: 'fadeInRight' },
@@ -102,7 +108,7 @@ export default function Home() {
       <BrandsCarousel />
       <CountInfo bgColor="#001564" items={data} />
       <section
-        className="w-full py-5 md:py-10 bg-gradient-to-r from-[#3d88f6] from-[1%] to-[#0008fe]"
+        className="w-full py-5 md:py-6 bg-gradient-to-r from-[#3d88f6] from-[1%] to-[#0008fe]"
       >
         <div className="flex flex-row items-center justify-center gap-4 md:gap-20 lg:gap-60 py-6">
           <button className="bg-[#e8eef9] text-[#1a1a1a] font-medium px-10 py-3 rounded-2xl shadow-sm hover:bg-[#dbeafe] transition-all duration-300 min-w-[160px]">
@@ -114,7 +120,21 @@ export default function Home() {
         </div>
       </section>
       {/* #FBFCFD */}
-      <LayerSlider slides={slides} />
+      <LayerSlider slides={slides} header="CANALES DE VENTA" />
+      <CallToAction
+        bgType="image"
+        backgroundImage="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776448695/Landing_principal-12.jpg_psjbgl.jpg"
+        title="Avanzando"
+        subtitle="JUNTOS 2026"
+        description="Tu aliado para hacer crecer tu negocio en el cuidado de la piel."
+        descriptionColor="#616160"
+
+        // Solo pasas los strings de las rutas
+        btn1Text="INICIAR SESIÓN"
+        btn1Url="/login"
+      />
+      <Footer />
+      <PoweredBy />
     </div>
   );
 }
