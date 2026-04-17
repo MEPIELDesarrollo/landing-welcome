@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui;
+
+  --color-main-dark: #001564;
+  --color-main-blue: #0008fe;
+  --color-main-purple: #414495;
+  --color-main-accent: #67a8c5;
+  --color-main-sky: #9acde4;
+  --color-main-soft: #c4d0e7;
+  --color-main-ice: #e2e7f3;
+
+  --color-sky-pure: #f1f8f6;
+  --color-sky-white: #d7f1f4;
+  --color-sky-pale: #cceaed;
+  --color-sky-light: #ade3eb;
+
+  --color-main-dark: #2d3a7d;
+  --color-nav-button: #e9eff6;
+}
+
+:root {
+  --background: var(--color-main-ice);
+  --foreground: var(--color-main-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-main-dark);
+    --foreground: var(--color-main-ice);
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nav-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.button-shadow {
+  box-shadow: 2px 5px 5px -1px rgb(0 0 0 / 29%) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.button-shadow:hover {
+  box-shadow: 3px 6px 5px -1px rgb(0 0 0 / 29%) !important;
+  transform: translateY(-1px);
+}
+
+/* marcas cintilla */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* Usamos calc para asegurar precisión matemática */
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 60s linear infinite;
+  display: flex;
+  width: max-content;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
