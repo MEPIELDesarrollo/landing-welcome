@@ -5,7 +5,6 @@ import CountInfo from '@/components/CountInfo';
 import LayerSlider from '@/components/LayerSlider';
 import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
-import PoweredBy from '@/components/PoweredBy';
 
 const misBanners = [
   {
@@ -134,7 +133,6 @@ export default function Home() {
         btn1Url="/login"
       />
       <Footer />
-      <PoweredBy />
     </div>
   );
 }

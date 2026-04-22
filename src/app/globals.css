@@ -25,13 +25,6 @@
   --foreground: var(--color-main-dark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-main-dark);
-    --foreground: var(--color-main-ice);
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
