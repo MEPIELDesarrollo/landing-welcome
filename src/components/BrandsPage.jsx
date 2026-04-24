@@ -6,19 +6,30 @@ import brands from '@/data/brands.json';
 
 export default function BrandsPage() {
     return (
-        <section className="w-full py-16 bg-[#f5f7fb]">
-            <div className="max-w-6xl mx-auto px-4 text-center">
-
-                <h2 className="text-4xl md:text-5xl font-bold text-[#2d3e8b] mb-6">
+        <section className="w-full">
+            <div
+                className="max-w text-center p-20 bg-[#f8f8f8]"
+                style={{
+                    backgroundColor: '#ECECEC',
+                    backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777066831/linea2_a0wxlz.png')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'left center',
+                    backgroundSize: '50%',
+                }}
+            >
+                < h2 className="text-4xl md:text-5xl font-bold text-[#2d3e8b]" >
                     ¡CONOCE NUESTRAS
-                </h2>
-
-                <div className="mb-12">
-                    <span className="inline-block bg-[#2d3e8b] text-white px-10 py-3 rounded-full text-2xl font-semibold tracking-widest uppercase">
-                        Marcas!
-                    </span>
-                </div>
-
+                </h2 >
+            </div>
+            <div className="flex justify-center -mt-7 relative z-10">
+                <span
+                    className="bg-[#2d3e8b] text-white px-5 py-2 rounded-full font-bold text-3xl md:text-4xl"
+                    style={{ letterSpacing: '0.22em' }}
+                >
+                    MARCAS!
+                </span>
+            </div>
+            <div className="max-w-6xl mx-auto px-4 text-center pt-20">
                 {/* Grid */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     {brands.map((brand, index) => (
@@ -63,23 +74,33 @@ export default function BrandsPage() {
                         </div>
                     ))}
                 </div>
-
+            </div>
+            <div className="w-f h-10" style={{ boxShadow: '0 8px 8px -2px rgba(0,0,0,0.3)' }}></div>
+            <div
+                className="max-w text-center p-16"
+                style={{
+                    backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777069186/linea3_ofwlc9.png')`,
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'right center',
+                    backgroundSize: '60%',
+                }}>
                 {/* CTA Final */}
-                <div className="mt-16">
-                    <p className="text-gray-600 text-lg mb-4">
+                <div>
+                    <p className="text-[#383838] text-lg mb-4 font-semibold" style={{ fontSize: '1.4em' }}>
                         ¿Deseas información sobre los productos que tenemos en existencia?
                     </p>
-                    <div className="flex items-center justify-center gap-2 font-bold">
-                        <span>¡Descarga nuestro</span>
+                    <div className="flex items-center justify-center" style={{ fontSize: '1.7em' }}>
+                        <span style={{ fontWeight: 500, marginRight: '10px' }}>¡Descarga nuestro</span>
                         <Link
                             href='/catalogo.pdf'
-                            className="bg-[#2d3e8b] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase"
+                            style={{ fontSize: '.9em' }}
+                            className="bg-[#2d3e8b] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase font-weight"
                         >
                             Catálogo!
                         </Link>
                     </div>
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

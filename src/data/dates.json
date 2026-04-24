@@ -3,9 +3,18 @@
         "year": "1996",
         "events": [
             {
-                "title": "Arranca operaciones el centro de distribución",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#2d3e8b"
+                "titleParts": [
+                    {
+                        "text": "Arranca operaciones el centro de distribución",
+                        "style": {
+                            "fontWeight": "600",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "Arranca operaciones el centro de distribución",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776192002/logo.png",
+                "color": "#1C2B4D"
             }
         ]
     },
@@ -13,9 +22,18 @@
         "year": "2014",
         "events": [
             {
-                "title": "Inauguración almacén en Guadalajara",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#f59e0b"
+                "titleParts": [
+                    {
+                        "text": "Inauguración almacén CEDIS Guadalajara",
+                        "style": {
+                            "fontWeight": "500",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "Inauguración almacén en Guadalajara",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776871874/iconos_linea-04_hhltml.png",
+                "color": "#FFAA62"
             }
         ]
     },
@@ -23,9 +41,19 @@
         "year": "2017",
         "events": [
             {
-                "title": "Nueva unidad de negocio Decorrect",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#8b5cf6"
+                "titleParts": [
+                    {
+                        "text": "Nueva unidad de negocio Decorrect",
+                        "style": {
+                            "fontWeight": "600",
+                            "color": "#804280",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "Nueva unidad de negocio Decorrect",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776872131/copy_of_decorrect_wnj1kw_cc9a5f.png",
+                "color": "#804280"
             }
         ]
     },
@@ -33,9 +61,19 @@
         "year": "2019",
         "events": [
             {
-                "title": "Apertura del almacén en Monterrey",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#1e3a8a"
+                "titleParts": [
+                    {
+                        "text": "Apertura del almacén en Monterrey",
+                        "style": {
+                            "fontWeight": "700",
+                            "color": "#253672",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "Apertura del almacén en Monterrey",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776871874/iconos_linea-04_hhltml.png",
+                "color": "#1C2B4D"
             }
         ]
     },
@@ -43,9 +81,19 @@
         "year": "2020",
         "events": [
             {
-                "title": "Apertura del almacén en CDMX Decorrect",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#f97316"
+                "titleParts": [
+                    {
+                        "text": "Apertura del almacén en CDMX Decorrect",
+                        "style": {
+                            "fontWeight": "700",
+                            "color": "#804280",
+                            "fontSize": ".9em"
+                        }
+                    }
+                ],
+                "alt": "Apertura del almacén en CDMX Decorrect",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776872284/iconos_linea-03_f03si4.png",
+                "color": "#F9BE27"
             }
         ]
     },
@@ -53,13 +101,49 @@
         "year": "2022",
         "events": [
             {
-                "title": "Clínicas e investigación",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#06b6d4"
+                "titleParts": [
+                    {
+                        "text": "Clínicas",
+                        "style": {
+                            "fontWeight": "700",
+                            "color": "#2396C3",
+                            "fontSize": "1.2em"
+                        }
+                    },
+                    {
+                        "text": " investigación",
+                        "style": {
+                            "fontWeight": "500",
+                            "color": "#2396C3",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "Clínicas e investigación",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776872436/iconos_linea-02_ezrmil.png",
+                "color": "#CB007C"
             },
             {
-                "title": "Farmacias omnicanal",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
+                "titleParts": [
+                    {
+                        "text": "Farmacias",
+                        "style": {
+                            "fontWeight": "700",
+                            "color": "#804280",
+                            "fontSize": "1.2em"
+                        }
+                    },
+                    {
+                        "text": " omnicanal",
+                        "style": {
+                            "fontWeight": "5h00",
+                            "color": "#804280",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "Farmacias omnicanal",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776872435/iconos_linea_Mesa_de_trabajo_1_cin8jc.png",
                 "color": "#ec4899"
             }
         ]
@@ -68,9 +152,27 @@
         "year": "2023",
         "events": [
             {
-                "title": "Inauguración almacén pulmón",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#1e3a8a"
+                "titleParts": [
+                    {
+                        "text": "Inauguración ",
+                        "style": {
+                            "fontWeight": "500",
+                            "color": "#283777",
+                            "fontSize": ".8em"
+                        }
+                    },
+                    {
+                        "text": "almacén pulmón",
+                        "style": {
+                            "fontWeight": "700",
+                            "color": "#283777",
+                            "fontSize": "1v.1em"
+                        }
+                    }
+                ],
+                "alt": "Inauguración almacén pulmón",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776872761/iconos_linea-05_x1htox.png",
+                "color": "#283777"
             }
         ]
     },
@@ -78,9 +180,27 @@
         "year": "2024",
         "events": [
             {
-                "title": "1er Simposio de la industria dermocosmética",
-                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#ec4899"
+                "titleParts": [
+                    {
+                        "text": "1er Simposio",
+                        "style": {
+                            "fontWeight": "500",
+                            "color": "#ED77AA",
+                            "fontSize": "1.2em"
+                        }
+                    },
+                    {
+                        "text": " de la industria dermocosmética",
+                        "style": {
+                            "fontWeight": "500",
+                            "color": "#283777",
+                            "fontSize": ".8em"
+                        }
+                    }
+                ],
+                "alt": "1er Simposio de la industria dermocosmética",
+                "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776873023/isologo_ekwqdj.png",
+                "color": "#ED77AA"
             }
         ]
     },
@@ -88,9 +208,27 @@
         "year": "2026",
         "events": [
             {
-                "title": "Líderes en distribución",
+                "titleParts": [
+                    {
+                        "text": "Líderes",
+                        "style": {
+                            "fontWeight": "800",
+                            "color": "#283776",
+                            "fontSize": "1.9em"
+                        }
+                    },
+                    {
+                        "text": " en distribución",
+                        "style": {
+                            "fontWeight": "500",
+                            "color": "#283776",
+                            "fontSize": "1em"
+                        }
+                    }
+                ],
+                "alt": "Líderes en distribución",
                 "icon": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776803395/iconos_linea-06_oym1tn.png",
-                "color": "#60a5fa"
+                "color": "#3848A6"
             }
         ]
     }
