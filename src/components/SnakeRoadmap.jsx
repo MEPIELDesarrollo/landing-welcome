@@ -4,52 +4,133 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import roadmap from '@/data/dates.json'
 
-const ITEMS_PER_ROW = 4;
 const VECTOR_H = 35;
 
-const IS_TOP = [true, false, true, true, true, false, false, false, false];
+// ─── Configuración responsiva ────────────────────────────────────────────────
+// cols     : nodos por fila en ese breakpoint
+// labelPos : 'auto' | 'top' | 'bottom' | string[]
+//   'auto'   → alterna por columna dentro de cada fila (par=top, impar=bottom)
+//   'top'    → todos los labels arriba
+//   'bottom' → todos los labels abajo
+//   array    → posición explícita por índice global (0=firstItem, 1..N=restItems)
+const BREAKPOINTS = [
+    { minWidth: 1200, cols: 4, labelPos: 'auto' },
+    { minWidth: 900, cols: 3, labelPos: 'auto' },
+    { minWidth: 600, cols: 2, labelPos: 'auto' },
+    { minWidth: 0, cols: 1, labelPos: 'top' },
+];
+
+function getBreakpoint(w) {
+    for (const bp of BREAKPOINTS) {
+        if (w >= bp.minWidth) return bp;
+    }
+    return BREAKPOINTS[BREAKPOINTS.length - 1];
+}
+
+function getLabelPos(globalIdx, colIdx, bp) {
+    if (globalIdx === 0) return 'top';
+    const { labelPos } = bp;
+    if (Array.isArray(labelPos)) return labelPos[globalIdx] ?? 'top';
+    if (labelPos === 'top') return 'top';
+    if (labelPos === 'bottom') return 'bottom';
+    // 'auto': alterna dentro de cada fila por posición de columna
+    return colIdx % 2 === 0 ? 'top' : 'bottom';
+}
+
+// ─── Path con esquinas redondeadas (L + Q) ──────────────────────────────────
+// Dibuja líneas rectas entre nodos y sustituye cada esquina por un arco
+// cuadrático de radio r. Sin Bézier cúbico → sin curvas exageradas.
+function buildRoundedSnakePath(pts, r = 50) {
+    if (pts.length < 2) return '';
+    let d = `M ${pts[0].x} ${pts[0].y}`;
+
+    for (let i = 1; i < pts.length; i++) {
+        const prev = pts[i - 1];
+        const curr = pts[i];
+        const next = pts[i + 1];
+
+        if (!next) {
+            d += ` L ${curr.x} ${curr.y}`;
+            continue;
+        }
+
+        const dx1 = curr.x - prev.x, dy1 = curr.y - prev.y;
+        const len1 = Math.hypot(dx1, dy1);
+        const dx2 = next.x - curr.x, dy2 = next.y - curr.y;
+        const len2 = Math.hypot(dx2, dy2);
+        const rr = Math.min(r, len1 / 2.2, len2 / 2.2);
+
+        const t1x = curr.x - (dx1 / len1) * rr;
+        const t1y = curr.y - (dy1 / len1) * rr;
+        const t2x = curr.x + (dx2 / len2) * rr;
+        const t2y = curr.y + (dy2 / len2) * rr;
+
+        d += ` L ${t1x} ${t1y} Q ${curr.x} ${curr.y} ${t2x} ${t2y}`;
+    }
+    return d;
+}
 
 export default function SnakeRoadmap() {
     const containerRef = useRef(null);
     const circleRefs = useRef([]);
     const [pathD, setPathD] = useState('');
+    const [showRoadmap, setShowRoadmap] = useState(false);
+    const [activeBp, setActiveBp] = useState(() =>
+        getBreakpoint(typeof window !== 'undefined' ? window.innerWidth : 1200)
+    );
 
     const buildPath = () => {
         const container = containerRef.current;
         if (!container) return;
         const cRect = container.getBoundingClientRect();
 
-        const pts = circleRefs.current.map((el) => {
-            if (!el) return null;
-            const r = el.getBoundingClientRect();
-            return {
-                x: r.left + r.width / 2 - cRect.left,
-                y: r.top + r.height / 2 - cRect.top,
-            };
-        }).filter(Boolean);
+        const pts = circleRefs.current
+            .map((el) => {
+                if (!el) return null;
+                const r = el.getBoundingClientRect();
+                return {
+                    x: r.left + r.width / 2 - cRect.left,
+                    y: r.top + r.height / 2 - cRect.top,
+                };
+            })
+            .filter(Boolean);
 
         if (pts.length < 2) return;
-
-        let d = `M ${pts[0].x} ${pts[0].y}`;
-        for (let i = 1; i < pts.length; i++) {
-            const p = pts[i - 1], c = pts[i];
-            const mx = (p.x + c.x) / 2;
-            d += ` C ${mx} ${p.y}, ${mx} ${c.y}, ${c.x} ${c.y}`;
-        }
-        setPathD(d);
+        setPathD(buildRoundedSnakePath(pts, 55));
     };
 
+    // Detecta cambio de breakpoint en resize
     useEffect(() => {
-        const raf = requestAnimationFrame(() => requestAnimationFrame(buildPath));
-        window.addEventListener('resize', buildPath);
-        return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', buildPath); };
+        const onResize = () => setActiveBp(getBreakpoint(window.innerWidth));
+        window.addEventListener('resize', onResize);
+        return () => window.removeEventListener('resize', onResize);
     }, []);
+
+    // Recalcula el path cuando el roadmap es visible o cambia el layout
+    useEffect(() => {
+        if (!showRoadmap) return;
+        // Doble rAF: espera que el DOM repinte completamente el nuevo layout
+        let raf2;
+        const raf1 = requestAnimationFrame(() => {
+            raf2 = requestAnimationFrame(buildPath);
+        });
+        // También en resize (se ejecuta después de que el DOM ya se actualizó)
+        const onResize = () => requestAnimationFrame(buildPath);
+        window.addEventListener('resize', onResize);
+        return () => {
+            cancelAnimationFrame(raf1);
+            cancelAnimationFrame(raf2);
+            window.removeEventListener('resize', onResize);
+        };
+    }, [showRoadmap, activeBp]);
+
+    const itemsPerRow = activeBp.cols;
 
     const [firstItem, ...restItems] = roadmap;
 
     const rows = [];
-    for (let i = 0; i < restItems.length; i += ITEMS_PER_ROW) {
-        rows.push(restItems.slice(i, i + ITEMS_PER_ROW));
+    for (let i = 0; i < restItems.length; i += itemsPerRow) {
+        rows.push(restItems.slice(i, i + itemsPerRow));
     }
 
     const firstColor = firstItem?.events[0]?.color ?? '#1e3a8a';
@@ -63,6 +144,8 @@ export default function SnakeRoadmap() {
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'top right',
                         backgroundSize: '15%',
+                        zIndex: 1,
+                        position: 'relative',
                     }}
                 >
                     <div
@@ -97,19 +180,33 @@ export default function SnakeRoadmap() {
                                 Y ESTÉTICOS
                             </p>
 
-                            {/* Etiqueta inferior azul */}
-                            <div className="absolute bottom-4 right-20 bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-1 rounded-full shadow-md">
-                                <span className="text-white text-xs font-weight uppercase tracking-widest">
-                                    En todo México
-                                </span>
+                            {/* Etiqueta inferior azul + trigger del roadmap */}
+                            <div className="absolute bottom-4 right-20 flex items-center gap-3">
+                                <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-1 rounded-full shadow-md">
+                                    <span className="text-white text-xs font-weight uppercase tracking-widest">
+                                        En todo México
+                                    </span>
+                                </div>
+                                <button
+                                    onClick={() => setShowRoadmap(v => !v)}
+                                    className="bg-white px-5 py-1 rounded-full shadow-md border border-[#cc007b] cursor-pointer transition-all hover:bg-[#cc007b] hover:text-white group"
+                                    style={{ outline: 'none' }}
+                                >
+                                    <span className="text-[#cc007b] group-hover:text-white text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+                                        {showRoadmap ? '✕ Cerrar historia' : '¡Nuestra historia comienza AQUÍ!'}
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section
+                <motion.section
+                    initial={false}
+                    animate={showRoadmap ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                    transition={{ duration: 0.6, ease: 'easeInOut' }}
                     style={{
+                        // overflow: 'hidden',
                         width: '100%',
-                        padding: '0px 0 300px',
                         background: '#fff',
                         backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776869609/landing-15_uvax9q.png')",
                         backgroundSize: 'cover',
@@ -117,92 +214,93 @@ export default function SnakeRoadmap() {
                         backgroundRepeat: 'no-repeat'
                     }}
                 >
-                    <style>{`
-                @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
-                .rm * { box-sizing: border-box; font-family: 'Sora', sans-serif; }
-            `}</style>
+                    <div style={{ padding: '0px 0 300px' }}>
+                        <style>{`
+                            @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
+                            .rm * { box-sizing: border-box; font-family: 'Sora', sans-serif; }`}
+                        </style>
 
-                    <div ref={containerRef} className="rm" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 32px', position: 'relative', marginTop: "-100px" }}>
+                        <div ref={containerRef} className="rm" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 32px', position: 'relative', marginTop: "-100px" }}>
 
-                        <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, overflow: 'visible' }}>
-                            <defs>
-                                <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor="#1e3a8a" />
-                                    <stop offset="25%" stopColor="#f97316" />
-                                    <stop offset="50%" stopColor="#7c3aed" />
-                                    <stop offset="75%" stopColor="#0ea5e9" />
-                                    <stop offset="100%" stopColor="#ec4899" />
-                                </linearGradient>
-                            </defs>
-                            {pathD && (
-                                <motion.path
-                                    d={pathD}
-                                    fill="none"
-                                    stroke="url(#lg)"
-                                    strokeWidth="25"
-                                    strokeLinecap="round"
-                                    initial={{ pathLength: 0, opacity: 0 }}
-                                    animate={{ pathLength: 1, opacity: 1 }}
-                                    transition={{ duration: 3.5, ease: 'easeInOut' }}
-                                />
-                            )}
-                        </svg>
+                            <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, overflow: 'visible' }}>
+                                <defs>
+                                    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#1e3a8a" />
+                                        <stop offset="25%" stopColor="#f97316" />
+                                        <stop offset="50%" stopColor="#7c3aed" />
+                                        <stop offset="75%" stopColor="#0ea5e9" />
+                                        <stop offset="100%" stopColor="#ec4899" />
+                                    </linearGradient>
+                                </defs>
+                                {pathD && (
+                                    <motion.path
+                                        d={pathD}
+                                        fill="none"
+                                        stroke="url(#lg)"
+                                        strokeWidth="25"
+                                        strokeLinecap="round"
+                                        initial={{ pathLength: 0, opacity: 0 }}
+                                        animate={{ pathLength: 1, opacity: 1 }}
+                                        transition={{ duration: 3.5, ease: 'easeInOut' }}
+                                    />
+                                )}
+                            </svg>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 1 }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 1 }}>
 
-                            {/* ── FILA 0: nodo único alineado a la derecha ── */}
-                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 220 }}>
-                                    {/* Zona superior con label */}
-                                    <div style={{ height: VECTOR_H + 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                {/* ── FILA 0: nodo único alineado a la derecha ── */}
+                                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 220 }}>
+                                        {/* Zona superior con label */}
+                                        <div style={{ height: VECTOR_H + 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 8 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{ delay: 0.5 }}
+                                                style={{ marginBottom: 8 }}
+                                            >
+                                                <LabelGroup item={firstItem} />
+                                            </motion.div>
+                                            <Stick color={firstColor} direction="top" delay={0} height={VECTOR_H} />
+                                        </div>
+
+                                        {/* Círculo */}
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            transition={{ delay: 0.5 }}
-                                            style={{ marginBottom: 8 }}
-                                        >
-                                            <LabelGroup item={firstItem} />
-                                        </motion.div>
-                                        <Stick color={firstColor} direction="top" delay={0} height={VECTOR_H} />
-                                    </div>
-
-                                    {/* Círculo */}
-                                    <motion.div
-                                        ref={(el) => (circleRefs.current[0] = el)}
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        transition={{
-                                            delay: 0,
-                                            duration: 0.4,
-                                            type: 'spring',
-                                            stiffness: 240,
-                                            damping: 18,
-                                        }}
-                                        onAnimationComplete={buildPath}
-                                        style={{
-                                            width: 55,
-                                            height: 55,
-                                            borderRadius: '50%',
-                                            background: '#f7f7f7',
-                                            border: `1px solid ${firstColor}`,
-                                            boxShadow: `0 0 0 4px #f6f6f6, 0 0 0 11px ${firstColor}`,
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                        }}
-                                    >
-                                        <span
+                                            ref={(el) => (circleRefs.current[0] = el)}
+                                            initial={{ scale: 0, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{
+                                                delay: 0,
+                                                duration: 0.4,
+                                                type: 'spring',
+                                                stiffness: 240,
+                                                damping: 18,
+                                            }}
+                                            onAnimationComplete={buildPath}
                                             style={{
-                                                color: '#7d7d7d',
-                                                fontWeight: 800,
-                                                fontSize: 14.5,
-                                                letterSpacing: '-0.5px'
+                                                width: 55,
+                                                height: 55,
+                                                borderRadius: '50%',
+                                                background: '#f7f7f7',
+                                                border: `1px solid ${firstColor}`,
+                                                boxShadow: `0 0 0 4px #f6f6f6, 0 0 0 11px ${firstColor}`,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
                                             }}
                                         >
-                                            {firstItem?.year}
-                                        </span>
-                                    </motion.div>
-                                    {/* <motion.div
+                                            <span
+                                                style={{
+                                                    color: '#7d7d7d',
+                                                    fontWeight: 800,
+                                                    fontSize: 14.5,
+                                                    letterSpacing: '-0.5px'
+                                                }}
+                                            >
+                                                {firstItem?.year}
+                                            </span>
+                                        </motion.div>
+                                        {/* <motion.div
                                         ref={(el) => (circleRefs.current[0] = el)}
                                         initial={{ scale: 0, opacity: 0 }}
                                         animate={{ scale: 1, opacity: 1 }}
@@ -222,49 +320,47 @@ export default function SnakeRoadmap() {
                                         </span>
                                     </motion.div> */}
 
-                                    {/* Zona inferior vacía (para mantener altura consistente) */}
-                                    <div style={{ height: VECTOR_H + 70 }} />
+                                        {/* Zona inferior vacía (para mantener altura consistente) */}
+                                        <div style={{ height: VECTOR_H + 70 }} />
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* ── FILAS SNAKE: 4 nodos por fila ── */}
-                            {rows.map((row, rowIdx) => {
-                                // fila 0 del snake (rowIdx=0) viene de la derecha → row-reverse
-                                // fila 1 (rowIdx=1) va de izquierda a derecha → row
-                                const isReverse = rowIdx % 2 === 0;
-                                return (
-                                    <div key={rowIdx} style={{
-                                        display: 'flex',
-                                        flexDirection: isReverse ? 'row-reverse' : 'row',
-                                        justifyContent: 'space-between',
-                                        alignItems: 'center',
-                                    }}>
-                                        {row.map((item, colIdx) => {
-                                            const globalIdx = 1 + rowIdx * ITEMS_PER_ROW + colIdx;
-                                            const color = item.events[0]?.color ?? '#1e3a8a';
-                                            const isTop = IS_TOP[globalIdx] ?? false;
-                                            const delay = (globalIdx / (roadmap.length - 1)) * 2;
+                                {/* ── FILAS SNAKE ── */}
+                                {rows.map((row, rowIdx) => {
+                                    const isReverse = rowIdx % 2 === 0;
+                                    return (
+                                        <div key={rowIdx} style={{
+                                            display: 'flex',
+                                            flexDirection: isReverse ? 'row-reverse' : 'row',
+                                            justifyContent: 'space-between',
+                                            alignItems: 'center',
+                                        }}>
+                                            {row.map((item, colIdx) => {
+                                                const globalIdx = 1 + rowIdx * itemsPerRow + colIdx;
+                                                const color = item.events[0]?.color ?? '#1e3a8a';
+                                                const isTop = getLabelPos(globalIdx, colIdx, activeBp) === 'top';
+                                                const delay = (globalIdx / (roadmap.length - 1)) * 2;
 
-                                            return (
-                                                <div key={colIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 200 }}>
+                                                return (
+                                                    <div key={colIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 200 }}>
 
-                                                    <div style={{ height: VECTOR_H + 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
-                                                        {isTop && (
-                                                            <>
-                                                                <motion.div
-                                                                    initial={{ opacity: 0, y: 8 }}
-                                                                    animate={{ opacity: 1, y: 0 }}
-                                                                    transition={{ delay: delay + 0.5 }}
-                                                                    style={{ marginBottom: 8 }}
-                                                                >
-                                                                    <LabelGroup item={item} />
-                                                                </motion.div>
-                                                                <Stick color={color} direction="top" delay={delay} height={VECTOR_H} />
-                                                            </>
-                                                        )}
-                                                    </div>
+                                                        <div style={{ height: VECTOR_H + 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
+                                                            {isTop && (
+                                                                <>
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0, y: 8 }}
+                                                                        animate={{ opacity: 1, y: 0 }}
+                                                                        transition={{ delay: delay + 0.5 }}
+                                                                        style={{ marginBottom: 8 }}
+                                                                    >
+                                                                        <LabelGroup item={item} />
+                                                                    </motion.div>
+                                                                    <Stick color={color} direction="top" delay={delay} height={VECTOR_H} />
+                                                                </>
+                                                            )}
+                                                        </div>
 
-                                                    {/* <motion.div
+                                                        {/* <motion.div
                                                         ref={(el) => (circleRefs.current[globalIdx] = el)}
                                                         initial={{ scale: 0, opacity: 0 }}
                                                         animate={{ scale: 1, opacity: 1 }}
@@ -282,68 +378,69 @@ export default function SnakeRoadmap() {
                                                             {item.year}
                                                         </span>
                                                     </motion.div> */}
-                                                    <motion.div
-                                                        ref={(el) => (circleRefs.current[globalIdx] = el)}
-                                                        initial={{ scale: 0, opacity: 0 }}
-                                                        animate={{ scale: 1, opacity: 1 }}
-                                                        transition={{
-                                                            delay: 0,
-                                                            duration: 0.4,
-                                                            type: 'spring',
-                                                            stiffness: 240,
-                                                            damping: 18,
-                                                        }}
-                                                        onAnimationComplete={buildPath}
-                                                        style={{
-                                                            width: 55,
-                                                            height: 55,
-                                                            borderRadius: '50%',
-                                                            background: '#f7f7f7',
-                                                            border: `1px solid ${color}`,
-                                                            boxShadow: `0 0 0 4px #f6f6f6, 0 0 0 11px ${color}`,
-                                                            display: 'flex',
-                                                            alignItems: 'center',
-                                                            justifyContent: 'center',
-                                                        }}
-                                                    >
-                                                        <span
+                                                        <motion.div
+                                                            ref={(el) => (circleRefs.current[globalIdx] = el)}
+                                                            initial={{ scale: 0, opacity: 0 }}
+                                                            animate={{ scale: 1, opacity: 1 }}
+                                                            transition={{
+                                                                delay: 0,
+                                                                duration: 0.4,
+                                                                type: 'spring',
+                                                                stiffness: 240,
+                                                                damping: 18,
+                                                            }}
+                                                            onAnimationComplete={buildPath}
                                                             style={{
-                                                                color: '#7d7d7d',
-                                                                fontWeight: 800,
-                                                                fontSize: 14.5,
-                                                                letterSpacing: '-0.5px'
+                                                                width: 55,
+                                                                height: 55,
+                                                                borderRadius: '50%',
+                                                                background: '#f7f7f7',
+                                                                border: `1px solid ${color}`,
+                                                                boxShadow: `0 0 0 4px #f6f6f6, 0 0 0 11px ${color}`,
+                                                                display: 'flex',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
                                                             }}
                                                         >
-                                                            {item.year}
-                                                        </span>
-                                                    </motion.div>
-                                                    <div style={{ height: VECTOR_H + 70, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
-                                                        {!isTop && (
-                                                            <>
-                                                                <Stick color={color} direction="bottom" delay={delay} height={VECTOR_H} />
-                                                                <motion.div
-                                                                    initial={{ opacity: 0, y: -8 }}
-                                                                    animate={{ opacity: 1, y: 0 }}
-                                                                    transition={{ delay: delay + 0.5 }}
-                                                                    style={{ marginTop: 8 }}
-                                                                >
-                                                                    <LabelGroup item={item} />
-                                                                </motion.div>
-                                                            </>
-                                                        )}
-                                                    </div>
+                                                            <span
+                                                                style={{
+                                                                    color: '#7d7d7d',
+                                                                    fontWeight: 800,
+                                                                    fontSize: 14.5,
+                                                                    letterSpacing: '-0.5px'
+                                                                }}
+                                                            >
+                                                                {item.year}
+                                                            </span>
+                                                        </motion.div>
+                                                        <div style={{ height: VECTOR_H + 70, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
+                                                            {!isTop && (
+                                                                <>
+                                                                    <Stick color={color} direction="bottom" delay={delay} height={VECTOR_H} />
+                                                                    <motion.div
+                                                                        initial={{ opacity: 0, y: -8 }}
+                                                                        animate={{ opacity: 1, y: 0 }}
+                                                                        transition={{ delay: delay + 0.5 }}
+                                                                        style={{ marginTop: 8 }}
+                                                                    >
+                                                                        <LabelGroup item={item} />
+                                                                    </motion.div>
+                                                                </>
+                                                            )}
+                                                        </div>
 
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                );
-                            })}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
-                </section>
+                </motion.section>
                 <section
-                    className="relative z-10 py-30 px-4 overflow-hidden bg-white"
+                    className="relative py-25 px-4 overflow-hidden bg-white"
                     style={{
                         backgroundImage: `
                             url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/left_bjr7jh.png'),
@@ -353,8 +450,8 @@ export default function SnakeRoadmap() {
                         backgroundPosition: 'bottom left, bottom right',
                         backgroundSize: '45%, 35%',
                         backgroundColor: 'transparent',
-                        marginTop: '-200px',
-                        zIndex: 0
+                        marginTop: '5em',
+                        zIndex: 0,
                     }}
                 >
                     <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-stretch justify-center">
