@@ -5,22 +5,40 @@ import brands from '@/data/brands.json';
 
 export default function BrandsSection() {
     return (
-        <section className="w-full bg-[#f5f5f5] overflow-hidden py-8 md:py-20 lg:py-20">
+        <section
+            className="w-full bg-[#f5f5f5] overflow-hidden py-10 md:py-26 lg:py-26"
+            style={{
+                backgroundImage: `
+                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png'),
+                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777396434/corner_nx8mii.png'),
+                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777396765/left_b_avk8w5.png')
+                        `,
+                backgroundRepeat: 'no-repeat, no-repeat, no-repeat',
+                backgroundPosition: 'top center, bottom right, left center',
+                backgroundSize: 'contain, 20%, 35%',
+                backgroundColor: 'transparent',
+                zIndex: 0
+            }}
+        >
 
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row items-center justify-center mb-12 gap-3 md:gap-0">
-                <div className="border border-gray-400 rounded-full leading-tight text-center px-10 py-2 md:pr-24 md:-mr-10">
-                    <div className="text-gray-700 font-bold text-sm md:text-base lg:text-lg">
+            <div className="flex flex-col md:flex-row items-center justify-center mb-16 gap-3 md:gap-0 font-poppins font-bold">
+                <div className="border border-[#606060] rounded-full leading-tight text-center px-10 py-2 md:pr-24 md:-mr-10">
+                    <div className="text-[#616160]" style={{ fontSize: '1.9em' }}>
                         DISTRIBUIDORES
                     </div>
-                    <div className="text-gray-400 font-semibold text-[10px] md:text-xs lg:text-sm">
+                    <div className="text-[#929495]" style={{ fontSize: '1em' }}>
                         DE MÁS DE
                     </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-[#2f3f8f] to-[#5bc0de] text-white rounded-full font-extrabold px-5 py-1 md:px-8 md:py-2 md:-ml-6 text-2xl md:text-4xl lg:text-6xl">
+                <span
+                    className="bg-gradient-to-r from-[#3c4a99] to-[#6cb0c7] text-white rounded-full px-4 py-.2  md:-ml-6"
+                    style={{ fontSize: '3.7em', letterSpacing: '0.06em' }}
+                >
                     50 MARCAS
-                </div>
+                </span>
+
             </div>
 
             {/* CARRUSEL */}
@@ -28,10 +46,10 @@ export default function BrandsSection() {
                 <div className="relative overflow-hidden">
 
                     {/* fade izquierdo */}
-                    <div className="absolute left-0 top-0 h-full w-12 md:w-16 bg-gradient-to-r from-[#f5f5f5] via-[#f5f5f5] to-transparent z-10" />
+                    <div className="absolute left-0 top-0 h-full w-12 md:w-16 bg-gradient-to-r from-[#ffffff20] via-[#ffffff01] to-transparent z-10" />
 
                     {/* fade derecho */}
-                    <div className="absolute right-0 top-0 h-full w-12 md:w-16 bg-gradient-to-l from-[#f5f5f5] via-[#f5f5f5] to-transparent z-10" />
+                    <div className="absolute right-0 top-0 h-full w-12 md:w-16 bg-gradient-to-l from-[#ffffff20] via-[#ffffff01] to-transparent z-10" />
 
                     <div className="flex gap-4 md:gap-8 animate-scroll whitespace-nowrap will-change-transform">
 
@@ -40,14 +58,14 @@ export default function BrandsSection() {
                                 key={i}
                                 href={brand.link}
                                 target="_blank"
-                                className="flex items-center justify-center min-w-[80px] md:min-w-[140px] lg:min-w-[160px] opacity-70 hover:opacity-100 transition"
+                                className="flex items-center justify-center min-w-[80px] md:min-w-[140px] lg:min-w-[160px] transition"
                             >
                                 <Image
                                     src={brand.logo}
                                     alt={brand.name}
                                     width={120}
                                     height={60}
-                                    className="object-contain h-[24px] md:h-[45px] lg:h-[55px] w-auto"
+                                    className="object-contain h-[30px] md:h-[55px] lg:h-[65px] w-auto"
                                 />
                             </a>
                         ))}

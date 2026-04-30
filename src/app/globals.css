@@ -11,10 +11,10 @@
   --color-main-soft: #c4d0e7;
   --color-main-ice: #e2e7f3;
 
-  --color-sky-pure: #f1f8f6;
-  --color-sky-white: #d7f1f4;
-  --color-sky-pale: #cceaed;
-  --color-sky-light: #ade3eb;
+  --color-sky-pure: #f7fdfd;
+  --color-sky-white: #fbfdfc;
+  --color-sky-pale: #d0ecef;
+  --color-sky-light: #cce8eb;
 
   --color-main-dark: #2d3a7d;
   --color-nav-button: #e9eff6;
@@ -67,4 +67,8 @@ body {
 
 .animate-scroll:hover {
   animation-play-state: paused;
+}
+
+.font-poppins {
+  font-family: var(--font-poppins), sans-serif !important;
 }

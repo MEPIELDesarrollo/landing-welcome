@@ -29,10 +29,10 @@ function Counter({ value, duration = 2000 }) {
     return count.toLocaleString();
 }
 
-export default function CountInfo({ bgColor = '#0b1f5b', items = [] }) {
+export default function CountInfo({ bgColor = '#001563', items = [] }) {
     return (
         <section
-            className="w-full py-10 md:py-16"
+            className="w-full py-13 md:py-19"
             style={{ backgroundColor: bgColor }}
         >
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -42,22 +42,22 @@ export default function CountInfo({ bgColor = '#0b1f5b', items = [] }) {
 
                         {/* VALUE */}
                         <div
-                            className={`flex items-center gap-2 ${item.typeAlign === 'left' ? 'flex-row-reverse' : ''
+                            className={`flex font-poppins font-bold items-center gap-2 ${item.typeAlign === 'left' ? 'flex-row-reverse' : ''
                                 }`}
                             style={{ color: item.valueColor || '#fff' }}
                         >
                             {item.valueType === 'prefix' && (
-                                <span className="text-xl md:text-3xl font-bold">
+                                <span className="text-xl md:text-4xl font-weight">
                                     {item.symbol}
                                 </span>
                             )}
 
-                            <span className="text-3xl md:text-5xl font-extrabold">
+                            <span className="text-3xl md:text-7xl font-weight">
                                 <Counter value={item.value} />
                             </span>
 
                             {item.valueType === 'suffix' && (
-                                <span className="text-lg md:text-2xl font-semibold">
+                                <span className="text-lg md:text-3xl font-weight">
                                     {item.symbol}
                                 </span>
                             )}
@@ -65,8 +65,8 @@ export default function CountInfo({ bgColor = '#0b1f5b', items = [] }) {
 
                         {/* TEXT */}
                         <div
-                            className="mt-2 text-sm md:text-lg"
-                            style={{ color: item.textColor || '#60a5fa' }}
+                            className="mt-2 text-sm md:text-lg font-poppins"
+                            style={{ color: item.textColor || '#4F97ED' }}
                         >
                             {item.text}
                         </div>

@@ -10,6 +10,8 @@ const images = [
     'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/IMG_9976_yhnxdf.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/2Y5A5777_wdkriv.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/IMG_0036_ylb5a8.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777305035/IMG_2487_jldq0t.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777305086/IMG_2474_k8js20.jpg',
 ];
 
 const cards = [
@@ -48,7 +50,7 @@ export default function MexicoSection() {
             setIndex((prev) => (prev + 1) % images.length);
         }, 4000);
         return () => clearInterval(interval);
-    }, []);
+    }, [index]);
 
     const prev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
     const next = () => setIndex((prev) => (prev + 1) % images.length);

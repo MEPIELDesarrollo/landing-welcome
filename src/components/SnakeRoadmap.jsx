@@ -45,10 +45,8 @@ export default function SnakeRoadmap() {
         return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', buildPath); };
     }, []);
 
-    // Separar primer nodo del resto
     const [firstItem, ...restItems] = roadmap;
 
-    // Armar filas del resto (4 por fila)
     const rows = [];
     for (let i = 0; i < restItems.length; i += ITEMS_PER_ROW) {
         rows.push(restItems.slice(i, i + ITEMS_PER_ROW));
@@ -68,35 +66,40 @@ export default function SnakeRoadmap() {
                     }}
                 >
                     <div
-                        className="relative w-[60%] max-w-6xl font-sans"
+                        className="relative w-[70%] max-w-6xl font-sans"
                         style={{ paddingTop: 50, marginBottom: '-50px' }}
                     >
-                        {/* Contenedor Superior (Texto pequeño azul) */}
                         <div className="relative z-10 flex">
-                            <div className="bg-gradient-to-r from-[#3b5998] to-[#6dbcc3] px-10 py-1.5 rounded-tr-[20px]">
-                                <span className="text-white text-sm font-medium tracking-wide">
+                            <div
+                                className="w-[75%] bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-10 py-3 rounded-tr-[20px]"
+                                style={{ marginBottom: '-1.7em', textAlign: 'right' }}
+                            >
+                                <span
+                                    className="text-white tracking-wide"
+                                    style={{ fontSize: '1.5em' }}
+                                >
                                     30 años distribuyendo productos
                                 </span>
                             </div>
                         </div>
 
                         {/* Bloque Principal Magenta */}
-                        <div className="relative bg-[#c20078] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
+                        <div className="relative bg-[#cc007b] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
                             <span
                                 className="text-white"
-                                style={{ fontSize: "3.2em", "fontWeight": "700" }}
+                                style={{ fontSize: "3.2em", "fontWeight": "700", letterSpacing: '.2em' }}
                             >DERMATOLÓGICOS</span> <br />
                             <p
                                 className="text-white leading-none tracking-tight"
-                                style={{ fontSize: "5em", "fontWeight": "700" }}
+                                style={{ fontSize: "5em", "fontWeight": "700", letterSpacing: '.15em' }}
                             >
 
                                 Y ESTÉTICOS
                             </p>
 
                             {/* Etiqueta inferior azul */}
-                            <div className="absolute bottom-4 right-20 bg-gradient-to-r from-[#3b5998] to-[#6dbcc3] px-6 py-1 rounded-full shadow-md">
-                                <span className="text-white text-xs font-bold uppercase tracking-widest">
+                            <div className="absolute bottom-4 right-20 bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-1 rounded-full shadow-md">
+                                <span className="text-white text-xs font-weight uppercase tracking-widest">
                                     En todo México
                                 </span>
                             </div>
@@ -168,6 +171,41 @@ export default function SnakeRoadmap() {
                                         ref={(el) => (circleRefs.current[0] = el)}
                                         initial={{ scale: 0, opacity: 0 }}
                                         animate={{ scale: 1, opacity: 1 }}
+                                        transition={{
+                                            delay: 0,
+                                            duration: 0.4,
+                                            type: 'spring',
+                                            stiffness: 240,
+                                            damping: 18,
+                                        }}
+                                        onAnimationComplete={buildPath}
+                                        style={{
+                                            width: 55,
+                                            height: 55,
+                                            borderRadius: '50%',
+                                            background: '#f7f7f7',
+                                            border: `1px solid ${firstColor}`,
+                                            boxShadow: `0 0 0 4px #f6f6f6, 0 0 0 11px ${firstColor}`,
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                        }}
+                                    >
+                                        <span
+                                            style={{
+                                                color: '#7d7d7d',
+                                                fontWeight: 800,
+                                                fontSize: 14.5,
+                                                letterSpacing: '-0.5px'
+                                            }}
+                                        >
+                                            {firstItem?.year}
+                                        </span>
+                                    </motion.div>
+                                    {/* <motion.div
+                                        ref={(el) => (circleRefs.current[0] = el)}
+                                        initial={{ scale: 0, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
                                         transition={{ delay: 0, duration: 0.4, type: 'spring', stiffness: 240, damping: 18 }}
                                         onAnimationComplete={buildPath}
                                         style={{
@@ -176,12 +214,13 @@ export default function SnakeRoadmap() {
                                             border: '3.5px solid #fff',
                                             boxShadow: `0 0 0 3px ${firstColor}33`,
                                             display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            boxShadow: `0 0 0 6px ${firstColor}`,
                                         }}
                                     >
                                         <span style={{ color: '#fff', fontWeight: 800, fontSize: 14.5, letterSpacing: '-0.5px' }}>
                                             {firstItem?.year}
                                         </span>
-                                    </motion.div>
+                                    </motion.div> */}
 
                                     {/* Zona inferior vacía (para mantener altura consistente) */}
                                     <div style={{ height: VECTOR_H + 70 }} />
@@ -225,7 +264,7 @@ export default function SnakeRoadmap() {
                                                         )}
                                                     </div>
 
-                                                    <motion.div
+                                                    {/* <motion.div
                                                         ref={(el) => (circleRefs.current[globalIdx] = el)}
                                                         initial={{ scale: 0, opacity: 0 }}
                                                         animate={{ scale: 1, opacity: 1 }}
@@ -242,8 +281,42 @@ export default function SnakeRoadmap() {
                                                         <span style={{ color: '#fff', fontWeight: 800, fontSize: 14.5, letterSpacing: '-0.5px' }}>
                                                             {item.year}
                                                         </span>
+                                                    </motion.div> */}
+                                                    <motion.div
+                                                        ref={(el) => (circleRefs.current[globalIdx] = el)}
+                                                        initial={{ scale: 0, opacity: 0 }}
+                                                        animate={{ scale: 1, opacity: 1 }}
+                                                        transition={{
+                                                            delay: 0,
+                                                            duration: 0.4,
+                                                            type: 'spring',
+                                                            stiffness: 240,
+                                                            damping: 18,
+                                                        }}
+                                                        onAnimationComplete={buildPath}
+                                                        style={{
+                                                            width: 55,
+                                                            height: 55,
+                                                            borderRadius: '50%',
+                                                            background: '#f7f7f7',
+                                                            border: `1px solid ${color}`,
+                                                            boxShadow: `0 0 0 4px #f6f6f6, 0 0 0 11px ${color}`,
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                        }}
+                                                    >
+                                                        <span
+                                                            style={{
+                                                                color: '#7d7d7d',
+                                                                fontWeight: 800,
+                                                                fontSize: 14.5,
+                                                                letterSpacing: '-0.5px'
+                                                            }}
+                                                        >
+                                                            {item.year}
+                                                        </span>
                                                     </motion.div>
-
                                                     <div style={{ height: VECTOR_H + 70, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                                                         {!isTop && (
                                                             <>

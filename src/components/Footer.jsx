@@ -7,7 +7,7 @@ import PoweredBy from './PoweredBy';
 export default function Footer() {
     return (
         <>
-            <footer className="w-full bg-[#1e264f] text-white pt-16 pb-8 px-6 md:px-20">
+            <footer className="w-full bg-[#011461] text-white pt-16 pb-8 px-6 md:px-20">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-0">
 
                     {/* Columna 1: Logo e Info (Ocupa el 50% -> col-span-6) */}

@@ -10,7 +10,7 @@ export default function BrandsPage() {
             <div
                 className="max-w text-center p-20 bg-[#f8f8f8]"
                 style={{
-                    backgroundColor: '#ECECEC',
+                    backgroundColor: '#eaeaea',
                     backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777066831/linea2_a0wxlz.png')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'left center',
@@ -23,8 +23,8 @@ export default function BrandsPage() {
             </div>
             <div className="flex justify-center -mt-7 relative z-10">
                 <span
-                    className="bg-[#2d3e8b] text-white px-5 py-2 rounded-full font-bold text-3xl md:text-4xl"
-                    style={{ letterSpacing: '0.22em' }}
+                    className="bg-[#283778] text-white px-8 py-2 rounded-full font-poppins font-extrabold"
+                    style={{ letterSpacing: '0.22em', fontSize: '1.9em' }}
                 >
                     MARCAS!
                 </span>
@@ -36,48 +36,48 @@ export default function BrandsPage() {
                         <div
                             key={index}
                             className={`
-                                relative group flex flex-col items-center justify-center p-6 
-                                aspect-square transition-all duration-300 rounded-sm
-                                ${brand.highlight
-                                    ? 'bg-[#2d3e8b] text-white'
-                                    : 'bg-[#dfe4ec] hover:bg-[#2d3e8b]'
+            relative group flex flex-col items-center justify-center p-6 
+            aspect-square transition-all duration-300 rounded-sm
+            ${brand.highlight
+                                    ? 'bg-[#e0e6f2] text-white'
+                                    : 'bg-[#e0e6f2] hover:bg-[#283778]'
                                 }
-                            `}
+        `}
                         >
-                            {/* Contenedor del Logo */}
-                            <div className="relative w-full h-20 mb-2 transition-transform duration-300 group-hover:-translate-y-2">
+                            {/* Contenedor del Logo: Ahora siempre estará centrado */}
+                            <div className="relative w-full h-20 transition-transform duration-300 group-hover:-translate-y-4">
                                 <Image
                                     src={brand.logo}
                                     alt={brand.name}
                                     fill
-                                    className={`object-contain transition-all duration-300 ${!brand.highlight && "group-hover:brightness-0 group-hover:invert"
-                                        }`}
+                                    className={`object-contain transition-all duration-300 
+                    ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
+                `}
                                 />
                             </div>
 
-                            {/* Botón "Conocer más" */}
-                            {/* Siempre presente pero invisible hasta el hover */}
-                            <Link
-                                href={brand.link || '#'}
-                                className={`
-                                    mt-2 border rounded-full px-4 py-1 text-[10px] font-bold tracking-tight uppercase
-                                    transition-all duration-300
-                                    ${brand.highlight
-                                        ? 'border-white text-white opacity-100'
-                                        : 'border-white text-white opacity-0 group-hover:opacity-100'
-                                    }
-                                    hover:bg-white hover:text-[#2d3e8b]
-                                `}
-                            >
-                                Conocer más
-                            </Link>
+                            {/* Link con posicionamiento absoluto */}
+                            <div className="absolute bottom-6 left-0 right-0 flex justify-center">
+                                <Link
+                                    href={brand.link || '#'}
+                                    className={`
+                    border border-white rounded-full px-4 py-1 text-[10px] font-bold tracking-tight uppercase
+                    transition-all duration-300 
+                    opacity-0 group-hover:opacity-100 
+                    translate-y-4 group-hover:translate-y-0
+                    hover:bg-white hover:text-[#2d3e8b] text-white
+                `}
+                                >
+                                    Conocer más
+                                </Link>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
             <div className="w-f h-10" style={{ boxShadow: '0 8px 8px -2px rgba(0,0,0,0.3)' }}></div>
             <div
-                className="max-w text-center p-16"
+                className="max-w text-center p-16 bg-[#eaeaea]"
                 style={{
                     backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777069186/linea3_ofwlc9.png')`,
                     backgroundRepeat: 'no-repeat',
@@ -86,15 +86,15 @@ export default function BrandsPage() {
                 }}>
                 {/* CTA Final */}
                 <div>
-                    <p className="text-[#383838] text-lg mb-4 font-semibold" style={{ fontSize: '1.4em' }}>
+                    <p className="text-[#373737] text-lg mb-4 font-semibold" style={{ fontSize: '1.4em' }}>
                         ¿Deseas información sobre los productos que tenemos en existencia?
                     </p>
                     <div className="flex items-center justify-center" style={{ fontSize: '1.7em' }}>
-                        <span style={{ fontWeight: 500, marginRight: '10px' }}>¡Descarga nuestro</span>
+                        <span style={{ fontWeight: 500, marginRight: '10px', color: '#283778' }}>¡Descarga nuestro</span>
                         <Link
                             href='/catalogo.pdf'
                             style={{ fontSize: '.9em' }}
-                            className="bg-[#2d3e8b] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase font-weight"
+                            className="bg-[#283778] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase font-weight"
                         >
                             Catálogo!
                         </Link>

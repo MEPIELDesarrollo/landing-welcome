@@ -21,7 +21,7 @@ export default function CallToAction({
 
     btn1Text,
     btn1Url,
-    btn1Style = { background: 'linear-gradient(to right, #0082ff, #0000ff)', color: '#fff' },
+    btn1Style = { background: 'linear-gradient(to right, #008dff, #0008ff)', color: '#fff' },
 
     btn2Text,
     btn2Url,
@@ -58,6 +58,14 @@ export default function CallToAction({
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="relative z-10 text-center max-w-4xl flex flex-col items-center"
             >
+                <div className="relative w-[100%] aspect-[3/1] mb-6">
+                    <Image
+                        src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1777499082/copy_of_landing-18_qviiry_928444.png"
+                        alt="Logo"
+                        fill
+                        className="object-contain"
+                    />
+                </div>
                 {title && (
                     <h1 className="text-6xl md:text-8xl font-serif leading-tight" style={{ color: titleColor }}>
                         {title}
@@ -71,7 +79,7 @@ export default function CallToAction({
                 )}
 
                 {description && (
-                    <p className="text-lg md:text-xl font-light mb-12 max-w-2xl leading-relaxed" style={{ color: descriptionColor }}>
+                    <p className="font-weight mb-12 max-w-2xl " style={{ color: descriptionColor, fontSize: '1.5em' }}>
                         {description}
                     </p>
                 )}
@@ -84,7 +92,7 @@ export default function CallToAction({
                                 display="inline-block"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-12 py-4 rounded-xl font-bold tracking-wider uppercase shadow-sm cursor-pointer inline-block"
+                                className="px-12 py-4 rounded-xl font-poppins font-semibold tracking-wider uppercase shadow-sm cursor-pointer inline-block"
                                 style={btn2Style}
                             >
                                 {btn2Text}
@@ -98,7 +106,7 @@ export default function CallToAction({
                                 display="inline-block"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-12 py-4 rounded-xl font-bold tracking-wider uppercase shadow-lg shadow-blue-500/10 cursor-pointer inline-block"
+                                className="px-6 py-2 rounded-md font-poppins font-semibold tracking-wider uppercase shadow-lg cursor-pointer inline-block"
                                 style={btn1Style}
                             >
                                 {btn1Text}

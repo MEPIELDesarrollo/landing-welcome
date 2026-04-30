@@ -27,9 +27,11 @@ const Hero = ({ assets = [] }) => {
 
     useEffect(() => {
         if (assets.length <= 1 || isPaused) return;
-        const timer = setInterval(nextStep, 5000);
+
+        const timer = setInterval(nextStep, 3000);
+
         return () => clearInterval(timer);
-    }, [assets.length, isPaused, nextStep]);
+    }, [assets.length, isPaused, nextStep, index]);
 
     const handleManualChange = (newIndex) => {
         setIndex(newIndex);
@@ -41,7 +43,10 @@ const Hero = ({ assets = [] }) => {
     if (!assets || assets.length === 0) return null;
 
     return (
-        <section className="relative w-full aspect-[2400/900] min-h-[400px] overflow-hidden bg-black group">
+        <section
+            className="relative w-full aspect-[2400/900] min-h-[400px] overflow-hidden bg-black group"
+        // style={{ boxShadow: '0px 10px 10px 5px #00000040' }}
+        >
             <div className="absolute inset-0 z-0">
                 <AnimatePresence mode="wait">
                     <motion.div

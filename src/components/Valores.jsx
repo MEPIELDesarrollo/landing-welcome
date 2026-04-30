@@ -1,4 +1,7 @@
+"use client"; // Importante: Framer Motion requiere hooks de cliente
+
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const VALORES = [
     { id: 1, text: 'Compromiso', color: '#1e3a8a' },
@@ -8,6 +11,20 @@ const VALORES = [
     { id: 5, text: 'Respeto', color: '#1e3a8a' },
     { id: 6, text: 'Pasión', color: '#c20078' },
 ];
+
+// Configuración de la animación para los contenedores (labels)
+const fadeInVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+        opacity: 1,
+        y: 0,
+        transition: {
+            delay: i * 0.1, // Efecto cascada: cada uno tarda 0.1s más que el anterior
+            duration: 0.5,
+            ease: "easeOut"
+        }
+    })
+};
 
 export default function ValoresSection() {
     return (
@@ -19,12 +36,16 @@ export default function ValoresSection() {
                 zIndex: 1
             }}
         >
-            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 px-4">
 
                 {/* 🔵 LADO IZQUIERDO */}
-                <div className="relative">
-
-                    {/* TÍTULO */}
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }} // Solo se anima la primera vez que se ve
+                    transition={{ duration: 0.8 }}
+                    className="relative"
+                >
                     <h2
                         className="text-[#2f3c7e] font-light tracking-tight leading-none"
                         style={{
@@ -35,7 +56,6 @@ export default function ValoresSection() {
                         VALORES
                     </h2>
 
-                    {/* BARRA ROSA */}
                     <div className="mt-2 relative">
                         <div
                             className="text-white uppercase tracking-[0.25em] text-sm font-medium px-6 py-2"
@@ -48,46 +68,27 @@ export default function ValoresSection() {
                             Que nos definen
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                {/* 🟢 GRILLA DE VALORES */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-
-                    {VALORES.map((val) => (
-                        <div
+                    {VALORES.map((val, i) => (
+                        <motion.div
                             key={val.id}
+                            custom={i} // Pasamos el índice para el delay
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }} // Se activa 50px antes de entrar
+                            variants={fadeInVariant}
                             className="flex items-center rounded-full px-3 py-2 bg-[#f8fafc]"
                             style={{
                                 boxShadow: '0 0px 10px rgb(5 5 5 / 25%)',
                             }}
                         >
-
                             {/* CÍRCULO */}
                             <div
                                 className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
-                                style={{
-                                    backgroundColor: val.color,
-                                }}
+                                style={{ backgroundColor: val.color }}
                             >
                                 {val.id}
                             </div>
@@ -104,8 +105,7 @@ export default function ValoresSection() {
                                     {val.text}
                                 </span>
                             </div>
-
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
