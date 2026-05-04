@@ -91,7 +91,7 @@ export default function LayerSlider({
 
                 {/* ── Slider ── */}
                 <div
-                    className="group relative w-full overflow-hidden "
+                    className="group relative overflow-hidden slider-responsive"
                     style={{ aspectRatio: '16/9', marginTop: '-50px' }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
