@@ -195,21 +195,43 @@ export default function SnakeRoadmap() {
                             </p>
 
                             {/* Etiqueta inferior azul + trigger del roadmap */}
-                            <div className="absolute bottom-4 right-20 flex items-center gap-3">
-                                <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-1 rounded-full shadow-md">
-                                    <span className="text-white text-xs font-weight uppercase tracking-widest">
-                                        En todo México
-                                    </span>
+                            <div
+                                className="absolute bottom-4 right-20 flex items-center"
+                                style={{ marginRight: ' -21em' }}
+                            >
+                                {/* Contenedor Cápsula Integrada */}
+                                <div className="flex items-center bg-white rounded-full shadow-md" style={{ boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px' }}>
+
+                                    {/* Label Azul (Izquierda) */}
+                                    <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full">
+                                        <span
+                                            className="text-white font-weight uppercase tracking-widest whitespace-nowrap"
+                                            style={{ fontSize: '1.2em' }}
+                                        >
+                                            En todo México
+                                        </span>
+                                    </div>
+
+                                    {/* Texto y Trigger (Derecha) */}
+                                    <div className="flex items-center gap-1">
+                                        <span
+                                            className="text-gray-600 text-[11px] font-bold uppercase tracking-widest whitespace-nowrap"
+                                            style={{ marginLeft: '3em' }}
+                                        >
+                                            {showRoadmap ? '' : '¡Nuestra historia comienza'}
+                                        </span>
+
+                                        {!showRoadmap && (
+                                            <button
+                                                onClick={() => setShowRoadmap(true)}
+                                                className="text-[#cc007b] text-[11px] font-black uppercase tracking-widest border-b-2 border-[#cc007b] transition-opacity cursor-pointer p-0"
+                                                style={{ background: 'none', outline: 'none', marginRight: '2em' }}
+                                            >
+                                                AQUÍ!
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
-                                <button
-                                    onClick={() => setShowRoadmap(v => !v)}
-                                    className="bg-white px-5 py-1 rounded-full shadow-md border border-[#cc007b] cursor-pointer transition-all group"
-                                    style={{ outline: 'none' }}
-                                >
-                                    <span className="text-[#cc007b] text-xs font-bold uppercase tracking-widest whitespace-nowrap">
-                                        {showRoadmap ? '✕ Cerrar historia' : '¡Nuestra historia comienza AQUÍ!'}
-                                    </span>
-                                </button>
                             </div>
                         </div>
                     </div>
