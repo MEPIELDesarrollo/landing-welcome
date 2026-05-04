@@ -151,98 +151,107 @@ export default function SnakeRoadmap() {
 
     return (
         <>
-            <div className='bg-white'>
-                <section
-                    style={{
-                        backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776896789/landing-05_qjstea.png')",
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'top right',
-                        backgroundSize: '15%',
-                        zIndex: 1,
-                        position: 'relative',
-                    }}
+
+            <section
+                style={{
+                    backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776896789/landing-05_qjstea.png')",
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'top right',
+                    backgroundSize: '15%',
+                    zIndex: 1,
+                    position: 'relative',
+                }}
+            >
+                <div
+                    className="relative w-[70%] max-w-6xl font-sans"
+                    style={{ paddingTop: 50, marginBottom: '-50px' }}
                 >
-                    <div
-                        className="relative w-[70%] max-w-6xl font-sans"
-                        style={{ paddingTop: 50, marginBottom: '-50px' }}
-                    >
-                        <div className="relative z-10 flex">
-                            <div
-                                className="w-[75%] bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-10 py-3 rounded-tr-[20px]"
-                                style={{ marginBottom: '-1.7em', textAlign: 'right' }}
-                            >
-                                <span
-                                    className="text-white tracking-wide"
-                                    style={{ fontSize: '1.5em' }}
-                                >
-                                    30 años distribuyendo productos
-                                </span>
-                            </div>
-                        </div>
-
-                        {/* Bloque Principal Magenta */}
-                        <div className="relative bg-[#cc007b] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
+                    <div className="relative z-10 flex">
+                        <div
+                            className="w-[75%] bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-10 py-3 rounded-tr-[20px]"
+                            style={{ marginBottom: '-1.7em', textAlign: 'right' }}
+                        >
                             <span
-                                className="text-white"
-                                style={{ fontSize: "3.2em", "fontWeight": "700", letterSpacing: '.2em' }}
-                            >DERMATOLÓGICOS</span> <br />
-                            <p
-                                className="text-white leading-none tracking-tight"
-                                style={{ fontSize: "5em", "fontWeight": "700", letterSpacing: '.15em' }}
+                                className="text-white tracking-wide"
+                                style={{ fontSize: '1.5em' }}
                             >
+                                30 años distribuyendo productos
+                            </span>
+                        </div>
+                    </div>
 
-                                Y ESTÉTICOS
-                            </p>
+                    {/* Bloque Principal Magenta */}
+                    <div className="relative bg-[#cc007b] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
+                        <span
+                            className="text-white"
+                            style={{ fontSize: "3.2em", "fontWeight": "700", letterSpacing: '.2em' }}
+                        >DERMATOLÓGICOS</span> <br />
+                        <p
+                            className="text-white leading-none tracking-tight"
+                            style={{ fontSize: "5em", "fontWeight": "700", letterSpacing: '.15em' }}
+                        >
 
-                            {/* Etiqueta inferior azul + trigger del roadmap */}
+                            Y ESTÉTICOS
+                        </p>
+
+                        {/* Etiqueta inferior azul + trigger del roadmap */}
+                        <div
+                            className="absolute bottom-4 right-20 flex items-center"
+                            style={{
+                                marginRight: showRoadmap ? '0px' : '-25em'
+                            }}
+                        >
+                            {/* Contenedor Cápsula */}
                             <div
-                                className="absolute bottom-4 right-20 flex items-center"
+                                className="flex items-center bg-white rounded-full shadow-md transition-all duration-500 overflow-hidden"
                                 style={{
-                                    marginRight: showRoadmap ? '0px' : '-25em'
+                                    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px',
+                                    minHeight: '45px'
                                 }}
                             >
-                                {/* Contenedor Cápsula */}
-                                <div
-                                    className="flex items-center bg-white rounded-full shadow-md transition-all duration-500 overflow-hidden"
-                                    style={{
-                                        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px',
-                                        minHeight: '45px'
-                                    }}
-                                >
-                                    {/* Label Azul (Izquierda) */}
-                                    <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full z-10" style={{ marginLeft: '-3px' }}>
-                                        <span className="text-white font-weight uppercase tracking-widest whitespace-nowrap" style={{ fontSize: '1.2em' }}>
-                                            En todo México
-                                        </span>
-                                    </div>
-
-                                    {/* Lado derecho: Desaparece y deja de ocupar espacio */}
-                                    {!showRoadmap && (
-                                        <div
-                                            className="flex items-center gap-1 whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-500"
-                                            style={{
-                                                paddingLeft: '1.5em',
-                                                paddingRight: '2.5em'
-                                            }}
-                                        >
-                                            <span className="text-black font-weight uppercase tracking-widest">
-                                                ¡Nuestra historia comienza
-                                            </span>
-
-                                            <button
-                                                onClick={() => setShowRoadmap(true)}
-                                                className="text-[#000] font-black uppercase tracking-widest cursor-pointer p-0 underline"
-                                                style={{ background: 'none', outline: 'none' }}
-                                            >
-                                                AQUÍ!
-                                            </button>
-                                        </div>
-                                    )}
+                                {/* Label Azul (Izquierda) */}
+                                <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full z-10" style={{ marginLeft: '-3px' }}>
+                                    <span className="text-white font-weight uppercase tracking-widest whitespace-nowrap" style={{ fontSize: '1.2em' }}>
+                                        En todo México
+                                    </span>
                                 </div>
+
+                                {/* Lado derecho: Desaparece y deja de ocupar espacio */}
+                                {!showRoadmap && (
+                                    <div
+                                        className="flex items-center gap-1 whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-500"
+                                        style={{
+                                            paddingLeft: '1.5em',
+                                            paddingRight: '2.5em'
+                                        }}
+                                    >
+                                        <span className="text-black font-weight uppercase tracking-widest">
+                                            ¡Nuestra historia comienza
+                                        </span>
+
+                                        <button
+                                            onClick={() => setShowRoadmap(true)}
+                                            className="text-[#000] font-black uppercase tracking-widest cursor-pointer p-0 underline"
+                                            style={{ background: 'none', outline: 'none' }}
+                                        >
+                                            AQUÍ!
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+            </section>
+            <div
+                className='bg-white'
+                style={{
+                    backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776869609/landing-15_uvax9q.png')",
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center center',
+                    backgroundRepeat: 'no-repeat'
+                }}
+            >
                 <motion.section
                     initial={false}
                     animate={showRoadmap ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
@@ -250,14 +259,16 @@ export default function SnakeRoadmap() {
                     style={{
                         // overflow: 'hidden',
                         width: '100%',
-                        background: '#fff',
-                        backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776869609/landing-15_uvax9q.png')",
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
+                        // background: '#fff',
+                        // backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776869609/landing-15_uvax9q.png')",
+                        // backgroundSize: 'cover',
+                        // backgroundPosition: 'center',
+                        // backgroundRepeat: 'no-repeat'
                     }}
                 >
-                    <div style={{ padding: '0px 0 300px' }}>
+                    <div
+                    // style={{ padding: '0px 0 70px' }}
+                    >
                         <style>{`
                             @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap');
                             .rm * { box-sizing: border-box; font-family: 'Sora', sans-serif; }`}
@@ -292,7 +303,12 @@ export default function SnakeRoadmap() {
 
                                 {/* ── FILA 0: nodo único alineado a la derecha ── */}
                                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 220 }}>
+                                    <div style={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        alignItems: 'center',
+                                        width: 200
+                                    }}>
                                         {/* Zona superior con label */}
                                         <div style={{ height: VECTOR_H + 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
                                             <motion.div
@@ -303,14 +319,13 @@ export default function SnakeRoadmap() {
                                             >
                                                 <LabelGroup item={firstItem} />
                                             </motion.div>
-                                            <Stick color={firstColor} direction="top" delay={0} height={VECTOR_H} />
+                                            <Stick color={firstColor} direction="top" delay={0} height={VECTOR_H} showRoadmap={showRoadmap} />
                                         </div>
 
                                         {/* Círculo */}
                                         <motion.div
                                             ref={(el) => (circleRefs.current[0] = el)}
                                             initial={{ scale: 0, opacity: 0 }}
-                                            // animate={{ scale: 1, opacity: 1 }}
                                             animate={showRoadmap ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                                             transition={{
                                                 delay: showRoadmap ? 0 : 0,
@@ -332,19 +347,12 @@ export default function SnakeRoadmap() {
                                                 justifyContent: 'center',
                                             }}
                                         >
-                                            <span
-                                                style={{
-                                                    color: '#7d7d7d',
-                                                    fontWeight: 800,
-                                                    fontSize: 14.5,
-                                                    letterSpacing: '-0.5px'
-                                                }}
-                                            >
+                                            <span style={{ color: '#7d7d7d', fontWeight: 800, fontSize: 14.5, letterSpacing: '-0.5px' }}>
                                                 {firstItem?.year}
                                             </span>
                                         </motion.div>
 
-                                        {/* Zona inferior vacía (para mantener altura consistente) */}
+                                        {/* Zona inferior vacía */}
                                         <div style={{ height: VECTOR_H + 70 }} />
                                     </div>
                                 </div>
@@ -377,7 +385,7 @@ export default function SnakeRoadmap() {
                                                                         initial={{ opacity: 0, y: 8 }}
                                                                         animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                                                                         // animate={{ opacity: 1, y: 0 }}
-                                                                        transition={{ delay: delay + 0.5 }}
+                                                                        transition={{ delay: delay + 0.7 }}
                                                                         style={{ marginBottom: 8 }}
                                                                     >
                                                                         <LabelGroup item={item} />
@@ -388,6 +396,7 @@ export default function SnakeRoadmap() {
                                                                         delay={delay + 0.5}
                                                                         height={VECTOR_H}
                                                                         animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                                                                        showRoadmap={showRoadmap}
                                                                     />
                                                                 </>
                                                             )}
@@ -434,9 +443,10 @@ export default function SnakeRoadmap() {
                                                                     <Stick
                                                                         color={color}
                                                                         direction="bottom"
-                                                                        delay={delay + 0.5}
+                                                                        delay={delay + 0.7}
                                                                         height={VECTOR_H}
                                                                         animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                                                                        showRoadmap={showRoadmap}
                                                                     />
                                                                     <motion.div
                                                                         initial={{ opacity: 0, y: -8 }}
@@ -476,11 +486,11 @@ export default function SnakeRoadmap() {
                         zIndex: 0,
                     }}
                 >
-                    <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 items-stretch justify-center">
+                    <div className="mx-auto flex flex-col md:flex-row gap-8 items-stretch justify-center">
 
                         {/* Tarjeta MISIÓN */}
                         <div className="flex-1 flex flex-col items-center">
-                            <h2 className="text-[#1e3a8a] text-3xl font-extrabold tracking-widest mb-6 uppercase">
+                            <h2 className="text-[#1e3a8a] text-3xl font-bold tracking-widest mb-6 uppercase">
                                 Misión
                             </h2>
                             <div className="bg-white rounded-[40px] p-10 shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-50 flex flex-col items-center justify-center h-full">
@@ -495,7 +505,7 @@ export default function SnakeRoadmap() {
 
                         {/* Tarjeta VISIÓN */}
                         <div className="flex-1 flex flex-col items-center">
-                            <h2 className="text-[#1e3a8a] text-3xl font-extrabold tracking-widest mb-6 uppercase">
+                            <h2 className="text-[#1e3a8a] text-3xl font-bold tracking-widest mb-6 uppercase">
                                 Visión
                             </h2>
                             <div className="bg-white rounded-[40px] p-10 shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-50 flex flex-col items-center justify-center h-full">
@@ -514,12 +524,13 @@ export default function SnakeRoadmap() {
     );
 }
 
-function Stick({ color, direction, delay, height }) {
+function Stick({ color, direction, delay, height, showRoadmap }) {
     const isTop = direction === 'top';
     return (
         <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
+            animate={showRoadmap ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
+            // animate={{ scaleY: 1, opacity: 1 }}
             transition={{ delay: delay + 0.3, duration: 0.4 }}
             style={{
                 width: 2, height,

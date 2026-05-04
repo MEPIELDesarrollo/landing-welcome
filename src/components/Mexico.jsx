@@ -109,21 +109,21 @@ export default function MexicoSection() {
 
                     <div className="relative mt-8 w-full bg-gradient-to-r from-[#2d3e8b] to-[#5ea3c4] rounded-3xl pt-6 px-6 pb-10 text-center text-white shadow-lg">
 
-                        <p className="text-xs tracking-widest uppercase opacity-80">
+                        <p className="tracking-widest uppercase opacity-80  font-poppins">
                             ¡Forma parte de nuestra red
                         </p>
 
-                        <h3 className="text-2xl font-semibold mt-1">
+                        <h3 className="text-2xl font-semibold mt-1  font-poppins">
                             DE CLIENTES!
                         </h3>
 
                         <div>
-                            <a href="/login" className="inline-block mt-4 bg-white text-gray-600 px-4 py-1 rounded-full text-sm shadow hover:bg-gray-100 transition-colors">
+                            <a href="/login" className="inline-block mt-4 bg-white text-gray-600 px-4 py-1 rounded-full text-sm shadow hover:bg-gray-100 transition-colors  font-poppins">
                                 Iniciar sesión
                             </a>
                         </div>
 
-                        <a href="/registro" className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-[#c20078] px-8 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap z-10 hover:bg-[#a8006a] transition-colors">
+                        <a href="/registro" className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-[#c20078] px-8 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap z-10 hover:bg-[#a8006a] transition-colors font-poppins">
                             REGISTRARME
                         </a>
                     </div>
@@ -165,12 +165,12 @@ export default function MexicoSection() {
                                             className="w-8 h-8 object-contain"
                                         />
                                     </div>
-                                    <h4 className="font-semibold text-black">
+                                    <h4 className="font-semibold text-black  font-poppins">
                                         {card.title}
                                     </h4>
                                 </div>
 
-                                <p className="text-sm text-[#606060] leading-relaxed">
+                                <p className="text-sm text-[#606060] leading-relaxed font-poppins">
                                     {card.text}
                                 </p>
 

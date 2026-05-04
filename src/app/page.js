@@ -73,7 +73,8 @@ const slides = [
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776378126/punto1.png', delay: 0.5, type: 'fadeInRight' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776378126/punto2.png', delay: 0.55, type: 'fadeInRight' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776378127/punto3.png', delay: 0.6, type: 'fadeInRight' },
-      { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777392799/robot.final_cjjzgf.gif', delay: 0.68, type: 'zoomIn' }
+      { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777920851/circulos_bphqjv.png', delay: 0.63, type: 'blurIn' },
+      { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777392799/robot.final_cjjzgf.gif', delay: 0.75, type: 'zoomIn' }
       // { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777323835/ffea9c87-3d04-40fe-89e6-77a9c9567133_hwl4wm.gif', delay: 0.68, type: 'zoomIn' }
     ],
   },

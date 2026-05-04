@@ -7,8 +7,9 @@
                     {
                         "text": "Arranca operaciones el centro de distribución",
                         "style": {
-                            "fontWeight": "600",
-                            "fontSize": ".8em"
+                            "fontWeight": "700",
+                            "fontSize": ".6em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -26,8 +27,9 @@
                     {
                         "text": "Inauguración almacén CEDIS Guadalajara",
                         "style": {
-                            "fontWeight": "500",
-                            "fontSize": ".8em"
+                            "fontWeight": "700",
+                            "fontSize": ".60em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -47,7 +49,8 @@
                         "style": {
                             "fontWeight": "600",
                             "color": "#804280",
-                            "fontSize": ".8em"
+                            "fontSize": ".7em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -67,7 +70,8 @@
                         "style": {
                             "fontWeight": "700",
                             "color": "#253672",
-                            "fontSize": ".8em"
+                            "fontSize": ".7em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -87,7 +91,8 @@
                         "style": {
                             "fontWeight": "700",
                             "color": "#804280",
-                            "fontSize": ".9em"
+                            "fontSize": ".65em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -107,15 +112,17 @@
                         "style": {
                             "fontWeight": "700",
                             "color": "#2396C3",
-                            "fontSize": "1.2em"
+                            "fontSize": ".9em",
+                            "textTransform": "uppercase"
                         }
                     },
                     {
                         "text": " investigación",
                         "style": {
-                            "fontWeight": "500",
+                            "fontWeight": "600",
                             "color": "#2396C3",
-                            "fontSize": ".8em"
+                            "fontSize": ".7em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -130,15 +137,17 @@
                         "style": {
                             "fontWeight": "700",
                             "color": "#804280",
-                            "fontSize": "1.2em"
+                            "fontSize": ".9em",
+                            "textTransform": "uppercase"
                         }
                     },
                     {
                         "text": " omnicanal",
                         "style": {
-                            "fontWeight": "5h00",
+                            "fontWeight": "600",
                             "color": "#804280",
-                            "fontSize": ".8em"
+                            "fontSize": ".7em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -156,17 +165,19 @@
                     {
                         "text": "Inauguración ",
                         "style": {
-                            "fontWeight": "500",
+                            "fontWeight": "600",
                             "color": "#283777",
-                            "fontSize": ".8em"
+                            "fontSize": ".65em",
+                            "textTransform": "uppercase"
                         }
                     },
                     {
-                        "text": "almacén pulmón",
+                        "text": "ALMACÉN PULMÓN",
                         "style": {
                             "fontWeight": "700",
                             "color": "#283777",
-                            "fontSize": "1v.1em"
+                            "fontSize": ".7em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -186,7 +197,8 @@
                         "style": {
                             "fontWeight": "500",
                             "color": "#ED77AA",
-                            "fontSize": "1.2em"
+                            "fontSize": "1.2em",
+                            "textTransform": "uppercase"
                         }
                     },
                     {
@@ -194,7 +206,8 @@
                         "style": {
                             "fontWeight": "500",
                             "color": "#283777",
-                            "fontSize": ".8em"
+                            "fontSize": ".8em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],
@@ -214,7 +227,8 @@
                         "style": {
                             "fontWeight": "800",
                             "color": "#283776",
-                            "fontSize": "1.9em"
+                            "fontSize": "1.9em",
+                            "textTransform": "uppercase"
                         }
                     },
                     {
@@ -222,7 +236,8 @@
                         "style": {
                             "fontWeight": "500",
                             "color": "#283776",
-                            "fontSize": "1em"
+                            "fontSize": "1em",
+                            "textTransform": "uppercase"
                         }
                     }
                 ],

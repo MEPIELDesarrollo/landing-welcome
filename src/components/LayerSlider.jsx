@@ -48,8 +48,7 @@ export default function LayerSlider({
                 paddingLeft: 130,
                 paddingRight: 130,
                 paddingTop: 40,
-                backgroundImage: `
-      url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png')`,
+                backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png')`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'top center',
                 backgroundSize: 'contain',
@@ -137,13 +136,13 @@ export default function LayerSlider({
                     {/* Flechas */}
                     <button
                         onClick={prevSlide}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all opacity-60 md:opacity-0 group-hover:opacity-100"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
                     >
                         <ChevronLeft className="w-5 h-5 md:w-8 md:h-8" />
                     </button>
                     <button
                         onClick={nextSlide}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all opacity-60 md:opacity-0 group-hover:opacity-100"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
                     >
                         <ChevronRight className="w-5 h-5 md:w-8 md:h-8" />
                     </button>

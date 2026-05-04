@@ -36,7 +36,7 @@ export default function ValoresSection() {
                 zIndex: 1
             }}
         >
-            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12 px-4">
+            <div className="mx-auto flex flex-col lg:flex-row items-center gap-12 px-4">
 
                 {/* 🔵 LADO IZQUIERDO */}
                 <motion.div
@@ -47,7 +47,7 @@ export default function ValoresSection() {
                     className="relative"
                 >
                     <h2
-                        className="text-[#2f3c7e] font-light tracking-tight leading-none"
+                        className="text-[#2f3c7e] font-semibold tracking-tight leading-none font-poppins"
                         style={{
                             fontSize: 'clamp(3rem, 7vw, 5.5rem)',
                             letterSpacing: '-2px'
@@ -56,9 +56,9 @@ export default function ValoresSection() {
                         VALORES
                     </h2>
 
-                    <div className="mt-2 relative">
+                    <div className="mt-2 relative" style={{ marginLeft: '-1em' }}>
                         <div
-                            className="text-white uppercase tracking-[0.25em] text-sm font-medium px-6 py-2"
+                            className="text-white uppercase tracking-[0.25em] text-sm font-medium px-6 py-2  font-poppins"
                             style={{
                                 background: '#c20078',
                                 clipPath: 'polygon(0px 0px, 100% 0px, 91% 100%, 0% 100%)',
@@ -87,7 +87,7 @@ export default function ValoresSection() {
                         >
                             {/* CÍRCULO */}
                             <div
-                                className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0"
+                                className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 font-poppins"
                                 style={{ backgroundColor: val.color }}
                             >
                                 {val.id}
@@ -96,7 +96,7 @@ export default function ValoresSection() {
                             {/* TEXTO */}
                             <div className="flex-1 text-center">
                                 <span
-                                    className="text-gray-600 font-medium"
+                                    className="text-gray-600 font-medium font-poppins"
                                     style={{
                                         letterSpacing: '2px',
                                         fontSize: '15px'
