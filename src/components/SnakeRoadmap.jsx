@@ -197,40 +197,47 @@ export default function SnakeRoadmap() {
                             {/* Etiqueta inferior azul + trigger del roadmap */}
                             <div
                                 className="absolute bottom-4 right-20 flex items-center"
-                                style={{ marginRight: ' -21em' }}
+                                style={{
+                                    marginRight: showRoadmap ? '0px' : '-25em'
+                                }}
                             >
-                                {/* Contenedor Cápsula Integrada */}
-                                <div className="flex items-center bg-white rounded-full shadow-md" style={{ boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px' }}>
-
+                                {/* Contenedor Cápsula */}
+                                <div
+                                    className="flex items-center bg-white rounded-full shadow-md transition-all duration-500 overflow-hidden"
+                                    style={{
+                                        boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px',
+                                        minHeight: '45px'
+                                    }}
+                                >
                                     {/* Label Azul (Izquierda) */}
-                                    <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full">
-                                        <span
-                                            className="text-white font-weight uppercase tracking-widest whitespace-nowrap"
-                                            style={{ fontSize: '1.2em' }}
-                                        >
+                                    <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full z-10" style={{ marginLeft: '-3px' }}>
+                                        <span className="text-white font-weight uppercase tracking-widest whitespace-nowrap" style={{ fontSize: '1.2em' }}>
                                             En todo México
                                         </span>
                                     </div>
 
-                                    {/* Texto y Trigger (Derecha) */}
-                                    <div className="flex items-center gap-1">
-                                        <span
-                                            className="text-gray-600 text-[11px] font-bold uppercase tracking-widest whitespace-nowrap"
-                                            style={{ marginLeft: '3em' }}
+                                    {/* Lado derecho: Desaparece y deja de ocupar espacio */}
+                                    {!showRoadmap && (
+                                        <div
+                                            className="flex items-center gap-1 whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-500"
+                                            style={{
+                                                paddingLeft: '1.5em',
+                                                paddingRight: '2.5em'
+                                            }}
                                         >
-                                            {showRoadmap ? '' : '¡Nuestra historia comienza'}
-                                        </span>
+                                            <span className="text-black font-weight uppercase tracking-widest">
+                                                ¡Nuestra historia comienza
+                                            </span>
 
-                                        {!showRoadmap && (
                                             <button
                                                 onClick={() => setShowRoadmap(true)}
-                                                className="text-[#cc007b] text-[11px] font-black uppercase tracking-widest border-b-2 border-[#cc007b] transition-opacity cursor-pointer p-0"
-                                                style={{ background: 'none', outline: 'none', marginRight: '2em' }}
+                                                className="text-[#000] font-black uppercase tracking-widest cursor-pointer p-0 underline"
+                                                style={{ background: 'none', outline: 'none' }}
                                             >
                                                 AQUÍ!
                                             </button>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -463,7 +470,7 @@ export default function SnakeRoadmap() {
                         `,
                         backgroundRepeat: 'no-repeat, no-repeat',
                         backgroundPosition: 'bottom left, bottom right',
-                        backgroundSize: '45%, 35%',
+                        backgroundSize: '35%, 35%',
                         backgroundColor: 'transparent',
                         marginTop: '5em',
                         zIndex: 0,
