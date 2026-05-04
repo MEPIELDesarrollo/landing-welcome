@@ -14,7 +14,7 @@ const VECTOR_H = 35;
 //   'bottom' → todos los labels abajo
 //   array    → posición explícita por índice global (0=firstItem, 1..N=restItems)
 const BREAKPOINTS = [
-    { minWidth: 1200, cols: 4, labelPos: 'auto' },
+    { minWidth: 1200, cols: 4, labelPos: ['top', 'bottom', 'top', 'top', 'top', 'bottom', 'bottom', 'bottom', 'bottom'] },
     { minWidth: 900, cols: 3, labelPos: 'auto' },
     { minWidth: 600, cols: 2, labelPos: 'auto' },
     { minWidth: 0, cols: 1, labelPos: 'top' },
@@ -73,7 +73,7 @@ function buildRoundedSnakePath(pts, r = 50) {
 export default function SnakeRoadmap() {
     const containerRef = useRef(null);
     const circleRefs = useRef([]);
-    const [pathD, setPathD] = useState('');
+    const [pathSegments, setPathSegments] = useState([]);
     const [showRoadmap, setShowRoadmap] = useState(false);
     const [activeBp, setActiveBp] = useState(() =>
         getBreakpoint(typeof window !== 'undefined' ? window.innerWidth : 1200)
@@ -81,9 +81,9 @@ export default function SnakeRoadmap() {
 
     const buildPath = () => {
         const container = containerRef.current;
-        if (!container) return;
-        const cRect = container.getBoundingClientRect();
+        if (!container || !roadmap.length) return;
 
+        const cRect = container.getBoundingClientRect();
         const pts = circleRefs.current
             .map((el) => {
                 if (!el) return null;
@@ -95,8 +95,22 @@ export default function SnakeRoadmap() {
             })
             .filter(Boolean);
 
-        if (pts.length < 2) return;
-        setPathD(buildRoundedSnakePath(pts, 55));
+        // Solo procedemos si tenemos todos los puntos necesarios
+        if (pts.length < roadmap.length) return;
+
+        const segments = [];
+        for (let i = 0; i < pts.length - 1; i++) {
+            const start = pts[i];
+            const end = pts[i + 1];
+            // El color del tramo es el color del año de destino
+            const segmentColor = roadmap[i + 1]?.events[0]?.color ?? '#1e3a8a';
+
+            segments.push({
+                d: `M ${start.x} ${start.y} L ${end.x} ${end.y}`,
+                color: segmentColor
+            });
+        }
+        setPathSegments(segments);
     };
 
     // Detecta cambio de breakpoint en resize
@@ -189,10 +203,10 @@ export default function SnakeRoadmap() {
                                 </div>
                                 <button
                                     onClick={() => setShowRoadmap(v => !v)}
-                                    className="bg-white px-5 py-1 rounded-full shadow-md border border-[#cc007b] cursor-pointer transition-all hover:bg-[#cc007b] hover:text-white group"
+                                    className="bg-white px-5 py-1 rounded-full shadow-md border border-[#cc007b] cursor-pointer transition-all group"
                                     style={{ outline: 'none' }}
                                 >
-                                    <span className="text-[#cc007b] group-hover:text-white text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+                                    <span className="text-[#cc007b] text-xs font-bold uppercase tracking-widest whitespace-nowrap">
                                         {showRoadmap ? '✕ Cerrar historia' : '¡Nuestra historia comienza AQUÍ!'}
                                     </span>
                                 </button>
@@ -223,27 +237,26 @@ export default function SnakeRoadmap() {
                         <div ref={containerRef} className="rm" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 32px', position: 'relative', marginTop: "-100px" }}>
 
                             <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, overflow: 'visible' }}>
-                                <defs>
-                                    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="#1e3a8a" />
-                                        <stop offset="25%" stopColor="#f97316" />
-                                        <stop offset="50%" stopColor="#7c3aed" />
-                                        <stop offset="75%" stopColor="#0ea5e9" />
-                                        <stop offset="100%" stopColor="#ec4899" />
-                                    </linearGradient>
-                                </defs>
-                                {pathD && (
+                                {pathSegments.map((seg, idx) => (
                                     <motion.path
-                                        d={pathD}
+                                        key={idx}
+                                        d={seg.d}
                                         fill="none"
-                                        stroke="url(#lg)"
+                                        stroke={seg.color}
                                         strokeWidth="25"
                                         strokeLinecap="round"
-                                        initial={{ pathLength: 0, opacity: 0 }}
-                                        animate={{ pathLength: 1, opacity: 1 }}
-                                        transition={{ duration: 3.5, ease: 'easeInOut' }}
+                                        initial={{ pathLength: 0 }}
+                                        // CAMBIO AQUÍ: Solo anima a 1 si showRoadmap es true
+                                        animate={{ pathLength: showRoadmap ? 1 : 0 }}
+                                        transition={{
+                                            duration: 0.6,
+                                            // Agregamos un pequeño delay extra (0.4) para que la línea 
+                                            // empiece justo después de que el primer círculo aparezca
+                                            delay: showRoadmap ? (idx * 0.6) + 0.4 : 0,
+                                            ease: "linear"
+                                        }}
                                     />
-                                )}
+                                ))}
                             </svg>
 
                             <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 1 }}>
@@ -255,7 +268,7 @@ export default function SnakeRoadmap() {
                                         <div style={{ height: VECTOR_H + 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
                                             <motion.div
                                                 initial={{ opacity: 0, y: 8 }}
-                                                animate={{ opacity: 1, y: 0 }}
+                                                animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                                                 transition={{ delay: 0.5 }}
                                                 style={{ marginBottom: 8 }}
                                             >
@@ -268,9 +281,10 @@ export default function SnakeRoadmap() {
                                         <motion.div
                                             ref={(el) => (circleRefs.current[0] = el)}
                                             initial={{ scale: 0, opacity: 0 }}
-                                            animate={{ scale: 1, opacity: 1 }}
+                                            // animate={{ scale: 1, opacity: 1 }}
+                                            animate={showRoadmap ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                                             transition={{
-                                                delay: 0,
+                                                delay: showRoadmap ? 0 : 0,
                                                 duration: 0.4,
                                                 type: 'spring',
                                                 stiffness: 240,
@@ -300,25 +314,6 @@ export default function SnakeRoadmap() {
                                                 {firstItem?.year}
                                             </span>
                                         </motion.div>
-                                        {/* <motion.div
-                                        ref={(el) => (circleRefs.current[0] = el)}
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        transition={{ delay: 0, duration: 0.4, type: 'spring', stiffness: 240, damping: 18 }}
-                                        onAnimationComplete={buildPath}
-                                        style={{
-                                            width: 68, height: 68, borderRadius: '50%', flexShrink: 0,
-                                            background: firstColor,
-                                            border: '3.5px solid #fff',
-                                            boxShadow: `0 0 0 3px ${firstColor}33`,
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            boxShadow: `0 0 0 6px ${firstColor}`,
-                                        }}
-                                    >
-                                        <span style={{ color: '#fff', fontWeight: 800, fontSize: 14.5, letterSpacing: '-0.5px' }}>
-                                            {firstItem?.year}
-                                        </span>
-                                    </motion.div> */}
 
                                         {/* Zona inferior vacía (para mantener altura consistente) */}
                                         <div style={{ height: VECTOR_H + 70 }} />
@@ -336,10 +331,12 @@ export default function SnakeRoadmap() {
                                             alignItems: 'center',
                                         }}>
                                             {row.map((item, colIdx) => {
-                                                const globalIdx = 1 + rowIdx * itemsPerRow + colIdx;
                                                 const color = item.events[0]?.color ?? '#1e3a8a';
+                                                const globalIdx = 1 + rowIdx * itemsPerRow + colIdx;
                                                 const isTop = getLabelPos(globalIdx, colIdx, activeBp) === 'top';
-                                                const delay = (globalIdx / (roadmap.length - 1)) * 2;
+
+                                                const segmentDuration = 0.6;
+                                                const delay = globalIdx * segmentDuration;
 
                                                 return (
                                                     <div key={colIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 200 }}>
@@ -349,41 +346,30 @@ export default function SnakeRoadmap() {
                                                                 <>
                                                                     <motion.div
                                                                         initial={{ opacity: 0, y: 8 }}
-                                                                        animate={{ opacity: 1, y: 0 }}
+                                                                        animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                                                                        // animate={{ opacity: 1, y: 0 }}
                                                                         transition={{ delay: delay + 0.5 }}
                                                                         style={{ marginBottom: 8 }}
                                                                     >
                                                                         <LabelGroup item={item} />
                                                                     </motion.div>
-                                                                    <Stick color={color} direction="top" delay={delay} height={VECTOR_H} />
+                                                                    <Stick
+                                                                        color={color}
+                                                                        direction="top"
+                                                                        delay={delay + 0.5}
+                                                                        height={VECTOR_H}
+                                                                        animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                                                                    />
                                                                 </>
                                                             )}
                                                         </div>
-
-                                                        {/* <motion.div
-                                                        ref={(el) => (circleRefs.current[globalIdx] = el)}
-                                                        initial={{ scale: 0, opacity: 0 }}
-                                                        animate={{ scale: 1, opacity: 1 }}
-                                                        transition={{ delay, duration: 0.4, type: 'spring', stiffness: 240, damping: 18 }}
-                                                        onAnimationComplete={buildPath}
-                                                        style={{
-                                                            width: 68, height: 68, borderRadius: '50%', flexShrink: 0,
-                                                            background: color,
-                                                            border: '3.5px solid #fff',
-                                                            boxShadow: `0 0 0 3px ${color}33`,
-                                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                        }}
-                                                    >
-                                                        <span style={{ color: '#fff', fontWeight: 800, fontSize: 14.5, letterSpacing: '-0.5px' }}>
-                                                            {item.year}
-                                                        </span>
-                                                    </motion.div> */}
                                                         <motion.div
                                                             ref={(el) => (circleRefs.current[globalIdx] = el)}
                                                             initial={{ scale: 0, opacity: 0 }}
-                                                            animate={{ scale: 1, opacity: 1 }}
+                                                            animate={showRoadmap ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                                                            // animate={{ scale: 1, opacity: 1 }}
                                                             transition={{
-                                                                delay: 0,
+                                                                delay: delay,
                                                                 duration: 0.4,
                                                                 type: 'spring',
                                                                 stiffness: 240,
@@ -416,10 +402,17 @@ export default function SnakeRoadmap() {
                                                         <div style={{ height: VECTOR_H + 70, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start' }}>
                                                             {!isTop && (
                                                                 <>
-                                                                    <Stick color={color} direction="bottom" delay={delay} height={VECTOR_H} />
+                                                                    <Stick
+                                                                        color={color}
+                                                                        direction="bottom"
+                                                                        delay={delay + 0.5}
+                                                                        height={VECTOR_H}
+                                                                        animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                                                                    />
                                                                     <motion.div
                                                                         initial={{ opacity: 0, y: -8 }}
-                                                                        animate={{ opacity: 1, y: 0 }}
+                                                                        animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+                                                                        // animate={{ opacity: 1, y: 0 }}
                                                                         transition={{ delay: delay + 0.5 }}
                                                                         style={{ marginTop: 8 }}
                                                                     >
