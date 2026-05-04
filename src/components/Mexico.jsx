@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const images = [
     'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050282/2Y5A0787_r8a4xb.jpg',
@@ -72,7 +73,7 @@ export default function MexicoSection() {
                 zIndex: 0
             }}
         >
-            <div className="max-w-7xl mx-auto px-24 grid grid-cols-1 lg:grid-cols-3 gap-16">
+            <div className="mx-auto px-24 grid grid-cols-1 lg:grid-cols-3 gap-16">
 
                 <div className="col-span-1 flex flex-col items-center">
 
@@ -176,21 +177,20 @@ export default function MexicoSection() {
                                 {card.logos && (
                                     <div className="flex items-center gap-4 mt-4">
                                         {card.logos.map((logo, j) => (
-                                            <a
+                                            <Link
                                                 key={j}
                                                 href={logo.href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                onMouseEnter={e => e.currentTarget.style.filter = 'drop-shadow(0 4px 8px rgba(0,0,0,0.25))'}
-                                                onMouseLeave={e => e.currentTarget.style.filter = 'none'}
-                                                style={{ filter: 'none', transition: 'filter 0.2s ease' }}
+                                                className={`bg-nav-button/90 button-shadow rounded-full 
+                                                    cursor-pointer  
+                                                    h-8 overflow-hidden
+                                                `}
                                             >
                                                 <img
                                                     src={logo.src}
                                                     alt={logo.alt}
-                                                    className="h-8 w-auto object-contain"
+                                                    className="w-auto h-auto object-contain pointer-events-none px-2"
                                                 />
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 )}
