@@ -73,7 +73,71 @@ body {
   font-family: var(--font-poppins), sans-serif !important;
 }
 
+.count-responsive .number {
+  font-size: 4em;
+}
 
+.count-responsive .sign {
+  font-size: 2em;
+}
+
+.sub {
+  font-size: 1.2em;
+}
+
+.clientes-responsive p {
+  font-size: .8em;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.clientes-responsive h3 {
+  font-size: 2.1em;
+  letter-spacing: 2px;
+}
+
+.clientes-responsive div a {
+  font-size: 1em;
+  letter-spacing: 2px;
+}
+
+.clientes-responsive a {
+  font-size: 1.7em;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.btn-image-responsive {
+  max-height: 40px;
+}
+
+.brands-h2 {
+  font-size: 4em;
+}
+
+.distro h1 {
+  font-size: 3em;
+  line-height: 1.1;
+  margin-bottom: 1em;
+}
+
+.distro p {
+  font-size: 1.6em;
+  line-height: 1.1;
+  margin-bottom: 1em;
+}
+
+.distro button {
+  font-size: 1.4em;
+  border-radius: 11px;
+  margin-bottom: .5em;
+}
+
+.distro span {
+  font-size: 1.6em;
+  line-height: 1.1;
+  margin-bottom: 1em;
+}
 
 /* responsive */
 
@@ -97,7 +161,27 @@ body {
 
 @media screen and (min-width: 1400px) and (max-width: 1499px) {
   .slider-responsive {
-    margin: 0 5em;
+    margin: 0 4em;
+  }
+}
+
+@media screen and (min-width: 1300px) and (max-width: 1399px) {
+  .slider-responsive {
+    margin: 0 2em;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1299px) {
+  .slider-responsive {
+    margin: 0 .1em;
+  }
+
+  .rincon-responsive {
+    font-size: .8em !important;
+  }
+
+  .rincon-responsive h2 {
+    font-size: 4em !important;
   }
 }
 
@@ -105,15 +189,148 @@ body {
   .brands-carousel-bg {
     background-size: contain, 23%, 48% !important;
   }
+
+  .count-responsive .number {
+    font-size: 2.5em;
+  }
+
+  .count-responsive .sign {
+    font-size: 1.5em;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1109px) {
+  .responsive-30 {
+    font-size: 1.1em !important;
+  }
+
+  .capsule {
+    margin-right: -15em !important;
+  }
+
+  .blue-capsule {
+    padding: 1px 10px !important;
+  }
+
+  .derma-span {
+    font-size: 2.4em !important;
+  }
+
+  .derma-p {
+    font-size: 3.6em !important;
+  }
+
+  .triger-responsive {
+    font-size: .8em !important;
+  }
+
+  .rincon-responsive {
+    font-size: .7em !important;
+  }
+
+  .rincon-responsive h2 {
+    font-size: 5em !important;
+  }
+
+  .card-responsive {
+    font-size: .8em !important;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 999px) {
+  .responsive-30 {
+    font-size: 1.2em !important;
+  }
+
+  .capsule {
+    margin-right: -16em !important;
+  }
+
+  .blue-capsule {
+    padding: 1px 10px !important;
+  }
+
+  .derma-span {
+    font-size: 2.4em !important;
+  }
+
+  .derma-p {
+    font-size: 3.6em !important;
+  }
+
+  .triger-responsive {
+    font-size: .8em !important;
+  }
+}
+
+@media screen and (min-width: 800px) and (max-width: 899px) {
+  .responsive-30 {
+    font-size: 1em !important;
+  }
+
+  .capsule {
+    margin-right: -18em !important;
+  }
+
+  .blue-capsule {
+    padding: 1px 10px !important;
+  }
+
+  .derma-span {
+    font-size: 2.2em !important;
+  }
+
+  .derma-p {
+    font-size: 3.4em !important;
+  }
+
+  .triger-responsive {
+    font-size: .8em !important;
+  }
+}
+
+@media screen and (max-width: 1449px) {
+  .btn-image-responsive {
+    max-height: 50px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .brands-top {
+    background-size: 80% !important;
+    background-position: top 30% left -40% !important;
+  }
+
+  .brands-h2 {
+    font-size: 3em !important;
+  }
 }
 
 @media screen and (max-width: 900px) {
   .brands-carousel-bg {
     background-size: contain, 35%, 55% !important;
   }
+
+  .slider-responsive {
+    margin: 0 -4em;
+  }
+
+  .brands-bottom {
+    background-size: 90% !important;
+    background-position: right top;
+  }
 }
 
+@media screen and (max-width: 850px) {
+  .sub {
+    font-size: .8em !important;
+  }
 
+  .brands-bottom {
+    background-size: 90% !important;
+    background-position: right top;
+  }
+}
 
 @media screen and (max-width: 770px) {
   .brands-carousel-bg {
@@ -122,5 +339,68 @@ body {
 
   .brands-50 {
     font-size: 2.5em !important;
+  }
+
+  .brands-bottom {
+    background-size: 60% !important;
+    background-position: right -40% top;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .brands-top {
+    background-size: 90% !important;
+    background-position: top 60% left -33% !important;
+  }
+
+  .brands-bottom {
+    background-size: 90% !important;
+    background-position: right -10% top;
+    padding: calc(var(--spacing) * 8) !important;
+  }
+
+  .catalog-p {
+    font-size: 1em !important;
+  }
+
+  .catalog-span {
+    font-size: .6em !important;
+  }
+
+  .catalog-link {
+    font-size: .5em !important;
+  }
+
+  .brands-h2 {
+    font-size: 2.2em !important;
+  }
+}
+
+@media screen and (max-width: 559px) {
+  .brands-top {
+    background-size: 90% !important;
+    background-position: top 60% left -33% !important;
+  }
+
+  .brands-bottom {
+    background-size: 90% !important;
+    background-position: right -10% top;
+    padding: calc(var(--spacing) * 8) !important;
+  }
+
+  .catalog-p {
+    font-size: 1em !important;
+  }
+
+  .catalog-span {
+    font-size: .6em !important;
+  }
+
+  .catalog-link {
+    font-size: .5em !important;
+  }
+
+  .brands-h2 {
+    font-size: 2em !important;
   }
 }

@@ -39,33 +39,29 @@ export default function CountInfo({ bgColor = '#001563', items = [] }) {
 
                 {items.map((item, index) => (
                     <div key={index} className="flex flex-col items-center justify-center">
-
-                        {/* VALUE */}
                         <div
-                            className={`flex font-poppins font-bold items-center gap-2 ${item.typeAlign === 'left' ? 'flex-row-reverse' : ''
+                            className={`count-responsive flex font-poppins font-bold items-center gap-2 ${item.typeAlign === 'left' ? 'flex-row-reverse' : ''
                                 }`}
                             style={{ color: item.valueColor || '#fff' }}
                         >
                             {item.valueType === 'prefix' && (
-                                <span className="text-xl md:text-4xl font-weight">
+                                <span className="sign font-weight">
                                     {item.symbol}
                                 </span>
                             )}
 
-                            <span className="text-3xl md:text-7xl font-weight">
+                            <span className="number font-weight">
                                 <Counter value={item.value} />
                             </span>
 
                             {item.valueType === 'suffix' && (
-                                <span className="text-lg md:text-3xl font-weight">
+                                <span className=" sign font-weight">
                                     {item.symbol}
                                 </span>
                             )}
                         </div>
-
-                        {/* TEXT */}
                         <div
-                            className="mt-2 text-sm md:text-lg font-poppins"
+                            className="sub mt-2 font-poppins"
                             style={{ color: item.textColor || '#4F97ED' }}
                         >
                             {item.text}

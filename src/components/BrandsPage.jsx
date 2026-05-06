@@ -8,7 +8,7 @@ export default function BrandsPage() {
     return (
         <section className="w-full">
             <div
-                className="max-w text-center p-20 bg-[#f8f8f8]"
+                className="brands-top max-w text-center p-20 bg-[#f8f8f8]"
                 style={{
                     backgroundColor: '#eaeaea',
                     backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777066831/linea2_a0wxlz.png')`,
@@ -17,7 +17,7 @@ export default function BrandsPage() {
                     backgroundSize: '50%',
                 }}
             >
-                < h2 className="text-4xl md:text-5xl font-bold text-[#2d3e8b]" >
+                < h2 className="brands-h2 font-bold text-[#2d3e8b]" >
                     ¡CONOCE NUESTRAS
                 </h2 >
             </div>
@@ -77,7 +77,7 @@ export default function BrandsPage() {
             </div>
             <div className="w-f h-10" style={{ boxShadow: '0 8px 8px -2px rgba(0,0,0,0.3)' }}></div>
             <div
-                className="max-w text-center p-16 bg-[#eaeaea]"
+                className="brands-bottom max-w text-center p-16 bg-[#eaeaea]"
                 style={{
                     backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777069186/linea3_ofwlc9.png')`,
                     backgroundRepeat: 'no-repeat',
@@ -86,15 +86,15 @@ export default function BrandsPage() {
                 }}>
                 {/* CTA Final */}
                 <div>
-                    <p className="text-[#373737] text-lg mb-4 font-semibold" style={{ fontSize: '1.4em' }}>
+                    <p className="catalog-p text-[#373737] text-lg mb-4 font-semibold" style={{ fontSize: '1.4em' }}>
                         ¿Deseas información sobre los productos que tenemos en existencia?
                     </p>
                     <div className="flex items-center justify-center" style={{ fontSize: '1.7em' }}>
-                        <span style={{ fontWeight: 500, marginRight: '10px', color: '#283778' }}>¡Descarga nuestro</span>
+                        <span className='catalog-span' style={{ fontWeight: 500, marginRight: '10px', color: '#283778' }}>¡Descarga nuestro</span>
                         <Link
                             href='/catalogo.pdf'
                             style={{ fontSize: '.9em' }}
-                            className="bg-[#283778] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase font-weight"
+                            className="catalog-link bg-[#283778] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase font-weight"
                         >
                             Catálogo!
                         </Link>

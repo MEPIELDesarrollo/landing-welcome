@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -23,6 +23,21 @@ export default function LayerSlider({
 }) {
     const [index, setIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
+    const headerRef = useRef(null);
+    const [headerOffset, setHeaderOffset] = useState(0);
+
+    useEffect(() => {
+        if (!headerRef.current) return;
+        const updateOffset = () => {
+            // Mover el section hacia arriba exactamente la mitad de la altura del badge
+            // para que quede centrado sobre el borde superior
+            setHeaderOffset(headerRef.current.offsetHeight / 2);
+        };
+        updateOffset();
+        const ro = new ResizeObserver(updateOffset);
+        ro.observe(headerRef.current);
+        return () => ro.disconnect();
+    }, [header]);
 
     const nextSlide = useCallback(() => {
         setIndex((prev) => (prev + 1) % slides.length);
@@ -47,24 +62,33 @@ export default function LayerSlider({
             style={{
                 paddingLeft: 130,
                 paddingRight: 130,
-                paddingTop: 40,
-                backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png')`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'top center',
-                backgroundSize: 'contain',
+                paddingTop: 0,
+                overflow: 'visible',
+                backgroundColor: 'rgb(223 229 241)'
             }}
         >
-            <div
-            >
+            <div>
                 {header && (
-                    <div className="relative flex items-center justify-center mb-2 py-10 w-full px-4 md:px-20">
+                    <div className="relative flex items-center justify-center mb-2 pb-10 w-full px-4 md:px-20">
 
-                        <div className="absolute w-[70%] h-[4px] bg-gray-300 z-0" />
-
+                        <svg
+                            className="absolute z-0"
+                            style={{ width: '100%', height: '4px', marginTop: headerOffset ? `-${headerOffset}px` : 0 }}
+                            viewBox="0 0 100 4"
+                            preserveAspectRatio="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <polygon
+                                points="0,2 10,0 90,0 100,2 90,4 10,4"
+                                fill="#d1d5db"
+                            />
+                        </svg>
                         <span
+                            ref={headerRef}
                             className="relative z-10 px-10 py-3 rounded-full text-white text-sm font-poppins font-semibold tracking-widest uppercase shadow-lg shadow-blue-900/20"
                             style={{
-                                background: 'linear-gradient(to bottom, #6DAFC8, #3E4B99)',
+                                background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
+                                marginTop: headerOffset ? `-${headerOffset}px` : 0,
                             }}
                         >
                             {header}
@@ -136,15 +160,21 @@ export default function LayerSlider({
                     {/* Flechas */}
                     <button
                         onClick={prevSlide}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        className="absolute left-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        style={{
+                            background: 'linear-gradient(to left, #80bdd0, #3a4a98)',
+                        }}
                     >
                         <ChevronLeft className="w-5 h-5 md:w-8 md:h-8" />
                     </button>
                     <button
                         onClick={nextSlide}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        className="absolute right-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        style={{
+                            background: 'linear-gradient(to left, #80bdd0, #3a4a98)',
+                        }}
                     >
-                        <ChevronRight className="w-5 h-5 md:w-8 md:h-8" />
+                        <ChevronRight className="w-7 h-7 md:w-8 md:h-8" />
                     </button>
 
                     {/* Dots */}

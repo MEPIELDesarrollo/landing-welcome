@@ -18,7 +18,7 @@ const images = [
 const cards = [
     {
         title: 'Almacenes',
-        text: 'Contamos con almacenes ubicados en puntos estratégicos de la república: El Salto, Jalisco, Guadalajara, Monterrey y CDMX.',
+        text: 'Contamos con almacenes ubicados en puntos estratégicos de la república: <strong> El Salto, Jalisco, Guadalajara, Monterrey y CDMX. </strong>',
         icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776977645/landing-06_bskxrr.png',
     },
     {
@@ -77,7 +77,7 @@ export default function MexicoSection() {
 
                 <div className="col-span-1 flex flex-col items-center">
 
-                    <div className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-lg">
+                    <div className="relative w-75 aspect-[3/4] rounded-3xl overflow-hidden shadow-lg">
                         {images.map((img, i) => (
                             <img
                                 key={i}
@@ -107,23 +107,23 @@ export default function MexicoSection() {
                         </button>
                     </div>
 
-                    <div className="relative mt-8 w-full bg-gradient-to-r from-[#2d3e8b] to-[#5ea3c4] rounded-3xl pt-6 px-6 pb-10 text-center text-white shadow-lg">
+                    <div className="clientes-responsive relative mt-8 w-75 bg-gradient-to-r from-[#394aa6] to-[#69afc8] rounded-3xl pt-6 px-6 pb-10 text-center text-white shadow-lg">
 
-                        <p className="tracking-widest uppercase opacity-80  font-poppins">
+                        <p className="tracking-widest uppercase font-poppins">
                             ¡Forma parte de nuestra red
                         </p>
 
-                        <h3 className="text-2xl font-semibold mt-1  font-poppins">
+                        <h3 className="font-semibold mt-1  font-poppins">
                             DE CLIENTES!
                         </h3>
 
                         <div>
-                            <a href="/login" className="inline-block mt-4 bg-white text-gray-600 px-4 py-1 rounded-full text-sm shadow hover:bg-gray-100 transition-colors  font-poppins">
+                            <a href="/login" className="inline-block bg-white text-gray-600 px-4 py-1 rounded-full shadow hover:bg-gray-100 transition-colors  font-poppins">
                                 Iniciar sesión
                             </a>
                         </div>
 
-                        <a href="/registro" className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-[#c20078] px-8 py-3 rounded-full font-semibold shadow-lg whitespace-nowrap z-10 hover:bg-[#a8006a] transition-colors font-poppins">
+                        <a href="/registro" className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-[#cc007b] px-5 py-1 rounded-full shadow-lg whitespace-nowrap z-10 font-poppins">
                             REGISTRARME
                         </a>
                     </div>
@@ -131,11 +131,11 @@ export default function MexicoSection() {
 
                 <div className="col-span-2">
 
-                    <div className="mb-10">
+                    <div className="rincon-responsive mb-10">
                         <p
                             className="uppercase tracking-[0.3em]"
                             style={{
-                                fontWeight: 600, fontSize: '1.5em', color: '#606060'
+                                fontWeight: 600, fontSize: '2.1em', color: '#606060'
                             }}
                         >
                             Llegamos a cada rincón
@@ -144,7 +144,7 @@ export default function MexicoSection() {
                         <h2
                             className="text-[#2d3e8b] text-5xl font-bold mt-2"
                             style={{
-                                fontSize: '5em', color: '#283777'
+                                fontSize: '7em', color: '#283777'
                             }}
                         >
                             DE MÉXICO
@@ -169,21 +169,41 @@ export default function MexicoSection() {
                                         {card.title}
                                     </h4>
                                 </div>
-
-                                <p className="text-sm text-[#606060] leading-relaxed font-poppins">
-                                    {card.text}
-                                </p>
+                                <p
+                                    className="card-responsive text-sm text-[#606060] leading-relaxed font-poppins"
+                                    dangerouslySetInnerHTML={{ __html: card.text }}
+                                />
 
                                 {card.logos && (
+                                    /* 
+                                       flex-wrap: permite que los elementos bajen a la siguiente línea.
+                                       min-[1450px]:flex-nowrap: obliga a que se mantengan en una sola fila solo si es mayor a 1450px.
+                                    */
+                                    <div className="flex flex-wrap min-[1450px]:flex-nowrap items-center gap-4 mt-4">
+                                        {card.logos.map((logo, j) => (
+                                            <Link
+                                                key={j}
+                                                href={logo.href}
+                                                className="bg-nav-button/90 button-shadow rounded-full cursor-pointer overflow-hidden flex-shrink-0"
+                                            >
+                                                <img
+                                                    src={logo.src}
+                                                    alt={logo.alt}
+                                                    className="btn-image-responsive w-auto h-auto object-contain pointer-events-none px-4 py-2"
+                                                />
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                                {/* {card.logos && (
                                     <div className="flex items-center gap-4 mt-4">
                                         {card.logos.map((logo, j) => (
                                             <Link
                                                 key={j}
                                                 href={logo.href}
-                                                className={`bg-nav-button/90 button-shadow rounded-full 
-                                                    cursor-pointer  
-                                                    h-8 overflow-hidden
-                                                `}
+                                                className={
+                                                    `bg-nav-button/90 button-shadow rounded-full cursor-pointer overflow-hidden`
+                                                }
                                             >
                                                 <img
                                                     src={logo.src}
@@ -193,7 +213,7 @@ export default function MexicoSection() {
                                             </Link>
                                         ))}
                                     </div>
-                                )}
+                                )} */}
                             </div>
                         ))}
                     </div>

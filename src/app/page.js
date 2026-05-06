@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import BrandsCarousel from '@/components/BrandsCarousel';
 import CountInfo from '@/components/CountInfo';
+import Distro from '@/components/Distro';
 import LayerSlider from '@/components/LayerSlider';
 import CallToAction from '@/components/CallToAction';
 import Footer from '@/components/Footer';
@@ -112,12 +113,13 @@ export default function Home() {
       <Hero assets={misBanners} />
       <BrandsCarousel />
       <CountInfo bgColor="#001564" items={data} />
-      <section
+      <Distro />
+      {/* <section
         className="w-full py-5 md:py-6"
         style={{
           backgroundImage: `
             url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png'),
-            linear-gradient(to right, #4383C4 1%, #2C4A9A)
+            linear-gradient(to right, #008cff 1%, #0009fa)
           `,
           backgroundRepeat: 'no-repeat, no-repeat',
           backgroundPosition: 'top center, top center',
@@ -132,7 +134,7 @@ export default function Home() {
             Iniciar Sesión
           </button>
         </div>
-      </section>
+      </section> */}
       {/* #FBFCFD */}
       <LayerSlider slides={slides} header="CANALES DE VENTA" />
       <CallToAction

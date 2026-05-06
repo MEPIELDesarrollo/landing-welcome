@@ -172,7 +172,7 @@ export default function SnakeRoadmap() {
                             style={{ marginBottom: '-1.7em', textAlign: 'right' }}
                         >
                             <span
-                                className="text-white tracking-wide"
+                                className="responsive-30 text-white tracking-wide"
                                 style={{ fontSize: '1.5em' }}
                             >
                                 30 años distribuyendo productos
@@ -180,14 +180,13 @@ export default function SnakeRoadmap() {
                         </div>
                     </div>
 
-                    {/* Bloque Principal Magenta */}
                     <div className="relative bg-[#cc007b] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
                         <span
-                            className="text-white"
+                            className="derma-span text-white"
                             style={{ fontSize: "3.2em", "fontWeight": "700", letterSpacing: '.2em' }}
                         >DERMATOLÓGICOS</span> <br />
                         <p
-                            className="text-white leading-none tracking-tight"
+                            className="derma-p text-white leading-none tracking-tight"
                             style={{ fontSize: "5em", "fontWeight": "700", letterSpacing: '.15em' }}
                         >
 
@@ -196,7 +195,7 @@ export default function SnakeRoadmap() {
 
                         {/* Etiqueta inferior azul + trigger del roadmap */}
                         <div
-                            className="absolute bottom-4 right-20 flex items-center"
+                            className="capsule absolute bottom-4 right-20 flex items-center"
                             style={{
                                 marginRight: showRoadmap ? '0px' : '-25em'
                             }}
@@ -205,13 +204,12 @@ export default function SnakeRoadmap() {
                             <div
                                 className="flex items-center bg-white rounded-full shadow-md transition-all duration-500 overflow-hidden"
                                 style={{
-                                    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px',
-                                    minHeight: '45px'
+                                    boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px'
                                 }}
                             >
                                 {/* Label Azul (Izquierda) */}
-                                <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full z-10" style={{ marginLeft: '-3px' }}>
-                                    <span className="text-white font-weight uppercase tracking-widest whitespace-nowrap" style={{ fontSize: '1.2em' }}>
+                                <div className="blue-capsule bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full z-10" style={{ marginLeft: '-3px' }}>
+                                    <span className="triger-responsive text-white font-weight uppercase tracking-widest whitespace-nowrap" style={{ fontSize: '1.2em' }}>
                                         En todo México
                                     </span>
                                 </div>
@@ -222,16 +220,16 @@ export default function SnakeRoadmap() {
                                         className="flex items-center gap-1 whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-500"
                                         style={{
                                             paddingLeft: '1.5em',
-                                            paddingRight: '2.5em'
+                                            paddingRight: '1.5em'
                                         }}
                                     >
-                                        <span className="text-black font-weight uppercase tracking-widest">
+                                        <span className="triger-responsive text-black font-weight uppercase tracking-widest">
                                             ¡Nuestra historia comienza
                                         </span>
 
                                         <button
                                             onClick={() => setShowRoadmap(true)}
-                                            className="text-[#000] font-black uppercase tracking-widest cursor-pointer p-0 underline"
+                                            className="triger-responsive text-[#000] font-black uppercase tracking-widest cursor-pointer p-0 underline"
                                             style={{ background: 'none', outline: 'none' }}
                                         >
                                             AQUÍ!
@@ -472,7 +470,7 @@ export default function SnakeRoadmap() {
                     </div>
                 </motion.section>
                 <section
-                    className="relative py-25 px-4 overflow-hidden bg-white"
+                    className="relative px-25 py-25 px-4 overflow-hidden bg-white"
                     style={{
                         backgroundImage: `
                             url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/left_bjr7jh.png'),
