@@ -114,27 +114,6 @@ export default function Home() {
       <BrandsCarousel />
       <CountInfo bgColor="#001564" items={data} />
       <Distro />
-      {/* <section
-        className="w-full py-5 md:py-6"
-        style={{
-          backgroundImage: `
-            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png'),
-            linear-gradient(to right, #008cff 1%, #0009fa)
-          `,
-          backgroundRepeat: 'no-repeat, no-repeat',
-          backgroundPosition: 'top center, top center',
-          backgroundSize: 'contain, cover',
-        }}
-      >
-        <div className="flex flex-row items-center justify-center gap-4 md:gap-20 lg:gap-60 py-6 font-poppins">
-          <button className="bg-[#e8eef9] text-[#1a1a1a] font-medium px-10 py-3 rounded-2xl shadow-sm hover:bg-[#dbeafe] transition-all duration-300 min-w-[160px]">
-            Registro
-          </button>
-          <button className="bg-[#e8eef9] text-[#1a1a1a] font-medium px-10 py-3 rounded-2xl shadow-sm hover:bg-[#dbeafe] transition-all duration-300 min-w-[160px]">
-            Iniciar Sesión
-          </button>
-        </div>
-      </section> */}
       {/* #FBFCFD */}
       <LayerSlider slides={slides} header="CANALES DE VENTA" />
       <CallToAction
@@ -144,9 +123,8 @@ export default function Home() {
         subtitle=""
         description="Tu aliado para hacer crecer tu negocio en el cuidado de la piel."
         descriptionColor="#616260"
-
-        // Solo pasas los strings de las rutas
-        btn1Text="INICIAR SESIÓN"
+        finalDescription="Accede a nuestro catálogo y promociones exclusivas"
+        btn1Text="TIENDA EN LÍNEA"
         btn1Url="/login"
       />
       <Footer />

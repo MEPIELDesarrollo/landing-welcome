@@ -185,19 +185,7 @@ body {
   }
 }
 
-@media screen and (max-width: 1230px) {
-  .brands-carousel-bg {
-    background-size: contain, 23%, 48% !important;
-  }
 
-  .count-responsive .number {
-    font-size: 2.5em;
-  }
-
-  .count-responsive .sign {
-    font-size: 1.5em;
-  }
-}
 
 @media screen and (min-width: 1000px) and (max-width: 1109px) {
   .responsive-30 {
@@ -292,6 +280,28 @@ body {
 @media screen and (max-width: 1449px) {
   .btn-image-responsive {
     max-height: 50px;
+  }
+
+  .valores-responsive h2 {
+    font-size: clamp(5rem, 6vw, 4rem) !important;
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .brands-carousel-bg {
+    background-size: contain, 23%, 48% !important;
+  }
+
+  .count-responsive .number {
+    font-size: 2.5em;
+  }
+
+  .count-responsive .sign {
+    font-size: 1.5em;
+  }
+
+  .valores-responsive h2 {
+    font-size: clamp(4rem, 4vw, 4rem) !important;
   }
 }
 

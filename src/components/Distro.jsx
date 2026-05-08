@@ -36,7 +36,7 @@ export default function Distro() {
 
                 <div className="flex flex-col items-center">
                     <button className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition">
-                        INICIAR SESIÓN
+                        TIENDA EN LÍNEA
                     </button>
                     <span className="mt-2 text-center max-w-md">
                         Accede a nuestro catálogo y promociones exclusivas

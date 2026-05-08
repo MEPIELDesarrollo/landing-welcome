@@ -12,24 +12,20 @@ export default function Footer() {
 
                     {/* Columna 1: Logo e Info (Ocupa el 50% -> col-span-6) */}
                     <div className="md:col-span-6 flex flex-col space-y-6 pr-10">
-                        <div className="relative w-40 h-12">
-                            <Image
-                                src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776450166/mepiel_ptyv7t.png"
-                                alt="Mepiel Logo"
-                                fill
-                                className="object-contain object-left"
-                            />
-                        </div>
+
                         <div className="text-[13px] space-y-2 font-light opacity-90 leading-relaxed max-w-sm">
                             <p>Dirección: C. San Gabriel 3113, Jardines de Los Arcos,</p>
                             <p>44500 Guadalajara, Jal.</p>
                             <p>Teléfono: 33 34613252</p>
                             <p>Correo: contacto@mepiel.com.mx</p>
                         </div>
-                        <div className="pt-4">
-                            <span className="text-[10px] tracking-[0.2em] uppercase opacity-60">
-                                Distribuidores Especializados
-                            </span>
+                        <div className="relative w-50 h-20">
+                            <Image
+                                src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776450166/mepiel_ptyv7t.png"
+                                alt="Mepiel Logo"
+                                fill
+                                className="object-contain object-left"
+                            />
                         </div>
                     </div>
 

@@ -36,21 +36,22 @@ export default function ValoresSection() {
                 zIndex: 1
             }}
         >
-            <div className="mx-auto flex flex-col lg:flex-row items-center gap-12 px-4">
+            <div className="valores-responsive mx-auto flex flex-col lg:flex-row items-center gap-12 px-4">
 
                 {/* 🔵 LADO IZQUIERDO */}
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }} // Solo se anima la primera vez que se ve
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
                     className="relative"
                 >
                     <h2
                         className="text-[#2f3c7e] font-semibold tracking-tight leading-none font-poppins"
                         style={{
-                            fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-                            letterSpacing: '-2px'
+                            fontSize: 'clamp(8rem, 8vw, 6rem)',
+                            letterSpacing: '-2px',
+                            paddingLeft: '.5em',
                         }}
                     >
                         VALORES
@@ -58,11 +59,12 @@ export default function ValoresSection() {
 
                     <div className="mt-2 relative" style={{ marginLeft: '-1em' }}>
                         <div
-                            className="text-white uppercase tracking-[0.25em] text-sm font-medium px-6 py-2  font-poppins"
+                            className="text-white uppercase tracking-[0.25em] font-medium py-2  font-poppins"
                             style={{
                                 background: '#c20078',
                                 clipPath: 'polygon(0px 0px, 100% 0px, 91% 100%, 0% 100%)',
-                                boxShadow: '0 6px 14px rgba(194,0,120,0.25)'
+                                boxShadow: '0 6px 14px rgba(194,0,120,0.25)',
+                                paddingLeft: '6em'
                             }}
                         >
                             Que nos definen
@@ -71,16 +73,16 @@ export default function ValoresSection() {
                 </motion.div>
 
                 {/* 🟢 GRILLA DE VALORES */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-35 md:px-6 sm:px-4">
                     {VALORES.map((val, i) => (
                         <motion.div
                             key={val.id}
                             custom={i} // Pasamos el índice para el delay
                             initial="hidden"
                             whileInView="visible"
-                            viewport={{ once: true, margin: "-50px" }} // Se activa 50px antes de entrar
+                            viewport={{ once: true, margin: "-50px" }}
                             variants={fadeInVariant}
-                            className="flex items-center rounded-full px-3 py-2 bg-[#f8fafc]"
+                            className="flex items-center rounded-full px-2 py-2 bg-[#f8fafc]"
                             style={{
                                 boxShadow: '0 0px 10px rgb(5 5 5 / 25%)',
                             }}

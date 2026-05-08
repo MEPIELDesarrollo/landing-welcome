@@ -18,6 +18,7 @@ export default function CallToAction({
     titleColor,
     subtitleColor,
     descriptionColor,
+    finalDescription,
 
     btn1Text,
     btn1Url,
@@ -85,7 +86,7 @@ export default function CallToAction({
                 )}
 
                 {/* Botones como Links */}
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap justify-center gap-4 pb-6">
                     {btn2Text && btn2Url && (
                         <Link href={btn2Url} passHref>
                             <motion.span
@@ -114,6 +115,11 @@ export default function CallToAction({
                         </Link>
                     )}
                 </div>
+                {finalDescription && (
+                    <p className="font-weight mb-12 max-w-2xl " style={{ color: descriptionColor, fontSize: '1.5em' }}>
+                        {finalDescription}
+                    </p>
+                )}
             </motion.div>
         </section>
     );
