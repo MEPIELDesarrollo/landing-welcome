@@ -85,10 +85,11 @@ export default function LayerSlider({
                         </svg>
                         <span
                             ref={headerRef}
-                            className="relative z-10 px-10 py-3 rounded-full text-white text-sm font-poppins font-semibold tracking-widest uppercase shadow-lg shadow-blue-900/20"
+                            className="relative z-10 px-10 py-3 rounded-full text-white font-poppins font-semibold tracking-widest uppercase shadow-lg shadow-blue-900/20"
                             style={{
                                 background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
                                 marginTop: headerOffset ? `-${headerOffset}px` : 0,
+                                fontSize: '1.4em'
                             }}
                         >
                             {header}

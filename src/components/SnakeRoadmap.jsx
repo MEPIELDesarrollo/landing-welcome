@@ -183,11 +183,11 @@ export default function SnakeRoadmap() {
                     <div className="relative bg-[#cc007b] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
                         <span
                             className="derma-span text-white"
-                            style={{ fontSize: "3.2em", "fontWeight": "700", letterSpacing: '.2em' }}
+                            style={{ fontSize: "4.5em", "fontWeight": "700", letterSpacing: '.2em' }}
                         >DERMATOLÓGICOS</span> <br />
                         <p
                             className="derma-p text-white leading-none tracking-tight"
-                            style={{ fontSize: "5em", "fontWeight": "700", letterSpacing: '.15em' }}
+                            style={{ fontSize: "7em", "fontWeight": "700", letterSpacing: '.15em' }}
                         >
 
                             Y ESTÉTICOS
