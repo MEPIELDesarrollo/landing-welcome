@@ -125,7 +125,7 @@ export default function Home() {
         descriptionColor="#616260"
         finalDescription="Accede a nuestro catálogo y promociones exclusivas"
         btn1Text="TIENDA EN LÍNEA"
-        btn1Url="/login"
+        btn1Url="https://mepieldistribuidores.com.mx/"
       />
       <Footer />
     </div>

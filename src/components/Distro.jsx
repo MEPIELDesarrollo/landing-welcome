@@ -1,4 +1,5 @@
-// components/HeroSection.jsx
+import Link from 'next/link';
+
 export default function Distro() {
     return (
         <section
@@ -26,18 +27,28 @@ export default function Distro() {
             {/* Botones */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
                 <div className="flex flex-col items-center">
-                    <button className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition">
-                        REGISTRO
-                    </button>
+                    <Link
+                        key='online_store'
+                        href='https://mepieldistribuidores.com.mx/'
+                        className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition"
+                        style={{ borderRadius: '14px', padding: '1em 3em' }}
+                    >
+                        <span>PRE-REGISTRO</span>
+                    </Link>
                     <span className="mt-2 text-center max-w-md">
                         Crea tu cuenta y potencia tu negocio dermatológico
                     </span>
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <button className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition">
-                        TIENDA EN LÍNEA
-                    </button>
+                    <Link
+                        key='online_store'
+                        href='https://mepieldistribuidores.com.mx/'
+                        className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition"
+                        style={{ borderRadius: '14px', padding: '1em 3em' }}
+                    >
+                        <span>TIENDA EN LÍNEA</span>
+                    </Link>
                     <span className="mt-2 text-center max-w-md">
                         Accede a nuestro catálogo y promociones exclusivas
                     </span>

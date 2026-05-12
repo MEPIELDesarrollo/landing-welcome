@@ -22,7 +22,7 @@ export default function CallToAction({
 
     btn1Text,
     btn1Url,
-    btn1Style = { background: 'linear-gradient(to right, #008dff, #0008ff)', color: '#fff' },
+    btn1Style = { background: 'linear-gradient(to right, #008dff, #0008ff)', color: '#fff', padding: '.6em 1.8em', borderRadius: '12px' },
 
     btn2Text,
     btn2Url,

@@ -118,9 +118,13 @@ export default function MexicoSection() {
                         </h3>
 
                         <div>
-                            <a href="/login" className="inline-block bg-white text-gray-600 px-4 py-1 rounded-full shadow hover:bg-gray-100 transition-colors  font-poppins">
-                                TIENDA EN LINEA
-                            </a>
+                            <Link
+                                key='online_store'
+                                href='https://mepieldistribuidores.com.mx/'
+                                className="inline-block bg-white text-gray-600 px-4 py-1 rounded-full shadow hover:bg-gray-100 transition-colors  font-poppins"
+                            >
+                                <span>Tienda en línea</span>
+                            </Link>
                         </div>
 
                         <a href="/registro" className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-[#cc007b] px-5 py-1 rounded-full shadow-lg whitespace-nowrap z-10 font-poppins">
