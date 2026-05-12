@@ -37,7 +37,7 @@ const cards = [
         icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776977647/landing-09_m7mlgy.png',
         logos: [
             { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776207055/category_b90wko.png', href: 'https://ejemplo.com/', alt: 'Category' },
-            { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776207143/masterclass_zo2cps.png', href: 'https://ejemplo.com/', alt: 'Masterclass' },
+            { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776207143/masterclass_zo2cps.png', href: 'hhttps://masterclass.mepieldistribuidores.com.mx/', alt: 'Masterclass' },
             { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776207262/simposio_zxf8sx.png', href: 'https://ejemplo.com/', alt: 'Simposio' },
         ],
     },
@@ -119,7 +119,7 @@ export default function MexicoSection() {
 
                         <div>
                             <a href="/login" className="inline-block bg-white text-gray-600 px-4 py-1 rounded-full shadow hover:bg-gray-100 transition-colors  font-poppins">
-                                Iniciar sesión
+                                TIENDA EN LINEA
                             </a>
                         </div>
 
@@ -195,25 +195,6 @@ export default function MexicoSection() {
                                         ))}
                                     </div>
                                 )}
-                                {/* {card.logos && (
-                                    <div className="flex items-center gap-4 mt-4">
-                                        {card.logos.map((logo, j) => (
-                                            <Link
-                                                key={j}
-                                                href={logo.href}
-                                                className={
-                                                    `bg-nav-button/90 button-shadow rounded-full cursor-pointer overflow-hidden`
-                                                }
-                                            >
-                                                <img
-                                                    src={logo.src}
-                                                    alt={logo.alt}
-                                                    className="w-auto h-auto object-contain pointer-events-none px-2"
-                                                />
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )} */}
                             </div>
                         ))}
                     </div>

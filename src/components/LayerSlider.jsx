@@ -85,11 +85,14 @@ export default function LayerSlider({
                         </svg>
                         <span
                             ref={headerRef}
-                            className="relative z-10 px-10 py-3 rounded-full text-white font-poppins font-semibold tracking-widest uppercase shadow-lg shadow-blue-900/20"
+                            className="channels relative z-10 px-18 py-3 text-white font-poppins tracking-widest uppercase shadow-lg shadow-blue-900/20"
                             style={{
                                 background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
                                 marginTop: headerOffset ? `-${headerOffset}px` : 0,
-                                fontSize: '1.4em'
+                                fontSize: '2.2em',
+                                borderRadius: '20px',
+                                fontWeight: 400,
+                                letterSpacing: '6px'
                             }}
                         >
                             {header}
@@ -103,11 +106,12 @@ export default function LayerSlider({
                     {currentSlide.title && (
                         <motion.h2
                             key={`title-${index}`}
-                            className="text-center text-3xl md:text-5xl mb-4 mt-6 tracking-wide font-poppins"
+                            className="channel-title text-center mb-4 mt-6 tracking-wide font-poppins"
                             initial={{ opacity: 0, y: -16 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 16 }}
                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                            style={{ fontSize: '4em' }}
                         >
                             {currentSlide.title}
                         </motion.h2>
