@@ -1,4 +1,4 @@
-export const runtime = 'edge'; // El flag para Cloudflare Pages
+export const runtime = 'nodejs';
 
 import { Resend } from 'resend';
 import { render } from '@react-email/render';
