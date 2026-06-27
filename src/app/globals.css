@@ -427,3 +427,27 @@ body {
     font-size: 2em !important;
   }
 }
+
+
+
+.fuente-montserrat-bold {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.fuente-montserrat-regular {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.fuente-montserrat-semibold {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 33px;
+}
+
+.fuente-montserrat-semiboldTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 620;
+  font-size: 34px;
+}

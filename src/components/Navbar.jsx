@@ -1,24 +1,61 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+ //   const [showNavbar, setShowNavbar] = useState(true);
 
     const navItems = [
         { name: 'Nosotros', href: '/nosotros', type: 'text' },
         { name: 'Marcas', href: '/marcas', type: 'text' },
-        { name: 'Category', href: '/category', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384808/category_crop_28149c.png' },
+     // { name: 'Category', href: '/category', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384808/category_crop_28149c.png' },
         { name: 'Masterclass', href: 'https://masterclass.mepieldistribuidores.com.mx/', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384971/masterclass_crop_3772e5.png' },
-        { name: 'Simposio', href: '/simposio', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384929/simposio_crop_f8bb8f.png' },
+     // { name: 'Simposio', href: '/simposio', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384929/simposio_crop_f8bb8f.png' },
     ];
+/*
+    useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+
+        // Si baja
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            setShowNavbar(false);
+        } 
+        // Si sube
+        else {
+            setShowNavbar(true);
+        }
+
+        lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+        window.removeEventListener('scroll', handleScroll);
+    };
+}, []);*/
 
     return (
         <nav
             // CAMBIOS AQUÍ: sticky, top-0 y z-index alto
-            className="sticky top-0 w-full h-32 lg:h-30 flex items-center px-6 lg:px-8 z-[100] transition-all duration-300 shadow-md"
+             className={`
+        fixed top-0 left-0
+        w-full h-32 lg:h-30
+        flex items-center
+        px-6 lg:px-8
+        z-[100]
+        shadow-md
+        
+    `}
+    /*transition-transform duration-300
+        ${showNavbar ? 'translate-y-0' : '-translate-y-full'}*/
+
             style={{
                 background: `linear-gradient(to right, 
                     var(--color-sky-pure) 0%, 
@@ -35,9 +72,12 @@ export default function Navbar() {
                 {/* LOGO */}
                 <Link href="/" className="flex-shrink-0">
                     <img
-                        src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776192002/logo.png"
+                        //src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776192002/logo.png"
+                       src='/images/MEPIEL-Distribuidores2.png'
                         alt="Logo"
-                        className="h-34 lg:h-48 w-auto object-contain"
+                        //className="h-34 lg:h-48 w-auto object-contain"
+                        className="h-20 lg:h-25 w-auto object-contain"
+
                     />
                 </Link>
 
@@ -57,6 +97,8 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.href}
+                                target={item.name === 'Masterclass' ? '_blank' : '_self'}
+                                rel={item.name === 'Masterclass' ? 'noopener noreferrer' : undefined}
                                 className={`
                                     bg-nav-button/90 button-shadow backdrop-blur-sm rounded-full 
                                     cursor-pointer hover:bg-white transition-all flex items-center justify-center 
@@ -78,7 +120,9 @@ export default function Navbar() {
                     </div>
                     <Link
                         key='online_store'
-                        href='https://mepieldistribuidores.com.mx/'
+                        href='https://mepieldistribuidores.com.mx/mi-cuenta/'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         className="bg-[#283776] text-white px-3 py-1.5 rounded-full font-semibold text-xs uppercase tracking-[0.2em] shadow-lg hover:bg-[#2d3a7d] transition-all whitespace-nowrap"
                     >
                         <span>Tienda en línea</span>

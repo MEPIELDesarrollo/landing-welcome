@@ -108,7 +108,7 @@ const slides = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-32 lg:pt-30">
       <Navbar />
       <Hero assets={misBanners} />
       <BrandsCarousel />
@@ -125,7 +125,7 @@ export default function Home() {
         descriptionColor="#616260"
         finalDescription="Accede a nuestro catálogo y promociones exclusivas"
         btn1Text="TIENDA EN LÍNEA"
-        btn1Url="https://mepieldistribuidores.com.mx/"
+        btn1Url="https://mepieldistribuidores.com.mx/mi-cuenta/"
       />
       <Footer />
     </div>

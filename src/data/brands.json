@@ -1,4 +1,17 @@
 [
+
+    {
+        "name": "KORFF",
+        "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776285191/KORFF-23_loxwqy.png",
+        "link": "https://mepieldistribuidores.com.mx/categoria-producto/truca-import-export/",
+        "exclusive": true
+    },
+    {
+        "name": "NUGGELA",
+        "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1778077539/nuggela_vb8rcu.png",
+        "link": "https://mepieldistribuidores.com.mx/categoria-producto/nuggela/",
+        "exclusive": true
+    },
     {
         "name": "LOREAL",
         "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776285265/LOREAL_bpyddw.png",
@@ -103,16 +116,6 @@
         "name": "DARROW",
         "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776284721/DARROW_ztw48c.png",
         "link": "https://mepieldistribuidores.com.mx/categoria-producto/pierre-fabre/darrow/"
-    },
-    {
-        "name": "KORFF",
-        "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776285191/KORFF-23_loxwqy.png",
-        "link": "https://mepieldistribuidores.com.mx/categoria-producto/truca-import-export/"
-    },
-    {
-        "name": "NUGGELA",
-        "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1778077539/nuggela_vb8rcu.png",
-        "link": "https://mepieldistribuidores.com.mx/categoria-producto/nuggela/"
     },
     {
         "name": "ISDIN",
@@ -283,5 +286,10 @@
         "name": "MUSTELA",
         "logo": "https://res.cloudinary.com/dpqlilgy6/image/upload/v1776286631/MUSTELA_tjzga7.png",
         "link": "https://mepieldistribuidores.com.mx/categoria-producto/mustela/"
+    },
+    {
+        "name": "SEASONS",
+        "logo": "https://res.cloudinary.com/dztucobrp/image/upload/v1781558563/seasons_dglfhk.png",
+        "link": "https://mepieldistribuidores.com.mx/categoria-producto/seasons/"
     }
 ]

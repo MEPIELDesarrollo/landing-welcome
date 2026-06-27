@@ -6,9 +6,9 @@ import brands from '@/data/brands.json';
 
 export default function BrandsPage() {
     return (
-        <section className="w-full">
+        <section className="w-full pt-30">
             <div
-                className="brands-top max-w text-center p-20 bg-[#f8f8f8]"
+                className="brands-top max-w text-center mt-0 p-20 bg-[#f8f8f8]"
                 style={{
                     backgroundColor: '#eaeaea',
                     backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777066831/linea2_a0wxlz.png')`,
@@ -44,6 +44,20 @@ export default function BrandsPage() {
                                 }
         `}
                         >
+                            {/* Sello "Distribuidor Exclusivo" en esquina superior derecha */}
+                            {brand.exclusive && (
+                                <div className="absolute top-[-5px] right-[-5px] w-20 h-20 z-10 pointer-events-none rotate-30">
+                                    <Image
+                                        src="/images/Sello_Distribuidor_exclusivo_Mesa_de_trabajo_1.png"
+                                        alt="Distribuidor Exclusivo en México"
+                                        fill
+                                        className={`object-contain transition-all duration-300 
+                    ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
+                `}
+                                    />
+                                </div>
+                            )}
+
                             {/* Contenedor del Logo: Ahora siempre estará centrado */}
                             <div className="relative w-full h-20 transition-transform duration-300 group-hover:-translate-y-4">
                                 <Image
@@ -92,7 +106,7 @@ export default function BrandsPage() {
                     <div className="flex items-center justify-center" style={{ fontSize: '1.7em' }}>
                         <span className='catalog-span' style={{ fontWeight: 500, marginRight: '10px', color: '#283778' }}>¡Descarga nuestro</span>
                         <Link
-                            href='/catalogo.pdf'
+                            href='https://mepielmx-my.sharepoint.com/:x:/g/personal/jaime_mendez_mepiel_com_mx/EcZ0N83hgvxEhXWJMsjgxkEBLOgjCRY2M7-Ldv2g9r-c4A?download=1'
                             style={{ fontSize: '.9em' }}
                             className="catalog-link bg-[#283778] text-white px-4 py-1 rounded-full text-sm hover:bg-[#3b4fac] transition-colors uppercase font-weight"
                         >

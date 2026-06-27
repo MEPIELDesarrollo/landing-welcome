@@ -36,11 +36,11 @@ export default function Footer() {
                         <div className="flex flex-col space-y-4">
                             <h3 className="text-lg font-medium">Mi Cuenta</h3>
                             <ul className="space-y-3 text-sm font-light opacity-80">
-                                <li><Link href="/pedidos" className="hover:text-blue-300 transition-colors">Pedidos</Link></li>
-                                <li><Link href="/pedido-rapido" className="hover:text-blue-300 transition-colors">Pedido Rápido</Link></li>
-                                <li><Link href="/facturacion" className="hover:text-blue-300 transition-colors">Facturación</Link></li>
-                                <li><Link href="/credito" className="hover:text-blue-300 transition-colors">Crédito</Link></li>
-                                <li><Link href="/registro" className="hover:text-blue-300 transition-colors">Conviértete en Cliente</Link></li>
+                                <li><Link target='_blank' href="https://mepieldistribuidores.com.mx/mi-cuenta/orders/" className="hover:text-blue-300 transition-colors">Pedidos</Link></li>
+                                {/*<li><Link target='_blank' href="" className="hover:text-blue-300 transition-colors">Pedido Rápido</Link></li>*/}
+                                <li><Link target='_blank' href="https://mepieldistribuidores.com.mx/mi-cuenta/facturacion/" className="hover:text-blue-300 transition-colors">Facturación</Link></li>
+                                <li><Link target='_blank' href="https://mepieldistribuidores.com.mx/mi-cuenta/credito/" className="hover:text-blue-300 transition-colors">Crédito</Link></li>
+                                <li><Link target='_blank' href={'/pre-registro'} className="hover:text-blue-300 transition-colors">Conviértete en Cliente</Link></li>
                             </ul>
                         </div>
 
@@ -48,8 +48,8 @@ export default function Footer() {
                         <div className="flex flex-col space-y-4 md:border-l md:border-white/10 md:pl-10">
                             <h3 className="text-lg font-medium">Enlaces</h3>
                             <ul className="space-y-3 text-sm font-light opacity-80">
-                                <li><Link href="/aviso-privacidad" className="hover:text-blue-300 transition-colors">Aviso de Privacidad</Link></li>
-                                <li><Link href="/terminos-condiciones" className="hover:text-blue-300 transition-colors">Términos y Condiciones</Link></li>
+                                <li><Link target='_blank' href="https://mepieldistribuidores.com.mx/aviso-de-privacidad/" className="hover:text-blue-300 transition-colors">Aviso de Privacidad</Link></li>
+                                <li><Link target='_blank' href="https://mepieldistribuidores.com.mx/terminos-y-condiciones/" className="hover:text-blue-300 transition-colors">Términos y Condiciones</Link></li>
                             </ul>
                         </div>
 

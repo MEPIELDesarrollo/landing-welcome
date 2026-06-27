@@ -29,7 +29,8 @@ export default function Distro() {
                 <div className="flex flex-col items-center">
                     <Link
                         key='online_store'
-                        href='https://mepieldistribuidores.com.mx/'
+                        //href='https://mepieldistribuidores.com.mx/'
+                        href={'/pre-registro'}
                         className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition"
                         style={{ borderRadius: '14px', padding: '1em 3em' }}
                     >
@@ -43,7 +44,7 @@ export default function Distro() {
                 <div className="flex flex-col items-center">
                     <Link
                         key='online_store'
-                        href='https://mepieldistribuidores.com.mx/'
+                        href='https://mepieldistribuidores.com.mx/mi-cuenta/'
                         className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition"
                         style={{ borderRadius: '14px', padding: '1em 3em' }}
                     >
