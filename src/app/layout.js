@@ -2,7 +2,7 @@ import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css?v2";
 
 export const metadata = {
-  title: "M.E.piel ",
+  title: "MEPIEL",
   description: "Distribuidores Especializados",
 };
 

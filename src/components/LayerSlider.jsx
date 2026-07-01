@@ -16,6 +16,7 @@ const animationTypes = {
     },
 };
 
+
 export default function LayerSlider({
     slides = [],
     interval = 10000,
@@ -25,6 +26,17 @@ export default function LayerSlider({
     const [isPaused, setIsPaused] = useState(false);
     const headerRef = useRef(null);
     const [headerOffset, setHeaderOffset] = useState(0);
+
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const check = () => setIsMobile(window.innerWidth < 768);
+        check();
+
+        window.addEventListener("resize", check);
+        return () => window.removeEventListener("resize", check);
+    }, []);
+
 
     useEffect(() => {
         if (!headerRef.current) return;
@@ -60,8 +72,8 @@ export default function LayerSlider({
     return (
         <section
             style={{
-                paddingLeft: 130,
-                paddingRight: 130,
+                paddingLeft: isMobile ? 16 : 130,
+                paddingRight: isMobile ? 16 : 130,
                 paddingTop: 0,
                 overflow: 'visible',
                 backgroundColor: 'rgb(223 229 241)'
@@ -69,7 +81,7 @@ export default function LayerSlider({
         >
             <div>
                 {header && (
-                    <div className="relative flex items-center justify-center mb-2 pb-10 w-full px-4 md:px-20">
+                    <div className="relative flex items-center justify-center items-center mb-2 pb-10 w-full px-4 md:px-20">
 
                         <svg
                             className="absolute z-0"
@@ -85,14 +97,14 @@ export default function LayerSlider({
                         </svg>
                         <span
                             ref={headerRef}
-                            className="channels relative z-10 px-18 py-3 text-white font-poppins tracking-widest uppercase shadow-lg shadow-blue-900/20"
+                            className="channels relative z-10 px-6 md:px-18 py-3 text-white font-poppins tracking-widest uppercase shadow-lg shadow-blue-900/20"
                             style={{
                                 background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
                                 marginTop: headerOffset ? `-${headerOffset}px` : 0,
-                                fontSize: '2.2em',
+                                fontSize: isMobile ? '1.2em' : '2.2em',
                                 borderRadius: '20px',
                                 fontWeight: 400,
-                                letterSpacing: '6px'
+                                letterSpacing: isMobile ? '2px' : '6px'
                             }}
                         >
                             {header}
@@ -111,7 +123,7 @@ export default function LayerSlider({
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 16 }}
                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            style={{ fontSize: '4em' }}
+                            style={{ fontSize: isMobile ? '2em' : '4em', marginBottom: isMobile ? '50px' : '0px' }}
                         >
                             {currentSlide.title}
                         </motion.h2>
@@ -121,7 +133,7 @@ export default function LayerSlider({
                 {/* ── Slider ── */}
                 <div
                     className="group relative overflow-hidden slider-responsive"
-                    style={{ aspectRatio: '16/9', marginTop: '-50px' }}
+                    style={{ aspectRatio:'16/9', marginTop: isMobile ? '0px' : '-50px' }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
@@ -165,7 +177,7 @@ export default function LayerSlider({
                     {/* Flechas */}
                     <button
                         onClick={prevSlide}
-                        className="absolute left-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        className="hidden md:block absolute left-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
                         style={{
                             background: 'linear-gradient(to left, #80bdd0, #3a4a98)',
                         }}
@@ -174,7 +186,7 @@ export default function LayerSlider({
                     </button>
                     <button
                         onClick={nextSlide}
-                        className="absolute right-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        className="hidden md:block absolute right-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
                         style={{
                             background: 'linear-gradient(to left, #80bdd0, #3a4a98)',
                         }}

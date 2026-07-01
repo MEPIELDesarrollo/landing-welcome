@@ -45,7 +45,7 @@ const Hero = ({ assets = [] }) => {
     return (
         <section
             className="relative w-full overflow-hidden bg-black group"
-            style={{ paddingBottom: '36.46%' }}
+            style={{ paddingBottom: isMobile ? '90%' : '36.46%',}}
 
             //className="relative w-full aspect-[2400/900] min-h-[400px] overflow-hidden bg-black group"
             // style={{ boxShadow: '0px 10px 10px 5px #00000040' }}

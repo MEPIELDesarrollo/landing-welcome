@@ -157,13 +157,13 @@ export default function SnakeRoadmap() {
                     backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776896789/landing-05_qjstea.png')",
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'top right',
-                    backgroundSize: '15%',
+                    backgroundSize: 'clamp(60px, 10%, 120px)',
                     zIndex: 1,
                     position: 'relative',
                 }}
             >
                 <div
-                    className="relative w-[70%] max-w-6xl font-sans"
+                    className="relative w-full md:w-[70%] max-w-6xl font-sans"
                     style={{ paddingTop: 50, marginBottom: '-50px' }}
                 >
                     <div className="relative z-10 flex">
@@ -173,66 +173,62 @@ export default function SnakeRoadmap() {
                         >
                             <span
                                 className="responsive-30 text-white tracking-wide"
-                                style={{ fontSize: '1.5em' }}
+                                style={{ fontSize: 'clamp(0.8em, 3vw, 1.5em)'}}
                             >
                                 30 años distribuyendo productos
                             </span>
                         </div>
                     </div>
 
-                    <div className="relative bg-[#cc007b] rounded-tr-[60px] p-8 md:p-12 shadow-lg text-right">
+                    <div className="relative bg-[#cc007b] rounded-tr-[60px] mt-8 p-8 md:p-12 shadow-lg text-right w-full lg:w-[115%]">
                         <span
                             className="derma-span text-white"
-                            style={{ fontSize: "4.5em", "fontWeight": "700", letterSpacing: '.2em' }}
+                            style={{ fontSize: 'clamp(1.4em, 6vw, 4.5em)', "fontWeight": "700", letterSpacing: '.2em' }}
                         >DERMATOLÓGICOS</span> <br />
                         <p
                             className="derma-p text-white leading-none tracking-tight"
-                            style={{ fontSize: "7em", "fontWeight": "700", letterSpacing: '.15em' }}
+                            style={{ fontSize: 'clamp(2.5em, 10vw, 7em)', "fontWeight": "700", letterSpacing: '.15em' }}
                         >
 
-                            Y ESTÉTICOS
+                            Y<br />ESTÉTICOS
                         </p>
 
-                        {/* Etiqueta inferior azul + trigger del roadmap */}
+                       {/* Etiqueta inferior azul + trigger del roadmap responsivo */}
                         <div
-                            className="capsule absolute bottom-4 right-20 flex items-center"
-                            style={{
-                                marginRight: showRoadmap ? '0px' : '-25em'
-                            }}
+                            className={`w-full px-4 md:px-0 absolute -bottom-6 md:-bottom-5 left-0 right-0 md:left-auto md:right-20 flex justify-center md:justify-end transition-all duration-500 z-20 ${
+                                showRoadmap ? 'translate-x-0' : 'translate-x-0'
+                            }`}
                         >
                             {/* Contenedor Cápsula */}
                             <div
-                                className="flex items-center bg-white rounded-full shadow-md transition-all duration-500 overflow-hidden"
+                                className={`flex items-center bg-white rounded-full shadow-md overflow-hidden max-w-full ${showRoadmap ? 'lg:translate-x-[-25px]' : 'lg:translate-x-80'}`}
                                 style={{
                                     boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 10px 1px'
                                 }}
                             >
                                 {/* Label Azul (Izquierda) */}
-                                <div className="blue-capsule bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-6 py-2 rounded-full z-10" style={{ marginLeft: '-3px' }}>
-                                    <span className="triger-responsive text-white font-weight uppercase tracking-widest whitespace-nowrap" style={{ fontSize: '1.2em' }}>
+                                <div className="bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-4 md:px-6 py-2 rounded-full z-10 -ml-[1px]">
+                                    <span className="text-white text-xs md:text-sm font-bold uppercase tracking-widest whitespace-nowrap">
                                         En todo México
                                     </span>
                                 </div>
 
-                                {/* Lado derecho: Desaparece y deja de ocupar espacio */}
+                                {/* Lado derecho: Controlado para no romper en celulares */}
                                 {!showRoadmap && (
-                                    <div
-                                        className="flex items-center gap-1 whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-500"
-                                        style={{
-                                            paddingLeft: '1.5em',
-                                            paddingRight: '1.5em'
-                                        }}
-                                    >
-                                        <span className="triger-responsive text-black font-weight uppercase tracking-widest">
+                                    <div className="flex items-center gap-1 whitespace-nowrap px-3 md:px-5 py-1 text-[10px] sm:text-xs md:text-sm animate-in fade-in slide-in-from-left-2 duration-500">
+                                        <span className="text-black uppercase tracking-wider hidden sm:inline">
                                             ¡Nuestra historia comienza
+                                        </span>
+                                        <span className="text-black uppercase tracking-wider inline sm:hidden">
+                                            Historia 
                                         </span>
 
                                         <button
                                             onClick={() => setShowRoadmap(true)}
-                                            className="triger-responsive text-[#000] font-black uppercase tracking-widest cursor-pointer p-0 underline"
-                                            style={{ background: 'none', outline: 'none' }}
+                                            className="text-black font-black uppercase tracking-widest cursor-pointer underline hover:text-[#3b4ca8] transition-colors"
+                                            style={{ background: 'none', border: 'none', outline: 'none' }}
                                         >
-                                            AQUÍ!
+                                            ¡AQUÍ!
                                         </button>
                                     </div>
                                 )}
@@ -272,7 +268,7 @@ export default function SnakeRoadmap() {
                             .rm * { box-sizing: border-box; font-family: 'Sora', sans-serif; }`}
                         </style>
 
-                        <div ref={containerRef} className="rm" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 32px', position: 'relative', marginTop: "-100px" }}>
+                        <div ref={containerRef} className="rm" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 32px', position: 'relative',  }}>
 
                             <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 0, overflow: 'visible' }}>
                                 {pathSegments.map((seg, idx) => (
@@ -297,7 +293,10 @@ export default function SnakeRoadmap() {
                                 ))}
                             </svg>
 
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 1 }}>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: 0, position: 'relative', zIndex: 1, transform: showRoadmap && activeBp.minWidth < 600
+                                ? 'translateY(180px)'
+                                : 'translateY(0)',
+                                    transition: 'transform 0.6s ease-in-out', }}>
 
                                 {/* ── FILA 0: nodo único alineado a la derecha ── */}
                                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -470,53 +469,53 @@ export default function SnakeRoadmap() {
                     </div>
                 </motion.section>
                 <section
-                    className="relative px-25 py-25 px-4 overflow-hidden bg-white"
-                    style={{
-                        backgroundImage: `
-                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/left_bjr7jh.png'),
-                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/right_v9mj86.png')
-                        `,
-                        backgroundRepeat: 'no-repeat, no-repeat',
-                        backgroundPosition: 'bottom left, bottom right',
-                        backgroundSize: '35%, 35%',
-                        backgroundColor: 'transparent',
-                        marginTop: '5em',
-                        zIndex: 0,
-                    }}
-                >
-                    <div className="mx-auto flex flex-col md:flex-row gap-8 items-stretch justify-center">
+    className="relative px-4 sm:px-6 md:px-8 lg:px-25 py-12 sm:py-16 md:py-20 lg:py-25 overflow-hidden bg-white"
+    style={{
+        backgroundImage: `
+            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/left_bjr7jh.png'),
+            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/right_v9mj86.png')
+        `,
+        backgroundRepeat: 'no-repeat, no-repeat',
+        backgroundPosition: 'bottom left, bottom right',
+        backgroundSize: '25%, 25%',
+        backgroundColor: 'transparent',
+        marginTop: '3em',
+        zIndex: 0,
+    }}
+>
+    <div className="mx-auto max-w-7xl flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 items-stretch justify-center px-0">
 
-                        {/* Tarjeta MISIÓN */}
-                        <div className="flex-1 flex flex-col items-center">
-                            <h2 className="text-[#1e3a8a] text-3xl font-bold tracking-widest mb-6 uppercase">
-                                Misión
-                            </h2>
-                            <div className="bg-white rounded-[40px] p-10 shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-50 flex flex-col items-center justify-center h-full">
-                                <p className="text-gray-600 text-center text-lg leading-relaxed font-light">
-                                    Brindar acceso a la mayor cantidad de productos en segmentos específicos de la medicina,
-                                    con condiciones comerciales adecuadas y alianzas que el grupo ha construido como pionero
-                                    en la distribución especializada buscando asesorar, desarrollar, proteger y ayudar a nuestros clientes,
-                                    además de generar competitividad para lograr crecimiento en cada uno de sus ecosistemas.
-                                </p>
-                            </div>
-                        </div>
+        {/* Tarjeta MISIÓN */}
+        <div className="flex-1 flex flex-col items-center w-full mt-10 mb-10">
+            <h2 className="text-[#1e3a8a] text-2xl sm:text-3xl font-bold tracking-widest mb-3 sm:mb-4 md:mb-6 uppercase text-center">
+                Misión
+            </h2>
+            <div className="bg-white rounded-[30px] sm:rounded-[40px] p-5 sm:p-6 md:p-8 lg:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-50 flex flex-col items-center justify-center h-full w-full">
+                <p className="text-gray-600 text-center text-sm sm:text-base md:text-lg leading-relaxed font-light">
+                    Brindar acceso a la mayor cantidad de productos en segmentos específicos de la medicina,
+                    con condiciones comerciales adecuadas y alianzas que el grupo ha construido como pionero
+                    en la distribución especializada buscando asesorar, desarrollar, proteger y ayudar a nuestros clientes,
+                    además de generar competitividad para lograr crecimiento en cada uno de sus ecosistemas.
+                </p>
+            </div>
+        </div>
 
-                        {/* Tarjeta VISIÓN */}
-                        <div className="flex-1 flex flex-col items-center">
-                            <h2 className="text-[#1e3a8a] text-3xl font-bold tracking-widest mb-6 uppercase">
-                                Visión
-                            </h2>
-                            <div className="bg-white rounded-[40px] p-10 shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-50 flex flex-col items-center justify-center h-full">
-                                <p className="text-gray-600 text-center text-lg leading-relaxed font-light">
-                                    Ser el distribuidor #1 en el país, especializado en segmentos específicos de la medicina,
-                                    reconocido por tener al cliente como centro de negocio, además de buscar excelencia en el servicio,
-                                    competitividad y alianzas estratégicas.
-                                </p>
-                            </div>
-                        </div>
+        {/* Tarjeta VISIÓN */}
+        <div className="flex-1 flex flex-col items-center w-full">
+            <h2 className="text-[#1e3a8a] text-2xl sm:text-3xl font-bold tracking-widest mb-3 sm:mb-4 md:mb-6 uppercase text-center">
+                Visión
+            </h2>
+            <div className="bg-white rounded-[30px] sm:rounded-[40px] p-5 sm:p-6 md:p-8 lg:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.12)] border border-gray-50 flex flex-col items-center justify-center h-full w-full">
+                <p className="text-gray-600 text-center text-sm sm:text-base md:text-lg leading-relaxed font-light">
+                    Ser el distribuidor #1 en el país, especializado en segmentos específicos de la medicina,
+                    reconocido por tener al cliente como centro de negocio, además de buscar excelencia en el servicio,
+                    competitividad y alianzas estratégicas.
+                </p>
+            </div>
+        </div>
 
-                    </div>
-                </section>
+    </div>
+</section>
             </div>
         </>
     );
@@ -549,7 +548,7 @@ function Stick({ color, direction, delay, height, showRoadmap }) {
 
 function LabelGroup({ item }) {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10}}>
             {item.events.map((ev, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 

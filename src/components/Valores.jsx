@@ -57,9 +57,9 @@ export default function ValoresSection() {
                         VALORES
                     </h2>
 
-                    <div className="mt-2 relative" style={{ marginLeft: '-1em' }}>
+                    <div className="mt-2 relative -ml-15 md:-ml-4" >
                         <div
-                            className="text-white uppercase tracking-[0.25em] font-medium py-2  font-poppins"
+                            className="text-white uppercase tracking-[0.25em] font-medium py-2  font-poppins sm:pl-1"
                             style={{
                                 background: '#c20078',
                                 clipPath: 'polygon(0px 0px, 100% 0px, 91% 100%, 0% 100%)',
@@ -72,46 +72,45 @@ export default function ValoresSection() {
                     </div>
                 </motion.div>
 
-                {/* 🟢 GRILLA DE VALORES */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-35 md:px-6 sm:px-4">
+               {/* 🟢 GRILLA DE VALORES */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
                     {VALORES.map((val, i) => (
-                        <motion.div
-                            key={val.id}
-                            custom={i} // Pasamos el índice para el delay
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-50px" }}
-                            variants={fadeInVariant}
-                            className="flex items-center rounded-full px-2 py-2 bg-[#f8fafc]"
+                    <motion.div
+                        key={val.id}
+                        custom={i}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-50px" }}
+                        variants={fadeInVariant}
+                        className="flex items-center rounded-full px-3 py-2 md:px-4 md:py-3 bg-[#f8fafc] w-full"
+                        style={{
+                            boxShadow: '0 0px 10px rgb(5 5 5 / 25%)',
+                        }}
+                    >
+                        {/* CÍRCULO - Tamaño responsivo */}
+                        <div
+                            className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm md:text-base shrink-0 font-poppins"
+                            style={{ backgroundColor: val.color }}
+                        >
+                            {val.id}
+                        </div>
+
+                    {/* TEXTO - Alineado a la izquierda en móviles */}
+                    <div className="flex-1 text-left sm:text-center">
+                        <span
+                            className="text-gray-600 font-medium px-2 sm:px-3 font-poppins text-xs sm:text-sm md:text-base"
                             style={{
-                                boxShadow: '0 0px 10px rgb(5 5 5 / 25%)',
+                                letterSpacing: '1px',
+                                fontSize: 'clamp(12px, 2vw, 16px)'
                             }}
                         >
-                            {/* CÍRCULO */}
-                            <div
-                                className="w-9 h-9 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 font-poppins"
-                                style={{ backgroundColor: val.color }}
-                            >
-                                {val.id}
-                            </div>
-
-                            {/* TEXTO */}
-                            <div className="flex-1 text-center">
-                                <span
-                                    className="text-gray-600 font-medium font-poppins"
-                                    style={{
-                                        letterSpacing: '2px',
-                                        fontSize: '15px'
-                                    }}
-                                >
-                                    {val.text}
-                                </span>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-
+                            {val.text}
+                        </span>
+                    </div>
+                </motion.div>
+                ))}
             </div>
-        </section>
+        </div>
+    </section>
     );
 }

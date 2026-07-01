@@ -428,6 +428,25 @@ body {
   }
 }
 
+@media screen and (max-width: 599px) {
+  .derma-span {
+    font-size: 1.8em !important;
+    letter-spacing: .05em !important;
+  }
+  .derma-p {
+    font-size: 2.8em !important;
+    letter-spacing: .05em !important;
+  }
+  .triger-responsive {
+    font-size: .65em !important;
+  }
+  .capsule {
+    right: 1em !important;
+    left: auto !important;
+    bottom: 1em !important;
+  }
+}
+
 
 
 .fuente-montserrat-bold {
