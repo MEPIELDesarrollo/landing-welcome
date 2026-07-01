@@ -163,12 +163,12 @@ export default function SnakeRoadmap() {
                 }}
             >
                 <div
-                    className="relative w-full md:w-[70%] max-w-6xl font-sans"
+                    className="relative w-full md:w-[70%] max-w-6xl mt-26 font-sans"
                     style={{ paddingTop: 50, marginBottom: '-50px' }}
                 >
-                    <div className="relative z-10 flex">
+                    <div className="relative z-10 flex mr-13">
                         <div
-                            className="w-[75%] bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-10 py-3 rounded-tr-[20px]"
+                            className="w-[90%] bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-10 py-3 rounded-tr-[20px]"
                             style={{ marginBottom: '-1.7em', textAlign: 'right' }}
                         >
                             <span
