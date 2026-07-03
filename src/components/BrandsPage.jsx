@@ -29,69 +29,73 @@ export default function BrandsPage() {
                     MARCAS!
                 </span>
             </div>
+            
             <div className="max-w-6xl mx-auto px-4 text-center pt-20">
-                  {/* Grid */}
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {brands.map((brand, index) => (
-            <div
-                key={index}
-                className={`
-                    relative group flex flex-col items-center justify-center p-6 
-                    aspect-square transition-all duration-300 rounded-sm
-                    ${brand.highlight
-                        ? 'bg-[#e0e6f2] text-white'
-                        : 'bg-[#e0e6f2] hover:bg-[#283778] active:bg-[#283778] focus:bg-[#283778] focus-within:bg-[#283778]'
-                    }
-                `}
-            >
-                {/* Sello "Distribuidor Exclusivo" */}
-                {brand.exclusive && (
-                    <div className="absolute top-[-5px] right-[-5px] w-20 h-20 z-10 pointer-events-none rotate-30">
-                        <Image
-                            src="/images/Sello_Distribuidor_exclusivo_Mesa_de_trabajo_1.png"
-                            alt="Distribuidor Exclusivo en México"
-                            fill
-                            className={`object-contain transition-all duration-300 
-                                ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert active:brightness-0 active:invert focus:brightness-0 focus:invert focus-within:brightness-0 focus-within:invert" : ""}
-                            `}
-                        />
-                    </div>
-                )}
 
-                {/* Contenedor del Logo */}
-                <Link 
-                    href={brand.link || '#'}
-                    className="relative w-full h-20 block transition-transform duration-300 md:group-hover:-translate-y-4 active:-translate-y-4 focus:-translate-y-4 focus-within:-translate-y-4"
-                >
-                    <Image
-                        src={brand.logo}
-                        alt={brand.name}
-                        fill
-                        className={`object-contain transition-all duration-300 
-                            ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert active:brightness-0 active:invert focus:brightness-0 focus:invert focus-within:brightness-0 focus-within:invert" : ""}
-                        `}
-                    />
-                </Link>
+                {/* Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    {brands.map((brand, index) => (
+                        <Link
+                            href={brand.link || '#'}
+                            key={index}
+                            className={`
+                                relative group flex flex-col items-center justify-center p-6 
+                                aspect-square transition-all duration-300 rounded-sm
+                                ${brand.highlight
+                                    ? 'bg-[#e0e6f2] text-white'
+                                    : 'bg-[#e0e6f2] hover:bg-[#283778] active:bg-[#283778] focus:bg-[#283778]'
+                                }
+                            `}
+                        >
+                            {/* Sello "Distribuidor Exclusivo" en esquina superior derecha */}
+                            {brand.exclusive && (
+                                <div className="absolute top-[-5px] right-[-5px] w-20 h-20 z-10 pointer-events-none rotate-30">
+                                    <Image
+                                        src="/images/Sello_Distribuidor_exclusivo_Mesa_de_trabajo_1.png"
+                                        alt="Distribuidor Exclusivo en México"
+                                        fill
+                                        className={`object-contain transition-all duration-300 
+                                        ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
+                                        `}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Contenedor del Logo: Ahora siempre estará centrado y actuará como enlace principal en móviles */}
+                            <div 
+                                
+                                className="relative w-full h-20 block transition-transform duration-300 md:group-hover:-translate-y-4"
+                            >
+                                <Image
+                                    src={brand.logo}
+                                    alt={brand.name}
+                                    fill
+                                    className={`object-contain transition-all duration-300 
+                                    ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
+                                    `}
+                                />
+                            </div>
 
                             {/* Link con posicionamiento absoluto (Oculto en móviles) */}
                             <div className="absolute bottom-6 left-0 right-0 hidden md:flex justify-center pointer-events-none">
-                                <Link
-                                    href={brand.link || '#'}
+                                <div
+                                    
                                     className={`
-                    pointer-events-auto border border-white rounded-full px-4 py-1 text-[10px] font-bold tracking-tight uppercase
-                    transition-all duration-300 
-                    opacity-0 group-hover:opacity-100 
-                    translate-y-4 group-hover:translate-y-0
-                    hover:bg-white hover:text-[#2d3e8b] text-white
-                `}
+                                        pointer-events-auto border border-white rounded-full px-4 py-1 text-[10px] font-bold tracking-tight uppercase
+                                        transition-all duration-300 
+                                        opacity-0 group-hover:opacity-100 
+                                        translate-y-4 group-hover:translate-y-0
+                                        hover:bg-white hover:text-[#2d3e8b] text-white
+                                    `}
                                 >
                                     Conocer más
-                                </Link>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
+            
             <div className="w-f h-10" style={{ boxShadow: '0 8px 8px -2px rgba(0,0,0,0.3)' }}></div>
             <div
                 className="brands-bottom max-w text-center p-16 bg-[#eaeaea]"
