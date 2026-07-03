@@ -143,9 +143,8 @@ export default function PreRegistroForm() {
         </div>
 
         {/* FORM CARD (Se acopla y unifica perfectamente con la pestaña activa) */}
-        <div
-          className={`w-full max-w-4xl relative ${gradDir} ${formBg} rounded-[2rem] shadow-2xl py-6 px-10 md:py-12 md:px-16 z-20`}
-        >
+        <div className={`w-full max-w-4xl relative ${gradDir} ${formBg} shadow-2xl py-6 px-10 md:py-12 md:px-16 z-20 rounded-[12px] md:rounded-[2rem]`}        >
+
           {activeTab === 'medicos'   && <MedicosForm onStepChange={setNavProps} />}
           {activeTab === 'farmacia'  && <FarmaciaForm onStepChange={setNavProps} />}
           {activeTab === 'ecommerce' && <EcommerceForm onStepChange={setNavProps} />}

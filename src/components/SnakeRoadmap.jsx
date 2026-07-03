@@ -166,7 +166,10 @@ export default function SnakeRoadmap() {
                     className="relative w-full md:w-[70%] max-w-6xl mt-26 font-sans"
                     style={{ paddingTop: 50, marginBottom: '-50px' }}
                 >
-                    <div className="relative z-10 flex mr-13">
+                    <div className="relative z-10 flex mr-13"
+                    style={{
+                        transform: 'translateY(20px)'
+                    }}>
                         <div
                             className="w-[90%] bg-gradient-to-r from-[#3b4ca8] to-[#6ab2ca] px-10 py-3 rounded-tr-[20px]"
                             style={{ marginBottom: '-1.7em', textAlign: 'right' }}
@@ -190,7 +193,7 @@ export default function SnakeRoadmap() {
                             style={{ fontSize: 'clamp(2.5em, 10vw, 7em)', "fontWeight": "700", letterSpacing: '.15em' }}
                         >
 
-                            Y<br />ESTÉTICOS
+                            Y ESTÉTICOS
                         </p>
 
                        {/* Etiqueta inferior azul + trigger del roadmap responsivo */}
