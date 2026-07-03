@@ -74,7 +74,7 @@ export default function LayerSlider({
             style={{
                 paddingLeft: isMobile ? 16 : 130,
                 paddingRight: isMobile ? 16 : 130,
-                paddingTop: 0,
+                paddingBottom: 1,
                 overflow: 'visible',
                 backgroundColor: 'rgb(223 229 241)'
             }}
@@ -97,14 +97,16 @@ export default function LayerSlider({
                         </svg>
                         <span
                             ref={headerRef}
-                            className="channels relative z-10 px-6 md:px-18 py-3 text-white font-poppins tracking-widest uppercase shadow-lg shadow-blue-900/20"
+                            className="channels relative z-10 px-4 md:px-18 py-3 text-white font-poppins tracking-widest uppercase shadow-lg shadow-blue-900/20 text-center"
                             style={{
                                 background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
                                 marginTop: headerOffset ? `-${headerOffset}px` : 0,
-                                fontSize: isMobile ? '1.2em' : '2.2em',
+                                fontSize: isMobile ? '1em' : '2.2em',
                                 borderRadius: '20px',
                                 fontWeight: 400,
-                                letterSpacing: isMobile ? '2px' : '6px'
+                                letterSpacing: isMobile ? '1px' : '6px',
+                                width: isMobile ? '90%' : 'auto',
+                                maxWidth: '100%',
                             }}
                         >
                             {header}
@@ -118,12 +120,12 @@ export default function LayerSlider({
                     {currentSlide.title && (
                         <motion.h2
                             key={`title-${index}`}
-                            className="channel-title text-center mb-4 mt-6 tracking-wide font-poppins"
+                            className="channel-title text-center mb-1 mt-6 tracking-wide font-poppins"
                             initial={{ opacity: 0, y: -16 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 16 }}
                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            style={{ fontSize: isMobile ? '2em' : '4em', marginBottom: isMobile ? '50px' : '0px' }}
+                            style={{ fontSize: isMobile ? '2em' : '4em', marginBottom: isMobile ? '50px' : '0px'}}
                         >
                             {currentSlide.title}
                         </motion.h2>
@@ -132,15 +134,24 @@ export default function LayerSlider({
 
                 {/* ── Slider ── */}
                 <div
-                    className="group relative overflow-hidden slider-responsive"
-                    style={{ aspectRatio:'16/9', marginTop: isMobile ? '0px' : '-50px' }}
+                    className="group relative overflow-hidden touch-pan-y w-full max-w-full mx-auto"
+                    style={{ 
+                        // En móviles quitamos el aspecto estricto de PC si quieres que se vea más alto, 
+                        // o mantenemos 16/9 asegurando que use el 100% real de la pantalla.
+                        aspectRatio: isMobile ? '16/9' : '16/9', 
+                        marginTop: isMobile ? '0px' : '-50px',
+                        // Esto invalida por completo el margen negativo asesino de globals.css en móviles:
+                        marginRight: 'auto',
+                        marginLeft: 'auto',
+                        marginBottom: '100px'
+                    }}
                     onMouseEnter={() => setIsPaused(true)}
                     onMouseLeave={() => setIsPaused(false)}
                 >
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={index}
-                            className="absolute inset-0"
+                            className="absolute inset-0 w-full h-full"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -151,7 +162,7 @@ export default function LayerSlider({
                                 return (
                                     <motion.div
                                         key={`${index}-${i}`}
-                                        className="absolute inset-0"
+                                        className="absolute inset-0 w-full h-full flex items-center justify-center"
                                         initial={anim.initial}
                                         animate={anim.animate}
                                         transition={{
@@ -166,7 +177,10 @@ export default function LayerSlider({
                                             fill
                                             unoptimized
                                             priority={index === 0}
-                                            className="object-contain"
+                                            // 'object-cover' hace que llene todo el espacio sin dejar huecos negros/blancos.
+                                            // Si tus imágenes tienen texto importante en los bordes y no quieres que se corte NADA, 
+                                            // puedes regresarlo a "object-contain", pero con los márgenes corregidos ya no se descentrará.
+                                            className="object-cover md:object-contain w-full h-full"
                                         />
                                     </motion.div>
                                 );
@@ -195,7 +209,7 @@ export default function LayerSlider({
                     </button>
 
                     {/* Dots */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex gap-3">
                         {slides.map((_, i) => (
                             <button
                                 key={i}

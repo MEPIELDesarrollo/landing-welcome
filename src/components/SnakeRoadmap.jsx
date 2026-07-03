@@ -15,8 +15,8 @@ const VECTOR_H = 35;
 //   array    → posición explícita por índice global (0=firstItem, 1..N=restItems)
 const BREAKPOINTS = [
     { minWidth: 1200, cols: 4, labelPos: ['top', 'bottom', 'top', 'top', 'top', 'bottom', 'bottom', 'bottom', 'bottom'] },
-    { minWidth: 900, cols: 3, labelPos: 'auto' },
-    { minWidth: 600, cols: 2, labelPos: 'auto' },
+    { minWidth: 900, cols: 3, labelPos: ['top', 'bottom', 'top', 'bottom', 'top', 'bottom', 'top', 'bottom', 'top'] },
+    { minWidth: 600, cols: 2, labelPos: ['top', 'bottom', 'top', 'bottom', 'top', 'bottom', 'top', 'bottom', 'top'] },
     { minWidth: 0, cols: 1, labelPos: 'top' },
 ];
 
@@ -304,7 +304,7 @@ export default function SnakeRoadmap() {
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
-                                        width: 200
+                                        width: itemsPerRow === 1 ? '100%' : 200
                                     }}>
                                         {/* Zona superior con label */}
                                         <div style={{ height: VECTOR_H + 10, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
@@ -312,7 +312,17 @@ export default function SnakeRoadmap() {
                                                 initial={{ opacity: 0, y: 8 }}
                                                 animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                                                 transition={{ delay: 0.5 }}
-                                                style={{ marginBottom: 8 }}
+                                                style={{
+                                                    marginBottom: 8,
+                                                    ...(itemsPerRow === 1 && {
+                                                        background: 'rgba(255,255,255,0.88)',
+                                                        borderRadius: 10,
+                                                        padding: '6px 10px',
+                                                        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                                                        alignSelf: 'flex-end',
+                                                        marginRight: 8,
+                                                    })
+                                                }}
                                             >
                                                 <LabelGroup item={firstItem} />
                                             </motion.div>
@@ -373,8 +383,8 @@ export default function SnakeRoadmap() {
                                                 const delay = globalIdx * segmentDuration;
 
                                                 return (
-                                                    <div key={colIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 200 }}>
-
+                                                    /*<div key={colIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: itemsPerRow === 1 ? '100%' : 200 }}>*/
+                                                    <div key={colIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center',  width: itemsPerRow === 1 ? 173 :itemsPerRow === 2 ? 200 : itemsPerRow === 3 ? 200 : itemsPerRow === 4 ? 200 : 200 }}>
                                                         <div style={{ height: VECTOR_H + 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end' }}>
                                                             {isTop && (
                                                                 <>
@@ -383,7 +393,15 @@ export default function SnakeRoadmap() {
                                                                         animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                                                                         // animate={{ opacity: 1, y: 0 }}
                                                                         transition={{ delay: delay + 0.7 }}
-                                                                        style={{ marginBottom: 8 }}
+                                                                        style={{
+                                                                            marginBottom: 8,
+                                                                            ...(itemsPerRow === 1 && {
+                                                                                background: 'rgba(255,255,255,0.88)',
+                                                                                borderRadius: 10,
+                                                                                padding: '6px 10px',
+                                                                                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                                                                            })
+                                                                        }}
                                                                     >
                                                                         <LabelGroup item={item} />
                                                                     </motion.div>
@@ -450,7 +468,15 @@ export default function SnakeRoadmap() {
                                                                         animate={showRoadmap ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
                                                                         // animate={{ opacity: 1, y: 0 }}
                                                                         transition={{ delay: delay + 0.5 }}
-                                                                        style={{ marginTop: 8 }}
+                                                                        style={{
+                                                                            marginTop: 8,
+                                                                            ...(itemsPerRow === 1 && {
+                                                                                background: 'rgba(255,255,255,0.88)',
+                                                                                borderRadius: 10,
+                                                                                padding: '6px 10px',
+                                                                                boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                                                                            })
+                                                                        }}
                                                                     >
                                                                         <LabelGroup item={item} />
                                                                     </motion.div>
@@ -501,7 +527,7 @@ export default function SnakeRoadmap() {
         </div>
 
         {/* Tarjeta VISIÓN */}
-        <div className="flex-1 flex flex-col items-center w-full">
+        <div className="flex-1 flex flex-col items-center w-full mt-10 mb-10">
             <h2 className="text-[#1e3a8a] text-2xl sm:text-3xl font-bold tracking-widest mb-3 sm:mb-4 md:mb-6 uppercase text-center">
                 Visión
             </h2>

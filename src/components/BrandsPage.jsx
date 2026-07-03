@@ -58,8 +58,11 @@ export default function BrandsPage() {
                                 </div>
                             )}
 
-                            {/* Contenedor del Logo: Ahora siempre estará centrado */}
-                            <div className="relative w-full h-20 transition-transform duration-300 group-hover:-translate-y-4">
+                            {/* Contenedor del Logo: Ahora siempre estará centrado y actuará como enlace principal en móviles */}
+                            <Link 
+                                href={brand.link || '#'}
+                                className="relative w-full h-20 block transition-transform duration-300 md:group-hover:-translate-y-4"
+                            >
                                 <Image
                                     src={brand.logo}
                                     alt={brand.name}
@@ -68,14 +71,14 @@ export default function BrandsPage() {
                     ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
                 `}
                                 />
-                            </div>
+                            </Link>
 
-                            {/* Link con posicionamiento absoluto */}
-                            <div className="absolute bottom-6 left-0 right-0 flex justify-center">
+                            {/* Link con posicionamiento absoluto (Oculto en móviles) */}
+                            <div className="absolute bottom-6 left-0 right-0 hidden md:flex justify-center pointer-events-none">
                                 <Link
                                     href={brand.link || '#'}
                                     className={`
-                    border border-white rounded-full px-4 py-1 text-[10px] font-bold tracking-tight uppercase
+                    pointer-events-auto border border-white rounded-full px-4 py-1 text-[10px] font-bold tracking-tight uppercase
                     transition-all duration-300 
                     opacity-0 group-hover:opacity-100 
                     translate-y-4 group-hover:translate-y-0
