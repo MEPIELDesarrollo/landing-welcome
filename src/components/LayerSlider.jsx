@@ -270,38 +270,63 @@ export default function LayerSlider({
         >
             <div>
                 {header && (
-                    <div className="relative flex items-center justify-center items-center mb-2 pb-10 w-full px-4 md:px-20">
+    <div className="relative flex items-center justify-center md:mb-2 md:pb-10 w-full px-4 md:px-20">
 
-                        <svg
-                            className="absolute z-0"
-                            style={{ width: '100%', height: '4px', marginTop: headerOffset ? `-${headerOffset}px` : 0 }}
-                            viewBox="0 0 100 4"
-                            preserveAspectRatio="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <polygon
-                                points="0,2 10,0 90,0 100,2 90,4 10,4"
-                                fill="#d1d5db"
-                            />
-                        </svg>
-                        <span
-                            ref={headerRef}
-                            className="channels relative z-10 px-4 md:px-18 py-3 text-white font-poppins tracking-widest uppercase shadow-lg shadow-blue-900/20 text-center"
-                            style={{
-                                background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
-                                marginTop: headerOffset ? `-${headerOffset}px` : 0,
-                                fontSize: isMobile ? '1em' : '2.2em',
-                                borderRadius: '20px',
-                                fontWeight: 400,
-                                letterSpacing: isMobile ? '1px' : '6px',
-                                width: isMobile ? '90%' : 'auto',
-                                maxWidth: '100%',
-                            }}
-                        >
-                            {header}
-                        </span>
-                    </div>
-                )}
+        {/* La línea horizontal gris de fondo de la barra de título solo se muestra en escritorio */}
+        {!isMobile && (
+            <svg
+                className="absolute z-0"
+                style={{ width: '100%', height: '4px', marginTop: headerOffset ? `-${headerOffset}px` : 0 }}
+                viewBox="0 0 100 4"
+                preserveAspectRatio="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <polygon
+                    points="0,2 10,0 90,0 100,2 90,4 10,4"
+                    fill="#d1d5db"
+                />
+            </svg>
+        )}
+
+        <span
+            ref={headerRef}
+            className="relative z-10 text-white font-poppins uppercase text-center"
+            style={
+                isMobile
+                    ? {
+                          /* ─── DISEÑO EXCLUSIVO MÓVIL (Como en tu imagen) ─── */
+                          background: 'linear-gradient(90deg, #5C39FF 0%, #00bb9cff 100%)', // Degradado Rosa a Azul
+                          //fontSize: '0.9em', // Tamaño compacto del texto
+                          color: '#FFFFFF',
+                          fontWeight: 400,
+                          letterSpacing: '2px', // Espaciado elegante y legible en móvil
+                          borderRadius: '12px', // Bordes totalmente redondeados (tipo píldora)
+                          padding: '6px 24px', // Padding pequeño
+                          width: 'auto', // Se ajusta al tamaño del texto en lugar de ocupar el 90%
+                          maxWidth: '100%',
+                          marginTop: 50,
+                          boxShadow: '0 4px 15px rgba(255, 255, 255, 0.25)', // Sombra con tono magenta suave
+                        
+                      }
+                    : {
+                          /* ─── DISEÑO ORIGINAL ESCRITORIO (Intacto) ─── */
+                          background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
+                          marginTop: headerOffset ? `-${headerOffset}px` : 0,
+                          fontSize: '2.2em',
+                          borderRadius: '20px',
+                          fontWeight: 400,
+                          letterSpacing: '6px',
+                          width: 'auto',
+                          maxWidth: '100%',
+                          padding: '12px 72px', // Restituye el padding equivalente a px-18 py-3 de escritorio
+                          boxShadow: '0 10px 25px -5px rgba(58, 74, 152, 0.2)',
+                      }
+            }
+        >
+            {header}
+        </span>
+    </div>
+)}
 
 
                 {/* ── Título del slide actual ── */}
@@ -309,7 +334,8 @@ export default function LayerSlider({
                     {currentSlide.title && (
                         <motion.h2
                             key={`title-${index}`}
-                            className="channel-title text-center mb-1 mt-6 tracking-wide font-poppins"
+                            //className="channel-title text-center mb-1 mt-6 tracking-wide font-poppins"
+                            className="text-center mb-1 mt-6 tracking-wide font-poppins"
                             initial={{ opacity: 0, y: -16 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 16 }}
