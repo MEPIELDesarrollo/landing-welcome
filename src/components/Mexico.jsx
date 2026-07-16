@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Target } from 'lucide-react';
 
 const images = [
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A0787_r8a4xb.jpg',
@@ -200,11 +201,14 @@ export default function MexicoSection() {
                                                 <Link
                                                     key={j}
                                                     href={logo.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
                                                     className="bg-nav-button/90 button-shadow rounded-full cursor-pointer overflow-hidden flex-shrink-0"
                                                 >
                                                     <img
                                                         src={logo.src}
                                                         alt={logo.alt}
+                                                        
                                                         className="w-auto h-auto object-contain pointer-events-none px-3 sm:px-4 py-1.5 sm:py-2"
                                                         style={{ maxHeight: '40px' }}
                                                     />
