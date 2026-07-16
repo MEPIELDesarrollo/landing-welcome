@@ -4,39 +4,39 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const images = [
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050282/2Y5A0787_r8a4xb.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050282/IMG_2202_iv7h1w.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050282/2Y5A5708_kk7gdg.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/2Y5A5793_anicmv.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/IMG_9976_yhnxdf.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/2Y5A5777_wdkriv.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777050281/IMG_0036_ylb5a8.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777305035/IMG_2487_jldq0t.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777305086/IMG_2474_k8js20.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A0787_r8a4xb.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/IMG_2202_iv7h1w.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A5708_kk7gdg.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5793_anicmv.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/IMG_9976_yhnxdf.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5777_wdkriv.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/IMG_0036_ylb5a8.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777305035/IMG_2487_jldq0t.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777305086/IMG_2474_k8js20.jpg',
 ];
 
 const cards = [
     {
         title: 'Almacenes',
         text: 'Contamos con almacenes ubicados en puntos estratégicos de la república: <strong> El Salto, Jalisco, Guadalajara, Monterrey y CDMX. </strong>',
-        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776977645/landing-06_bskxrr.png',
+        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776977645/landing-06_bskxrr.png',
     },
     {
         title: 'Entregas',
         text: 'Garantizamos entregas de 24 a 48 hrs y entregas el mismo día en la zona metropolitana de Guadalajara y CMDX.',
-        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776977645/landing-07_ttum5i.png',
+        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776977645/landing-07_ttum5i.png',
     },
     {
         title: 'Atención Personalizada',
         text: 'Te ofrecemos la atención personalizada que mereces con nuestra fuerza de venta en campo y nuestro equipo de ejecutivos listos para brindarte asesoria en cada etapa de tu compra.',
-        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776977646/landing-08_wpm11u.png',
+        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776977646/landing-08_wpm11u.png',
     },
     {
         title: 'Más que una distribuidora',
         text: 'Te brindamos herramientas para desarrollar tu negocio a través de nuestros distintos proyectos.',
-        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776977647/landing-09_m7mlgy.png',
+        icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776977647/landing-09_m7mlgy.png',
         logos: [
-            { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776207143/masterclass_zo2cps.png', href: 'https://masterclass.mepieldistribuidores.com.mx/', alt: 'Masterclass' },
+            { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776207143/masterclass_zo2cps.png', href: 'https://masterclass.mepieldistribuidores.com.mx/', alt: 'Masterclass' },
         ],
     },
 ];
@@ -60,8 +60,8 @@ export default function MexicoSection() {
             style={{
                 backgroundColor: '#EBEBEB',
                 backgroundImage: `
-                    url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777061461/curve_myknhm.png'),
-                    url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777061461/curve2_n8jmy6.png')
+                    url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777061461/curve_myknhm.png'),
+                    url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777061461/curve2_n8jmy6.png')
                 `,
                 backgroundRepeat: 'no-repeat, no-repeat',
                 backgroundPosition: 'top right, bottom left',
@@ -112,7 +112,7 @@ export default function MexicoSection() {
                         </div>
 
                         {/* Tarjeta "Forma parte" */}
-                        <div className="relative mt-6 sm:mt-8 w-full max-w-[300px] sm:max-w-[320px] md:max-w-[350px] lg:w-75 bg-gradient-to-r from-[#394aa6] to-[#69afc8] rounded-3xl pt-6 px-4 sm:px-6 pb-10 text-center text-white shadow-lg mx-auto lg:mx-0">
+                        <div className="relative mt-6 sm:mt-8 w-full max-w-[300px] sm:max-w-[320px] md:max-w-[350px] lg:w-75 bg-gradient-to-r from-[#394aa6] to-[#69afc8] rounded-3xl pt-6 px-4 sm:px-6 pb-6 md:pb-10 text-center text-white shadow-lg mx-auto lg:mx-0">
                             <p className="tracking-widest uppercase font-poppins text-xs sm:text-sm">
                                 ¡Forma parte de nuestra red
                             </p>
@@ -120,21 +120,23 @@ export default function MexicoSection() {
                                 DE CLIENTES!
                             </h3>
 
-                            <div className="mt-3">
-                                <Link
+                            <div className="mt-4 md:mt-3 flex flex-row justify-center items-center gap-3 md:block">
+                               
+
+                                <a 
+                                    href="/pre-registro" 
+                                    className="inline-block md:absolute md:left-1/2 md:-translate-x-1/2 md:-bottom-5 bg-[#cc007b] text-white px-4 md:px-5 py-1.5 md:py-1 rounded-full shadow hover:bg-pink-600 transition-colors whitespace-nowrap z-10 font-poppins text-xs sm:text-sm md:shadow-lg"
+                                >
+                                    PRE-REGISTRO
+                                </a>
+
+                                 <Link
                                     href='https://mepieldistribuidores.com.mx/mi-cuenta/'
-                                    className="inline-block bg-white text-gray-600 px-4 py-1 rounded-full shadow hover:bg-gray-100 transition-colors font-poppins text-xs sm:text-sm"
+                                    className="inline-block bg-white text-gray-600 px-4 py-1.5 md:py-1 rounded-full shadow hover:bg-gray-100 transition-colors font-poppins text-xs sm:text-sm"
                                 >
                                     <span>Tienda en línea</span>
                                 </Link>
                             </div>
-
-                            <a 
-                                href="/pre-registro" 
-                                className="absolute left-1/2 -translate-x-1/2 -bottom-5 bg-[#cc007b] px-4 sm:px-5 py-1 rounded-full shadow-lg whitespace-nowrap z-10 font-poppins text-xs sm:text-sm"
-                            >
-                                REGISTRARME
-                            </a>
                         </div>
                     </div>
 

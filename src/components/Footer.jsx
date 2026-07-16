@@ -21,7 +21,7 @@ export default function Footer() {
                         </div>
                         <div className="relative w-50 h-20">
                             <Image
-                                src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776450166/mepiel_ptyv7t.png"
+                                src="https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776450166/mepiel_ptyv7t.png"
                                 alt="Mepiel Logo"
                                 fill
                                 className="object-contain object-left"

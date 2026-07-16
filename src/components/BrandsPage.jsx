@@ -11,7 +11,7 @@ export default function BrandsPage() {
                 className="brands-top max-w text-center mt-0 p-20 bg-[#f8f8f8]"
                 style={{
                     backgroundColor: '#eaeaea',
-                    backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777066831/linea2_a0wxlz.png')`,
+                    backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777066831/linea2_a0wxlz.png')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'left center',
                     backgroundSize: '50%',
@@ -71,7 +71,7 @@ export default function BrandsPage() {
                                     alt={brand.name}
                                     fill
                                     className={`object-contain transition-all duration-300 
-                                    ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
+                                    ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert group-active:brightness-0 group-active:invert" : ""}
                                     `}
                                 />
                             </div>
@@ -100,7 +100,7 @@ export default function BrandsPage() {
             <div
                 className="brands-bottom max-w text-center p-16 bg-[#eaeaea]"
                 style={{
-                    backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777069186/linea3_ofwlc9.png')`,
+                    backgroundImage: `url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777069186/linea3_ofwlc9.png')`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'right center',
                     backgroundSize: '60%',

@@ -9,9 +9,9 @@ export default function BrandsSection() {
             className="w-full bg-[#f5f5f5] overflow-hidden py-10 md:py-26 lg:py-26 brands-carousel-bg"
             style={{
                 backgroundImage: `
-                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777394701/shadow_i3r4vd.png'),
-                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777396434/corner_nx8mii.png'),
-                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1777396765/left_b_avk8w5.png')
+                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777394701/shadow_i3r4vd.png'),
+                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777396434/corner_nx8mii.png'),
+                            url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777396765/left_b_avk8w5.png')
                         `,
                 backgroundRepeat: 'no-repeat, no-repeat, no-repeat',
                 backgroundPosition: 'top center, bottom right, left center',

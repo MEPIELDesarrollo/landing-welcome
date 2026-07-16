@@ -154,7 +154,7 @@ export default function SnakeRoadmap() {
 
             <section
                 style={{
-                    backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776896789/landing-05_qjstea.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776896789/landing-05_qjstea.png')",
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'top right',
                     backgroundSize: 'clamp(60px, 10%, 120px)',
@@ -243,7 +243,7 @@ export default function SnakeRoadmap() {
             <div
                 className='bg-white'
                 style={{
-                    backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776869609/landing-15_uvax9q.png')",
+                    backgroundImage: "url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776869609/landing-15_uvax9q.png')",
                     backgroundSize: 'cover',
                     backgroundPosition: 'center center',
                     backgroundRepeat: 'no-repeat'
@@ -501,8 +501,8 @@ export default function SnakeRoadmap() {
     className="relative px-4 sm:px-6 md:px-8 lg:px-25 py-12 sm:py-16 md:py-20 lg:py-25 overflow-hidden bg-white"
     style={{
         backgroundImage: `
-            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/left_bjr7jh.png'),
-            url('https://res.cloudinary.com/dpqlilgy6/image/upload/v1776964654/right_v9mj86.png')
+            url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776964654/left_bjr7jh.png'),
+            url('https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776964654/right_v9mj86.png')
         `,
         backgroundRepeat: 'no-repeat, no-repeat',
         backgroundPosition: 'bottom left, bottom right',

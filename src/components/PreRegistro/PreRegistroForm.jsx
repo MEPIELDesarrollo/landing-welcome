@@ -80,7 +80,7 @@ export default function PreRegistroForm() {
           onClick={() => setActiveTab(tab.id)}
           className={`
             flex-1 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3
-            px-1 sm:px-4 font-bold text-xs tracking-wide transition-all duration-300 
+            px-1 sm:px-4 font-bold text-[10px] sm:text-xs tracking-wide transition-all duration-300 
             cursor-pointer rounded-t-[1rem] md:rounded-t-[1.5rem] relative
             ${isActive
               ? `${currentTabColors.bg} ${colors.text} h-20 md:h-28 pt-1 md:pt-2 shadow-[0_-4px_15px_rgba(0,0,0,0.15)] z-30`
@@ -108,7 +108,7 @@ export default function PreRegistroForm() {
           <span className={`
             flex-col items-center md:items-start leading-none md:leading-tight fuente-montserrat-regular transition-all duration-300 
             ${isActive 
-              ? 'flex text-[14px] opacity-100 mt-0 md:mb-5' 
+              ? 'flex text-[10px] sm:text-[14px] opacity-100 mt-0 md:mb-5' 
               : 'hidden sm:flex text-[13px] mt-2 opacity-100'
             }
           `}>

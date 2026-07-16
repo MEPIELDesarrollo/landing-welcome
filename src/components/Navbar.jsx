@@ -12,7 +12,7 @@ export default function Navbar() {
         { name: 'Nosotros', href: '/nosotros', type: 'text' },
         { name: 'Marcas', href: '/marcas', type: 'text' },
      // { name: 'Category', href: '/category', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384808/category_crop_28149c.png' },
-        { name: 'Masterclass', href: 'https://masterclass.mepieldistribuidores.com.mx/', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384971/masterclass_crop_3772e5.png' },
+        { name: 'Masterclass', href: 'https://masterclass.mepieldistribuidores.com.mx/', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777384971/masterclass_crop_3772e5.png' },
      // { name: 'Simposio', href: '/simposio', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384929/simposio_crop_f8bb8f.png' },
     ];
 /*

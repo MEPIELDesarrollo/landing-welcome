@@ -22,7 +22,7 @@ export default function CallToAction({
 
     btn1Text,
     btn1Url,
-    btn1Style = { background: 'linear-gradient(to right, #008dff, #0008ff)', color: '#fff', padding: '.6em 1.8em', borderRadius: '12px' },
+    btn1Style = { background: 'linear-gradient(to right, #008dff, #0008ff)', color: '#fff', padding: '1em 2.5em', fontSize: '1.125rem', borderRadius: '12px' },
 
     btn2Text,
     btn2Url,
@@ -61,7 +61,7 @@ export default function CallToAction({
             >
                 <div className="relative w-[100%] aspect-[3/1] mb-6">
                     <Image
-                        src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1777499082/copy_of_landing-18_qviiry_928444.png"
+                        src="https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777499082/copy_of_landing-18_qviiry_928444.png"
                         alt="Logo"
                         fill
                         className="object-contain"
@@ -107,7 +107,7 @@ export default function CallToAction({
                                 display="inline-block"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-2 rounded-md font-poppins font-semibold tracking-wider uppercase shadow-lg cursor-pointer inline-block"
+                                className="px-8 py-4 rounded-md font-poppins font-semibold tracking-wider uppercase shadow-lg cursor-pointer inline-block"
                                 style={btn1Style}
                             >
                                 {btn1Text}

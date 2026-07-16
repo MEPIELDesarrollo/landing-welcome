@@ -2,7 +2,7 @@ import { Html, Body, Container, Heading, Text, Section, Img } from '@react-email
 
 export default function UserConfirmationEmail() {
   
-  const logoUrl = 'https://res.cloudinary.com/dztucobrp/image/upload/v1781562376/MEPIEL-Distribuidores2_d9aluc.png';
+  const logoUrl = 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1781562376/MEPIEL-Distribuidores2_d9aluc.png';
   
   return (
     <Html>
