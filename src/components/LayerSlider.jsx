@@ -208,7 +208,7 @@ function MobileSlide({ slide }) {
 
 export default function LayerSlider({
     slides = [],
-    interval = 100000,
+    interval = 10000,
     header,
 }) {
     const [index, setIndex] = useState(0);
