@@ -208,13 +208,14 @@ function MobileSlide({ slide }) {
 
 export default function LayerSlider({
     slides = [],
-    interval = 10000,
+    interval = 100000,
     header,
 }) {
     const [index, setIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
     const headerRef = useRef(null);
     const [headerOffset, setHeaderOffset] = useState(0);
+    const [direction, setDirection] = useState(1);
 
     const [isMobile, setIsMobile] = useState(false);
 
@@ -241,10 +242,12 @@ export default function LayerSlider({
     }, [header]);
 
     const nextSlide = useCallback(() => {
+        setDirection(1)
         setIndex((prev) => (prev + 1) % slides.length);
     }, [slides.length]);
 
     const prevSlide = () => {
+        setDirection(-1)
         setIndex((prev) => (prev - 1 + slides.length) % slides.length);
     };
 
@@ -350,23 +353,51 @@ export default function LayerSlider({
                 {/* ── Slider ── */}
                 {isMobile ? (
                     <div className="w-full" style={{ marginBottom: 60 }}>
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={`mobile-${index}`}
-                                initial={{ opacity: 0, x: 30 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -30 }}
-                                transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                                className="w-full"
+                        {/* Flechas + contenido en fila */}
+                        <div className="flex items-center gap-2">
+                            {/* Flecha izquierda */}
+                            <button
+                                onClick={prevSlide}
+                                className="flex-shrink-0 z-20 p-2 rounded-full text-white transition-all active:scale-95"
+                                style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
+                                aria-label="Anterior"
                             >
-                                <MobileSlide slide={currentSlide} />
-                            </motion.div>
-                        </AnimatePresence>
+                                <ChevronLeft className="w-5 h-5" />
+                            </button>
+
+                            {/* Slide */}
+                            <div className="flex-1 min-w-0">
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={`mobile-${index}`}
+                                        initial={{ opacity: 0, x: direction * 30 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: direction * -30 }}
+                                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                                        className="w-full"
+                                    >
+                                        <MobileSlide slide={currentSlide} />
+                                    </motion.div>
+                                </AnimatePresence>
+                            </div>
+
+                            {/* Flecha derecha */}
+                            <button
+                                onClick={nextSlide}
+                                className="flex-shrink-0 z-20 p-2 rounded-full text-white transition-all active:scale-95"
+                                style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
+                                aria-label="Siguiente"
+                            >
+                                <ChevronRight className="w-5 h-5" />
+                            </button>
+                        </div>
+
+                        {/* Dots */}
                         <div className="flex justify-center gap-3 mt-6">
                             {slides.map((_, i) => (
                                 <button
                                     key={i}
-                                    onClick={() => setIndex(i)}
+                                    onClick={() => {setDirection(i > index ? 1 : -1); setIndex(i);}}
                                     className={`h-2 transition-all rounded-full ${index === i ? 'w-8 bg-blue-600' : 'w-2 bg-gray-400/50'}`}
                                 />
                             ))}
@@ -423,21 +454,26 @@ export default function LayerSlider({
                         </motion.div>
                     </AnimatePresence>
 
-                    {/* Flechas */}
-                    <button
+                   {/* Flechas (Escritorio) */}
+                    <motion.button
                         onClick={prevSlide}
-                        className="hidden md:block absolute left-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        whileHover={{ scale: 1.08 }} // Se agranda sutilmente al pasar el mouse
+                        whileTap={{ scale: 0.92 }}   // Animación de presionado/click
+                        className="hidden md:block absolute left-10 top-1/2 -translate-y-1/2 z-20 p-4 text-white rounded-full transition-all"
                         style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
                     >
                         <ChevronLeft className="w-5 h-5 md:w-8 md:h-8" />
-                    </button>
-                    <button
+                    </motion.button>
+
+                    <motion.button
                         onClick={nextSlide}
-                        className="hidden md:block absolute right-10 top-1/2 -translate-y-1/2 z-20 p-4 bg-[#2d3a7d]/90 hover:bg-[#2d3a7d] text-white rounded-full transition-all"
+                        whileHover={{ scale: 1.08 }} // Se agranda sutilmente al pasar el mouse
+                        whileTap={{ scale: 0.92 }}   // Animación de presionado/click
+                        className="hidden md:block absolute right-10 top-1/2 -translate-y-1/2 z-20 p-4 text-white rounded-full transition-all"
                         style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
                     >
                         <ChevronRight className="w-7 h-7 md:w-8 md:h-8" />
-                    </button>
+                    </motion.button>
 
                     {/* Dots */}
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex gap-3">

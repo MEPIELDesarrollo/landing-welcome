@@ -14,6 +14,12 @@ export default function Navbar() {
      // { name: 'Category', href: '/category', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384808/category_crop_28149c.png' },
         { name: 'Masterclass', href: 'https://masterclass.mepieldistribuidores.com.mx/', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777384971/masterclass_crop_3772e5.png' },
      // { name: 'Simposio', href: '/simposio', type: 'image', url: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1777384929/simposio_crop_f8bb8f.png' },
+       // { nameMobile: "Tienda en línea", href: "https://mepieldistribuidores.com.mx/mi-cuenta/", type: "text" },
+    ];
+
+    const navItemsShop = [
+       
+        { nameMobile: "Tienda en línea", href: "https://mepieldistribuidores.com.mx/mi-cuenta/", type: "text" },
     ];
 /*
     useEffect(() => {
@@ -148,6 +154,22 @@ export default function Navbar() {
                         {item.name}
                     </Link>
                 ))}
+                {navItemsShop.map((item)=>{
+                    if(item.nameMobile){
+                        return(
+                            <Link
+                                key={item.nameMobile}
+                                href={item.href}
+                                 target='_blank'
+                                rel='noopener noreferrer'
+                                className="text-xl font-bold text-slate-800 uppercase tracking-widest"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {item.nameMobile}
+                            </Link>
+                        )
+                    }
+                })}
             </div>
         </nav>
     );
