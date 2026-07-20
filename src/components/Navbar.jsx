@@ -19,7 +19,7 @@ export default function Navbar() {
 
     const navItemsShop = [
        
-        { nameMobile: "Tienda en línea", href: "https://mepieldistribuidores.com.mx/mi-cuenta/", type: "text" },
+        { nameMobile: "Tienda en línea", href: "https://tienda.mepieldistribuidores.com.mx/mi-cuenta/", type: "text" },
     ];
 /*
     useEffect(() => {
@@ -76,7 +76,7 @@ export default function Navbar() {
         >
             <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between">
                 {/* LOGO */}
-                <Link href="/" className="flex-shrink-0">
+                <Link href="https://tienda.mepieldistribuidores.com.mx/bienvenida/" className="flex-shrink-0">
                     <img
                         //src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776192002/logo.png"
                        src='/images/MEPIEL-Distribuidores2.png'
@@ -126,7 +126,7 @@ export default function Navbar() {
                     </div>
                     <Link
                         key='online_store'
-                        href='https://mepieldistribuidores.com.mx/mi-cuenta/'
+                        href='https://tienda.mepieldistribuidores.com.mx/mi-cuenta/'
                         target='_blank'
                         rel='noopener noreferrer'
                         className="bg-[#283776] text-white px-3 py-1.5 rounded-full font-semibold text-xs uppercase tracking-[0.2em] shadow-lg hover:bg-[#2d3a7d] transition-all whitespace-nowrap"

@@ -132,7 +132,7 @@ export default function MexicoSection() {
                                 </a>
 
                                  <Link
-                                    href='https://mepieldistribuidores.com.mx/mi-cuenta/'
+                                    href='https://tienda.mepieldistribuidores.com.mx/mi-cuenta/'
                                     className="inline-block bg-white text-gray-600 px-4 py-1.5 md:py-1 rounded-full shadow hover:bg-gray-100 transition-colors font-poppins text-xs sm:text-sm"
                                 >
                                     <span>Tienda en línea</span>
