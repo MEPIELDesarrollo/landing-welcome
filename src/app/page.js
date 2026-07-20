@@ -137,7 +137,7 @@ export default function Home() {
         descriptionColor="#283776"
         finalDescription="Accede a nuestro catálogo y promociones exclusivas"
         btn1Text="INICIAR SESIÓN"
-        btn1Url="https://mepieldistribuidores.com.mx/mi-cuenta/"
+        btn1Url="https://tienda.mepieldistribuidores.com.mx/mi-cuenta/"
       />
       <Footer />
     </div>
