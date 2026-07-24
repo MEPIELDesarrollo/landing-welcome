@@ -37,6 +37,7 @@ export default function BrandsPage() {
                     {brands.map((brand, index) => (
                         <Link
                             href={brand.link || '#'}
+                            target={brand.target || '_blank'}
                             key={index}
                             className={`
                                 relative group flex flex-col items-center justify-center p-6 

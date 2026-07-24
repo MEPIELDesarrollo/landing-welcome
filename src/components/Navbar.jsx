@@ -76,7 +76,7 @@ export default function Navbar() {
         >
             <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between">
                 {/* LOGO */}
-                <Link href="https://tienda.mepieldistribuidores.com.mx/bienvenida/" className="flex-shrink-0">
+                <Link href="https://mepieldistribuidores.com.mx" className="flex-shrink-0">
                     <img
                         //src="https://res.cloudinary.com/dpqlilgy6/image/upload/v1776192002/logo.png"
                        src='/images/MEPIEL-Distribuidores2.png'
