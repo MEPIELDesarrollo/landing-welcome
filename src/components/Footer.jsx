@@ -14,7 +14,7 @@ export default function Footer() {
                     <div className="md:col-span-6 flex flex-col space-y-6 pr-10">
 
                         <div className="text-[13px] space-y-2 font-light opacity-90 leading-relaxed max-w-sm">
-                            <p>Dirección: C. San Gabriel 3113, Jardines de Los Arcos,</p>
+                            <p>Dirección: Av. San Gabriel 619, Jardines de Los Arcos,</p>
                             <p>44500 Guadalajara, Jal.</p>
                             <p>Teléfono: 33 34613252</p>
                             <p>Correo: contacto@mepiel.com.mx</p>
