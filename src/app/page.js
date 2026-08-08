@@ -10,23 +10,23 @@ import Footer from '@/components/Footer';
 const misBanners = [
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner1.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner1_r.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141036/banner1.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner1_mobile.jpg',
   },
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner2.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner2_r.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner_mexico2.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner_mexicoMobile.jpg',
   },
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner3.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner3_r.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner3.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner3_mobile.jpg',
   },
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner4.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776264267/banner4_r.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner4.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786142770/banner4_mobile.jpg',
   }
 ];
 
