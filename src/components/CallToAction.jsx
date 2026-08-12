@@ -22,6 +22,7 @@ export default function CallToAction({
 
     btn1Text,
     btn1Url,
+    btn1Target,
     btn1Style = { background: 'linear-gradient(to right, #008dff, #0008ff)', color: '#fff', padding: '1em 2.5em', fontSize: '1.125rem', borderRadius: '12px' },
 
     btn2Text,
@@ -102,7 +103,7 @@ export default function CallToAction({
                     )}
 
                     {btn1Text && btn1Url && (
-                        <Link href={btn1Url} passHref>
+                        <Link href={btn1Url} passHref target={btn1Target}>
                             <motion.span
                                 display="inline-block"
                                 whileHover={{ scale: 1.05 }}

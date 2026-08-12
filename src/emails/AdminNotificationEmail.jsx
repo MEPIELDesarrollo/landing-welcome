@@ -75,10 +75,20 @@ export default function AdminNotificationEmail({ data }) {
                   <td style={{ padding: '8px 0', fontWeight: '600', color: '#2d3748', width: '40%' }}>Tipo pre-registro:</td>
                   <td style={{ padding: '8px 0', color: '#4a5568' }}>{data.tipoForm}</td>
                 </tr>
-                <tr>
-                  <td style={{ padding: '8px 0', fontWeight: '600', color: '#2d3748', width: '40%' }}>Cédula Profesional:</td>
-                  <td style={{ padding: '8px 0', color: '#4a5568' }}>{data.cedula}</td>
-                </tr>
+
+                {/* ── CAMPO DINÁMICO: Cédula o Licencia Sanitaria ── */}
+{(data.licenciaSanitaria || data.cedula) && (
+  <tr>
+    <td style={{ padding: '8px 0', fontWeight: '600', color: '#2d3748', width: '40%' }}>
+      {data.licenciaSanitaria ? 'Licencia Sanitaria:' : 'Cédula Profesional:'}
+    </td>
+    <td style={{ padding: '8px 0', color: '#4a5568' }}>
+      {data.licenciaSanitaria || data.cedula}
+    </td>
+  </tr>
+)}
+
+            
                 <tr>
                   <td style={{ padding: '8px 0', fontWeight: '600', color: '#2d3748' }}>Nombre Completo:</td>
                   <td style={{ padding: '8px 0', color: '#4a5568' }}>{data.nombre} {data.apellidoP} {data.apellidoM}</td>

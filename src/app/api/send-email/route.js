@@ -117,36 +117,40 @@ export async function POST(request) {
     }
     // Si es MEDICOS, ambos se quedan en null automáticamente
 
-    // 4. INSERCIÓN DINÁMICA EN SQL SERVER
-    await pool.request()
-      .input('cedula', sql.VarChar, textData.cedula)
-      .input('nombre', sql.VarChar, textData.nombre)
-      .input('apellido_p', sql.VarChar, textData.apellidoP)
-      .input('apellido_m', sql.VarChar, textData.apellidoM)
-      .input('fecha_nac', sql.VarChar, textData.fechaNac)
-      .input('sexo', sql.Char, textData.sexo)
-      .input('email', sql.VarChar, textData.email)
-      .input('tel1', sql.VarChar, textData.tel1)
-      .input('tel2', sql.VarChar, textData.tel2 || null)
-      .input('cfdi', sql.VarChar, textData.cfdi)
-      .input('tipo_form', sql.VarChar, textData.tipoForm)
-      
-      // Enviamos las variables dinámicas mapeadas
-      .input('nombre_negocio', sql.VarChar, nombreNegocioInput)
-      .input('url_negocio', sql.VarChar, urlNegocioInput)
-      
-      .input('ine_id', sql.VarChar, uploadResults['ine']?.public_id || 'N/A')
-      .input('url_ine', sql.VarChar, uploadResults['ine']?.secure_url || 'N/A')
-      .input('comp_id', sql.VarChar, uploadResults['comprobante']?.public_id || 'N/A')
-      .input('url_comp', sql.VarChar, uploadResults['comprobante']?.secure_url || 'N/A')
-      .input('const_id', sql.VarChar, uploadResults['constancia']?.public_id || 'N/A')
-      .input('url_const', sql.VarChar, uploadResults['constancia']?.secure_url || 'N/A')
-      .query(`
-        INSERT INTO PreRegistrosClientes 
-        (tipo_formulario, cedula, nombre, apellido_paterno, apellido_materno, fecha_nacimiento, sexo, email, telefono_1, telefono_2, cfdi_uso, nombre_negocio, url_negocio, cloudinary_ine_id, url_ine, cloudinary_comprobante_id, url_comprobante, cloudinary_constancia_id, url_constancia)
-        VALUES 
-        (@tipo_form, @cedula, @nombre, @apellido_p, @apellido_m, @fecha_nac, @sexo, @email, @tel1, @tel2, @cfdi, @nombre_negocio, @url_negocio, @ine_id, @url_ine, @comp_id, @url_comp, @const_id, @url_const)
-      `);
+    // Consolidamos Cédula / Licencia Sanitaria en un solo valor seguro
+const cedulaOlicencia = textData.licenciaSanitaria || textData.cedula || 'N/A';
+
+// INSERCIÓN DINÁMICA EN SQL SERVER
+await pool.request()
+  .input('cedula', sql.VarChar, cedulaOlicencia) // Guarda el valor de cedula o licencia_sanitaria en la misma columna
+  .input('nombre', sql.VarChar, textData.nombre || '')
+  .input('apellido_p', sql.VarChar, textData.apellidoP || '')
+  .input('apellido_m', sql.VarChar, textData.apellidoM || '')
+  .input('fecha_nac', sql.VarChar, textData.fechaNac || '')
+  .input('sexo', sql.Char, textData.sexo || '')
+  .input('email', sql.VarChar, textData.email || '')
+  .input('tel1', sql.VarChar, textData.tel1 || '')
+  .input('tel2', sql.VarChar, textData.tel2 || null)
+  .input('cfdi', sql.VarChar, textData.cfdi || '')
+  .input('tipo_form', sql.VarChar, textData.tipoForm || '')
+  
+  // Variables de negocio
+  .input('nombre_negocio', sql.VarChar, nombreNegocioInput || null)
+  .input('url_negocio', sql.VarChar, urlNegocioInput || null)
+  
+  // Archivos Cloudinary
+  .input('ine_id', sql.VarChar, uploadResults['ine']?.public_id || 'N/A')
+  .input('url_ine', sql.VarChar, uploadResults['ine']?.secure_url || 'N/A')
+  .input('comp_id', sql.VarChar, uploadResults['comprobante']?.public_id || 'N/A')
+  .input('url_comp', sql.VarChar, uploadResults['comprobante']?.secure_url || 'N/A')
+  .input('const_id', sql.VarChar, uploadResults['constancia']?.public_id || 'N/A')
+  .input('url_const', sql.VarChar, uploadResults['constancia']?.secure_url || 'N/A')
+  .query(`
+    INSERT INTO PreRegistrosClientes 
+    (tipo_formulario, cedula, nombre, apellido_paterno, apellido_materno, fecha_nacimiento, sexo, email, telefono_1, telefono_2, cfdi_uso, nombre_negocio, url_negocio, cloudinary_ine_id, url_ine, cloudinary_comprobante_id, url_comprobante, cloudinary_constancia_id, url_constancia)
+    VALUES 
+    (@tipo_form, @cedula, @nombre, @apellido_p, @apellido_m, @fecha_nac, @sexo, @email, @tel1, @tel2, @cfdi, @nombre_negocio, @url_negocio, @ine_id, @url_ine, @comp_id, @url_comp, @const_id, @url_const)
+  `);
 
     // 4. PREPARACIÓN DE ADJUNTOS PARA EL CORREO DE RESEND
     const attachments = files.map((file) => {
@@ -166,7 +170,7 @@ export async function POST(request) {
     // Correo al administrador (con archivos adjuntos físicos)
     const adminResult = await resend.emails.send({
       from:        '¡Nuevo pre-registro! <area.desarrollo@mepiel.com.mx>',  
-      to:          'contacto@mepiel.com.mx',
+      to:          'octavio.corral@mepiel.com.mx',
       bcc:         'area.desarrollo@mepiel.com.mx',
       subject:     `NUEVA SOLICITUD PRE-REGISTRO - ${textData.tipoForm}: ${textData.nombre} ${textData.apellidoP}`,
       html:        adminHtml,
@@ -182,7 +186,7 @@ export async function POST(request) {
     const userResult = await resend.emails.send({
       from:    '¡Pre-registro exitoso! - Mepiel <contacto@mepiel.com.mx>',
       to:      textData.email,
-      bcc:     'contacto@mepiel.com.mx',
+      bcc:     'octavio.corral@mepiel.com.mx',
       subject: `¡Recibimos tu solicitud de pre-registro! ${textData.nombre} ${textData.apellidoP}`,
       html:    userHtml,
     });

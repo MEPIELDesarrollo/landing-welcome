@@ -28,7 +28,7 @@ const Hero = ({ assets = [] }) => {
     useEffect(() => {
         if (assets.length <= 1 || isPaused) return;
 
-        const timer = setInterval(nextStep, 3000);
+        const timer = setInterval(nextStep, 8000);
 
         return () => clearInterval(timer);
     }, [assets.length, isPaused, nextStep, index]);

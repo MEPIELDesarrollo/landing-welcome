@@ -1,11 +1,34 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function Counter({ value, duration = 2000 }) {
     const [count, setCount] = useState(0);
+    const [hasAnimated, setHasAnimated] = useState(false); // Para asegurar que la animación solo se ejecute 1 vez
+    const ref = useRef(null);
 
     useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // Se activa cuando el contador aparece al menos un 20% en la pantalla
+                if (entry.isIntersecting && !hasAnimated) {
+                    setHasAnimated(true);
+                }
+            },
+            { threshold: 0.2 } // 0.2 = cuando el 20% del elemento sea visible
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => observer.disconnect();
+    }, [hasAnimated]);
+
+    useEffect(() => {
+        // Solo ejecuta el conteo si ya fue visible en pantalla
+        if (!hasAnimated) return;
+
         let start = 0;
         const end = parseInt(value.toString().replace(/,/g, ''));
         if (isNaN(end)) return;
@@ -24,10 +47,13 @@ function Counter({ value, duration = 2000 }) {
         }, incrementTime);
 
         return () => clearInterval(timer);
-    }, [value, duration]);
+    }, [value, duration, hasAnimated]);
 
-    return count.toLocaleString();
+    // Envolvemos el resultado en un <span> con la 'ref' para que la API pueda medir la visibilidad
+    return <span ref={ref}>{count.toLocaleString()}</span>;
 }
+
+
 
 export default function CountInfo({ bgColor = '#001563', items = [] }) {
     return (

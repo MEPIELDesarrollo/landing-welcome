@@ -248,12 +248,12 @@ function Step1({ data, setData, fechaError }) {
       <hr className="border-white/80 border-1 mt-3 mb-8" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 pb-6">
-        <TextInput label="Cédula profesional" id="cedula" required value={data.cedula} onChange={set('cedula')} />
+        
         <TextInput label="Nombre (s)" id="nombre" required value={data.nombre} onChange={set('nombre')} />
         <TextInput label="Apellido Paterno" id="apellidoP" required value={data.apellidoP} onChange={set('apellidoP')} />
         <TextInput label="Apellido Materno" id="apellidoM" required value={data.apellidoM} onChange={set('apellidoM')} />
-        <div className="w-full ">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
+        
+          
             <TextInput label="Fecha de nacimiento" id="fechaNac" required value={data.fechaNac} onChange={set('fechaNac')} placeholder="DD/MM/AAAA" error={fechaError}/>
             <SelectInput
               label="Sexo"
@@ -267,8 +267,8 @@ function Step1({ data, setData, fechaError }) {
                 { value: 'O', label: 'Otro' },
               ]}
             />
-          </div>
-        </div>
+   
+       
         <div className="w-full">
           <TextInput label="Correo Electrónico" id="email" required value={data.email} onChange={set('email')} placeholder="ejemplo@correo.com" />
         </div>
@@ -363,13 +363,13 @@ function Step3() {
 }
 
 // ─── Main component ────────────────────────────────────────────────────────────
-export default function FarmaciaForm({ onStepChange }) {
+export default function EcommerceForm({ onStepChange }) {
   const [step, setStep] = useState(1);
   const stepRef = useRef(step);
   const [loading, setLoading] = useState(false);
 
   const [step1Data, setStep1Data] = useState({
-    cedula: '', nombre: '', apellidoP: '', apellidoM: '',
+    nombre: '', apellidoP: '', apellidoM: '',
     fechaNac: '', sexo: '', email: '', tel1: '', tel2: '',
   });
 

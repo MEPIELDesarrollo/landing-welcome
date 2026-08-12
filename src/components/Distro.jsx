@@ -48,6 +48,7 @@ export default function Distro() {
                     <Link
                         key='online_store'
                         href='https://tienda.mepieldistribuidores.com.mx/mi-cuenta/'
+                        target='_blank'
                         className="font-poppins text-[#292c35] px-8 py-2 bg-gray-200 shadow hover:bg-gray-300 transition"
                         style={{ borderRadius: '14px', padding: '1em 3em' }}
                     >

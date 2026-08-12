@@ -103,13 +103,16 @@ const slides = [
       // { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439581/derecha_abbi1v.png', delay: 0.25, type: 'fadeInRight' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439589/izquierda_sb6vh1.png', delay: 0.25, type: 'fadeInLeft' },
-      { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439587/text_xcbmq7.png', delay: 0.5, type: 'blurIn' },
+     // { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439587/text_xcbmq7.png', delay: 0.5, type: 'blurIn' },
+     { src: 'https://res.cloudinary.com/dztucobrp/image/upload/v1786400188/Document_dqralz.png', delay: 0.5, type: 'blurIn' },
+
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439583/punto1_ergcti.png', delay: 1.6, type: 'fadeInLeft' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439580/linea1_ehyb4k.png', delay: 1.64, type: 'fadeInLeft' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439584/punto2_iq1b91.png', delay: 1.68, type: 'fadeInLeft' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439582/linea2_zmiz0m.png', delay: 1.72, type: 'fadeInLeft' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776439585/punto3_dxm8y7.png', delay: 1.76, type: 'fadeInLeft' },
-      {mobilesrc : 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1783980837/Elementos_Landing_Movil-02_aqtdir.png'},
+      //{mobilesrc : 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1783980837/Elementos_Landing_Movil-02_aqtdir.png'},
+      {mobilesrc : 'https://res.cloudinary.com/dztucobrp/image/upload/v1786400880/caa22cae-2a94-42d9-9b38-ca71f29daa56-Photoroom_aufdz7.png'},
       { mobilesrc : 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1783980837/Elementos_Landing_Movil-04_az7h3y.png'},
      
       
@@ -136,8 +139,9 @@ export default function Home() {
         description="Tu aliado para hacer crecer tu negocio en el cuidado de la piel."
         descriptionColor="#283776"
         finalDescription="Accede a nuestro catálogo y promociones exclusivas"
-        btn1Text="INICIAR SESIÓN"
+        btn1Text="TIENDA EN LÍNEA"
         btn1Url="https://tienda.mepieldistribuidores.com.mx/mi-cuenta/"
+        btn1Target="_blank"
       />
       <Footer />
     </div>

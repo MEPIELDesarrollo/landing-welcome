@@ -1,5 +1,6 @@
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css?v2";
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 export const metadata = {
   title: "MEPIEL",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="es" className={`${montserrat.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased">
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

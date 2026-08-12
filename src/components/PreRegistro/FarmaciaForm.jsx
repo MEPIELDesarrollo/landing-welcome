@@ -240,7 +240,7 @@ function Step1({ data, setData, fechaError }) {
       <hr className="border-white/80 border-1 mt-3 mb-8" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-y-4 pb-6">
-        <TextInput label="Cédula profesional" id="cedula" required value={data.cedula} onChange={set('cedula')} />
+        <TextInput label="Licencia Sanitaria" id="licenciaSanitaria" required value={data.licenciaSanitaria} onChange={set('licenciaSanitaria')} />
         <TextInput label="Nombre (s)" id="nombre" required value={data.nombre} onChange={set('nombre')} />
         <TextInput label="Apellido Paterno" id="apellidoP" required value={data.apellidoP} onChange={set('apellidoP')} />
         <TextInput label="Apellido Materno" id="apellidoM" required value={data.apellidoM} onChange={set('apellidoM')} />
@@ -361,7 +361,7 @@ export default function FarmaciaForm({ onStepChange }) {
   const [loading, setLoading] = useState(false);
 
   const [step1Data, setStep1Data] = useState({
-    cedula: '', nombre: '', apellidoP: '', apellidoM: '',
+    licenciaSanitaria: '', nombre: '', apellidoP: '', apellidoM: '',
     fechaNac: '', sexo: '', email: '', tel1: '', tel2: '',
   });
 
