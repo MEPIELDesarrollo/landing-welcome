@@ -10,8 +10,8 @@ import Footer from '@/components/Footer';
 const misBanners = [
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141036/banner1.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner1_mobile.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141036/banner-landing-BANNER_mwq4if.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner-landing-MOVIL_cpurqc.jpg',
   },
   {
     type: 'image',
