@@ -2,6 +2,8 @@
 const nextConfig = {
   reactCompiler: true,
 
+  output: 'export',
+
   allowedDevOrigins: [
     '172.16.101.119',
     '172.19.232.186',
@@ -21,4 +23,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
