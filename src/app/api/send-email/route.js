@@ -3,7 +3,7 @@ export const runtime = 'nodejs';
 import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import { v2 as cloudinary } from 'cloudinary';
-import sql from 'mssql';
+//import sql from 'mssql';
 import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
 import UserConfirmationEmail from '@/emails/UserConfirmationEmail';
 
@@ -16,7 +16,7 @@ cloudinary.config({
   api_key:    process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
+/*
 // ─── CONFIGURACIÓN DE SQL SERVER ─────────────────────────────────────────────
 const sqlConfig = {
   user: process.env.DB_USER,
@@ -30,7 +30,7 @@ const sqlConfig = {
     instanceName: process.env.DB_INSTANCE || undefined
   }
 };
-
+*/
 export async function POST(request) {
   try {
 
@@ -42,7 +42,7 @@ export async function POST(request) {
     const body = await request.json();
     const { textData, files } = body;
 
-    // 1. CONEXIÓN A BASE DE DATOS Y VALIDACIÓN DE DUPLICADOS
+   /* // 1. CONEXIÓN A BASE DE DATOS Y VALIDACIÓN DE DUPLICADOS
     let pool = await sql.connect(sqlConfig);
     
     const checkEmail = await pool.request()
@@ -54,7 +54,7 @@ export async function POST(request) {
         { error: 'El correo electrónico ya se encuentra registrado en nuestro sistema.' },
         { status: 400 }
       );
-    }
+    }*/
 
    // 2. SUBIDA SEGURA Y PRIVADA A CLOUDINARY (Por posición de Arreglo, independiente del nombre)
     const uploadResults = {};
@@ -118,9 +118,9 @@ export async function POST(request) {
     // Si es MEDICOS, ambos se quedan en null automáticamente
 
     // Consolidamos Cédula / Licencia Sanitaria en un solo valor seguro
-const cedulaOlicencia = textData.licenciaSanitaria || textData.cedula || 'N/A';
+    //const cedulaOlicencia = textData.licenciaSanitaria || textData.cedula || 'N/A';
 
-// INSERCIÓN DINÁMICA EN SQL SERVER
+/*// INSERCIÓN DINÁMICA EN SQL SERVER
 await pool.request()
   .input('cedula', sql.VarChar, cedulaOlicencia) // Guarda el valor de cedula o licencia_sanitaria en la misma columna
   .input('nombre', sql.VarChar, textData.nombre || '')
@@ -150,7 +150,7 @@ await pool.request()
     (tipo_formulario, cedula, nombre, apellido_paterno, apellido_materno, fecha_nacimiento, sexo, email, telefono_1, telefono_2, cfdi_uso, nombre_negocio, url_negocio, cloudinary_ine_id, url_ine, cloudinary_comprobante_id, url_comprobante, cloudinary_constancia_id, url_constancia)
     VALUES 
     (@tipo_form, @cedula, @nombre, @apellido_p, @apellido_m, @fecha_nac, @sexo, @email, @tel1, @tel2, @cfdi, @nombre_negocio, @url_negocio, @ine_id, @url_ine, @comp_id, @url_comp, @const_id, @url_const)
-  `);
+  `);*/
 
     // 4. PREPARACIÓN DE ADJUNTOS PARA EL CORREO DE RESEND
     const attachments = files.map((file) => {
