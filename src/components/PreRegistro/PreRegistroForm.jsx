@@ -167,13 +167,13 @@ export default function PreRegistroForm() {
             </a>{' '}
             o al número {''}
             <a 
-              href="https://api.whatsapp.com/send?phone=523329789143&text=Hola%2C%20me%20interesa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20pre-registro%2C%20por%20favor"
+              href="https://api.whatsapp.com/send?phone=523334613252&text=Hola%2C%20me%20interesa%20recibir%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20pre-registro%2C%20por%20favor"
               target="_blank" 
               rel="noopener noreferrer"
               className="fuente-montserrat-bold text-[#61615f]"
             >
               <img src="/images/WhatsApp.svg" alt="WhatsApp" className="w-4 h-4 inline-block mr-1 ml-1" />
-              33 2978 9143
+              33 3461 3252
             </a>
           </p>
         </div>
