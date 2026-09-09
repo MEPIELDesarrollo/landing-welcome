@@ -1,7 +1,7 @@
 export const runtime = 'nodejs';
 
 import { Resend } from 'resend';
-import { render } from '@react-email/render';
+//import { render } from '@react-email/render';
 import { v2 as cloudinary } from 'cloudinary';
 //import sql from 'mssql';
 import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
@@ -163,17 +163,15 @@ await pool.request()
       };
     });
 
-    // 5. RENDERIZADO DE TEMPLATES Y ENVÍO DE CORREOS
-    const adminHtml = await render(AdminNotificationEmail({ data: textData }));
-    const userHtml = await render(UserConfirmationEmail({ nombre: textData.nombre }));
-
+   // 5. ENVÍO DE CORREOS DIRECTAMENTE CON REACT COMPONENTES
+    
     // Correo al administrador (con archivos adjuntos físicos)
     const adminResult = await resend.emails.send({
       from:        '¡Nuevo pre-registro! <area.desarrollo@mepiel.com.mx>',  
       to:          'octavio.corral@mepiel.com.mx',
       bcc:         'area.desarrollo@mepiel.com.mx',
       subject:     `NUEVA SOLICITUD PRE-REGISTRO - ${textData.tipoForm}: ${textData.nombre} ${textData.apellidoP}`,
-      html:        adminHtml,
+      react:       AdminNotificationEmail({ data: textData }), // <-- Usar 'react' en lugar de 'html'
       attachments: attachments,
     });
 
@@ -188,7 +186,7 @@ await pool.request()
       to:      textData.email,
       bcc:     'octavio.corral@mepiel.com.mx',
       subject: `¡Recibimos tu solicitud de pre-registro! ${textData.nombre} ${textData.apellidoP}`,
-      html:    userHtml,
+      react:   <UserConfirmationEmail />,
     });
 
     if (userResult.error) {
