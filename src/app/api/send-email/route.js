@@ -4,8 +4,8 @@ import { Resend } from 'resend';
 //import { render } from '@react-email/render';
 import { v2 as cloudinary } from 'cloudinary';
 //import sql from 'mssql';
-import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
-import UserConfirmationEmail from '@/emails/UserConfirmationEmail';
+//import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
+//import UserConfirmationEmail from '@/emails/UserConfirmationEmail';
 
 // ─── CONFIGURACIÓN DE RESEND ─────────────────────────────────────────────────
     //const resend = new Resend(process.env.RESEND_API_KEY);
@@ -171,9 +171,58 @@ await pool.request()
       to:          'octavio.corral@mepiel.com.mx',
       bcc:         'area.desarrollo@mepiel.com.mx',
       subject:     `NUEVA SOLICITUD PRE-REGISTRO - ${textData.tipoForm}: ${textData.nombre} ${textData.apellidoP}`,
-      react:       AdminNotificationEmail({ data: textData }), // <-- Usar 'react' en lugar de 'html'
-      attachments: attachments,
-    });
+      template: {
+    id: process.env.RESEND_ADMIN_TEMPLATE_ID,
+
+    variables: {
+      TIPO_FORM:
+        textData.tipoForm || 'No proporcionado',
+
+      CEDULA_LABEL:
+        textData.licenciaSanitaria
+          ? 'Licencia Sanitaria:'
+          : 'Cédula Profesional:',
+
+      CEDULA:
+        textData.licenciaSanitaria ||
+        textData.cedula ||
+        'No proporcionado',
+
+      NOMBRE_COMPLETO:
+        `${textData.nombre || ''} ${textData.apellidoP || ''} ${textData.apellidoM || ''}`.trim(),
+
+      FECHA_NACIMIENTO:
+        textData.fechaNac || 'No proporcionada',
+
+      SEXO:
+        textData.sexo === 'M'
+          ? 'Masculino'
+          : textData.sexo === 'F'
+            ? 'Femenino'
+            : 'Otro',
+
+      CORREO_CLIENTE:
+        textData.email || 'No proporcionado',
+
+      TEL1:
+        textData.tel1 || 'No proporcionado',
+
+      TEL2:
+        textData.tel2 || 'No proporcionado',
+
+      CFDI:
+        textData.cfdi || 'No proporcionado',
+
+      NOMBRE_NEGOCIO:
+        textData.nombreNegocio || 'No aplica',
+
+      URL_NEGOCIO:
+        textData.urlNegocio || 'No aplica'
+    }
+  },
+
+  attachments
+});
 
     if (adminResult.error) {
       console.error('Resend admin error:', adminResult.error);
@@ -186,8 +235,15 @@ await pool.request()
       to:      textData.email,
       bcc:     'octavio.corral@mepiel.com.mx',
       subject: `¡Recibimos tu solicitud de pre-registro! ${textData.nombre} ${textData.apellidoP}`,
-      react:   <UserConfirmationEmail />,
-    });
+      template: {
+    id: process.env.RESEND_USER_TEMPLATE_ID,
+
+    variables: {
+      NOMBRE:
+        textData.nombre || 'Cliente'
+    }
+  }
+});
 
     if (userResult.error) {
       console.error('Resend user error:', userResult.error);
