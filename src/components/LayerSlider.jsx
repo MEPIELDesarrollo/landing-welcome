@@ -231,6 +231,7 @@ export default function LayerSlider({
     useEffect(() => {
         if (!headerRef.current) return;
         const updateOffset = () => {
+            if (!headerRef.current) return;
             // Mover el section hacia arriba exactamente la mitad de la altura del badge
             // para que quede centrado sobre el borde superior
             setHeaderOffset(headerRef.current.offsetHeight / 2);
