@@ -7,14 +7,14 @@ import { Target } from 'lucide-react';
 const images = [
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A5708_kk7gdg.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5777_wdkriv.jpg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_01.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_02.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_03.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_04.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_05.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_06.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_07.jpeg',
-    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_08.jpeg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421525/about_slider_01_nvhkqa.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421524/about_slider_02_qvs0hv.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421527/about_slider_03_ytto8i.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421525/about_slider_04_hrohhu.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421526/about_slider_05_dklvfa.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421528/about_slider_06_afxqyu.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421529/about_slider_07_tt0zmq.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421528/about_slider_08_h72prh.jpg',
 ];
 
 const cards = [
