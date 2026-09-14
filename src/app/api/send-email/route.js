@@ -168,7 +168,7 @@ await pool.request()
     // Correo al administrador (con archivos adjuntos físicos)
     const adminResult = await resend.emails.send({
       from:        '¡Nuevo pre-registro! <area.desarrollo@mepiel.com.mx>',  
-      to:          'octavio.corral@mepiel.com.mx',
+      to:          'contacto@mepiel.com.mx',
       bcc:         'area.desarrollo@mepiel.com.mx',
       subject:     `NUEVA SOLICITUD PRE-REGISTRO - ${textData.tipoForm}: ${textData.nombre} ${textData.apellidoP}`,
       template: {
@@ -233,7 +233,7 @@ await pool.request()
     const userResult = await resend.emails.send({
       from:    '¡Pre-registro exitoso! - Mepiel <contacto@mepiel.com.mx>',
       to:      textData.email,
-      bcc:     'octavio.corral@mepiel.com.mx',
+      bcc:     'area.desarrollo@mepiel.com.mx',
       subject: `¡Recibimos tu solicitud de pre-registro! ${textData.nombre} ${textData.apellidoP}`,
       template: {
     id: process.env.RESEND_USER_TEMPLATE_ID,
