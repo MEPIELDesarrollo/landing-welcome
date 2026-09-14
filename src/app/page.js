@@ -40,7 +40,7 @@ const data = [
     textColor: '#4F97ED',
   },
   {
-    value: 30000,
+    value: 3000,
     symbol: '+',
     valueType: 'prefix',
     text: 'Productos disponibles',

@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { Target } from 'lucide-react';
 
 const images = [
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A0787_r8a4xb.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/IMG_2202_iv7h1w.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A5708_kk7gdg.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5793_anicmv.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/IMG_9976_yhnxdf.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5777_wdkriv.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/IMG_0036_ylb5a8.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777305035/IMG_2487_jldq0t.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777305086/IMG_2474_k8js20.jpg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_01.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_02.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_03.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_04.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_05.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_06.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_07.jpeg',
+    'https://ercsybqqqknfpdrmrsix.supabase.co/storage/v1/object/public/mepiel_landing/Nosotros/about_slider_08.jpeg',
 ];
 
 const cards = [
