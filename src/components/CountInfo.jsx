@@ -50,7 +50,7 @@ function Counter({ value, duration = 2000 }) {
     }, [value, duration, hasAnimated]);
 
     // Envolvemos el resultado en un <span> con la 'ref' para que la API pueda medir la visibilidad
-    return <span ref={ref}>{count.toLocaleString()}</span>;
+    return <span ref={ref}>{count.toLocaleString('en-US')}</span>;
 }
 
 

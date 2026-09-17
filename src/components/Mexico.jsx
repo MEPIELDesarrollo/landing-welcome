@@ -5,15 +5,16 @@ import Link from 'next/link';
 import { Target } from 'lucide-react';
 
 const images = [
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A0787_r8a4xb.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/IMG_2202_iv7h1w.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050282/2Y5A5708_kk7gdg.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5793_anicmv.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/IMG_9976_yhnxdf.jpg',
     'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/2Y5A5777_wdkriv.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777050281/IMG_0036_ylb5a8.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777305035/IMG_2487_jldq0t.jpg',
-    'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777305086/IMG_2474_k8js20.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421525/about_slider_01_nvhkqa.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421524/about_slider_02_qvs0hv.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421527/about_slider_03_ytto8i.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421525/about_slider_04_hrohhu.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421526/about_slider_05_dklvfa.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421528/about_slider_06_afxqyu.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421529/about_slider_07_tt0zmq.jpg',
+    'https://res.cloudinary.com/dpqlilgy6/image/upload/v1789421528/about_slider_08_h72prh.jpg',
 ];
 
 const cards = [
