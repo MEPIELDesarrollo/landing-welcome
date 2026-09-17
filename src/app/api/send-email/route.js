@@ -1,11 +1,11 @@
 export const runtime = 'nodejs';
 
 import { Resend } from 'resend';
-import { render } from '@react-email/render';
+//import { render } from '@react-email/render';
 import { v2 as cloudinary } from 'cloudinary';
 //import sql from 'mssql';
-import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
-import UserConfirmationEmail from '@/emails/UserConfirmationEmail';
+//import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
+//import UserConfirmationEmail from '@/emails/UserConfirmationEmail';
 
 // ─── CONFIGURACIÓN DE RESEND ─────────────────────────────────────────────────
     //const resend = new Resend(process.env.RESEND_API_KEY);
@@ -163,19 +163,66 @@ await pool.request()
       };
     });
 
-    // 5. RENDERIZADO DE TEMPLATES Y ENVÍO DE CORREOS
-    const adminHtml = await render(AdminNotificationEmail({ data: textData }));
-    const userHtml = await render(UserConfirmationEmail({ nombre: textData.nombre }));
-
+   // 5. ENVÍO DE CORREOS DIRECTAMENTE CON REACT COMPONENTES
+    
     // Correo al administrador (con archivos adjuntos físicos)
     const adminResult = await resend.emails.send({
       from:        '¡Nuevo pre-registro! <area.desarrollo@mepiel.com.mx>',  
-      to:          'octavio.corral@mepiel.com.mx',
+      to:          'contacto@mepiel.com.mx',
       bcc:         'area.desarrollo@mepiel.com.mx',
       subject:     `NUEVA SOLICITUD PRE-REGISTRO - ${textData.tipoForm}: ${textData.nombre} ${textData.apellidoP}`,
-      html:        adminHtml,
-      attachments: attachments,
-    });
+      template: {
+    id: process.env.RESEND_ADMIN_TEMPLATE_ID,
+
+    variables: {
+      TIPO_FORM:
+        textData.tipoForm || 'No proporcionado',
+
+      CEDULA_LABEL:
+        textData.licenciaSanitaria
+          ? 'Licencia Sanitaria:'
+          : 'Cédula Profesional:',
+
+      CEDULA:
+        textData.licenciaSanitaria ||
+        textData.cedula ||
+        'No proporcionado',
+
+      NOMBRE_COMPLETO:
+        `${textData.nombre || ''} ${textData.apellidoP || ''} ${textData.apellidoM || ''}`.trim(),
+
+      FECHA_NACIMIENTO:
+        textData.fechaNac || 'No proporcionada',
+
+      SEXO:
+        textData.sexo === 'M'
+          ? 'Masculino'
+          : textData.sexo === 'F'
+            ? 'Femenino'
+            : 'Otro',
+
+      CORREO_CLIENTE:
+        textData.email || 'No proporcionado',
+
+      TEL1:
+        textData.tel1 || 'No proporcionado',
+
+      TEL2:
+        textData.tel2 || 'No proporcionado',
+
+      CFDI:
+        textData.cfdi || 'No proporcionado',
+
+      NOMBRE_NEGOCIO:
+        textData.nombreNegocio || 'No aplica',
+
+      URL_NEGOCIO:
+        textData.urlNegocio || 'No aplica'
+    }
+  },
+
+  attachments
+});
 
     if (adminResult.error) {
       console.error('Resend admin error:', adminResult.error);
@@ -186,10 +233,17 @@ await pool.request()
     const userResult = await resend.emails.send({
       from:    '¡Pre-registro exitoso! - Mepiel <contacto@mepiel.com.mx>',
       to:      textData.email,
-      bcc:     'octavio.corral@mepiel.com.mx',
+      bcc:     'area.desarrollo@mepiel.com.mx',
       subject: `¡Recibimos tu solicitud de pre-registro! ${textData.nombre} ${textData.apellidoP}`,
-      html:    userHtml,
-    });
+      template: {
+    id: process.env.RESEND_USER_TEMPLATE_ID,
+
+    variables: {
+      NOMBRE:
+        textData.nombre || 'Cliente'
+    }
+  }
+});
 
     if (userResult.error) {
       console.error('Resend user error:', userResult.error);

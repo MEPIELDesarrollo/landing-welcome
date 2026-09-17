@@ -55,7 +55,8 @@ export default function BrandsPage() {
                                         src="/images/Sello_Distribuidor_exclusivo_Mesa_de_trabajo_1.png"
                                         alt="Distribuidor Exclusivo en México"
                                         fill
-                                        className={`object-contain transition-all duration-300 
+                                        style={{ objectFit: 'contain' }}
+                                        className={`transition-all duration-300 
                                         ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert" : ""}
                                         `}
                                     />
@@ -71,7 +72,8 @@ export default function BrandsPage() {
                                     src={brand.logo}
                                     alt={brand.name}
                                     fill
-                                    className={`object-contain transition-all duration-300 
+                                    style={{ objectFit: 'contain' }}
+                                    className={`transition-all duration-300 
                                     ${!brand.highlight ? "group-hover:brightness-0 group-hover:invert group-active:brightness-0 group-active:invert" : ""}
                                     `}
                                 />

@@ -1,6 +1,6 @@
 import { Html, Body, Container, Heading, Text, Section, Img } from '@react-email/components';
 
-export default function UserConfirmationEmail() {
+export default function UserConfirmationEmail({nombre}) {
   
   const logoUrl = 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1781562376/MEPIEL-Distribuidores2_d9aluc.png';
   
@@ -57,7 +57,7 @@ export default function UserConfirmationEmail() {
             marginBottom: '16px',
             textAlign: 'center'
           }}>
-            Hemos recibido correctamente tu información. Nuestro equipo revisará los datos proporcionados y, una vez validados, te enviaremos una confirmación por este mismo medio para informarte que tu alta ha sido completada exitosamente.
+            Hola {nombre}, hemos recibido correctamente tu información. Nuestro equipo revisará los datos proporcionados y, una vez validados, te enviaremos una confirmación por este mismo medio para informarte que tu alta ha sido completada exitosamente.
           </Text>
           
           <Text style={{ 
