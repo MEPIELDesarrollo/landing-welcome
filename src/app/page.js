@@ -26,7 +26,7 @@ const misBanners = [
   {
     type: 'image',
     desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808860/banner_04_dmboik.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/hv1790808856/banner_mobile_04_cqecb8.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808856/banner_mobile_04_cqecb8.jpg',
   }
 ];
 
