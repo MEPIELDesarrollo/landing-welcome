@@ -10,23 +10,23 @@ import Footer from '@/components/Footer';
 const misBanners = [
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141036/banner-landing-BANNER_mwq4if.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner-landing-MOVIL_cpurqc.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808857/banner_01_ujgg3h.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808853/banner_mobile_01_mwrvq8.jpg',
   },
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner_mexico2.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner_mexicoMobile.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808858/banner_2_yhgqvc.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808854/banner_mobile_02_k7fe5q.jpg',
   },
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner3.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner3_mobile.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808859/banner_03_ujpxhk.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808855/banner_mobile_03_rtgp5f.jpg',
   },
   {
     type: 'image',
-    desktopSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786141035/banner4.jpg',
-    mobileSrc: 'https://res.cloudinary.com/dztucobrp/image/upload/f_auto,q_auto/v1786142770/banner4_mobile.jpg',
+    desktopSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808860/banner_04_dmboik.jpg',
+    mobileSrc: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808856/banner_mobile_04_cqecb8.jpg',
   }
 ];
 

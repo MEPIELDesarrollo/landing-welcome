@@ -39,6 +39,7 @@ const cards = [
         icon: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776977647/landing-09_m7mlgy.png',
         logos: [
             { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776207143/masterclass_zo2cps.png', href: 'https://masterclass.mepieldistribuidores.com.mx/', alt: 'Masterclass' },
+            { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1777384929/simposio_crop_f8bb8f.png', href: 'https://simposio.mepieldistribuidores.com.mx/', alt: 'Simposio' },
         ],
     },
 ];
