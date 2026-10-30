@@ -1,492 +1,351 @@
 'use client';
 
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-const animationTypes = {
-    fadeInUp: { initial: { opacity: 0, y: 40 }, animate: { opacity: 1, y: 0 } },
-    fadeInRight: { initial: { opacity: 0, x: 50 }, animate: { opacity: 1, x: 0 } },
-    fadeInLeft: { initial: { opacity: 0, x: -50 }, animate: { opacity: 1, x: 0 } },
-    zoomIn: { initial: { opacity: 0, scale: 0.8 }, animate: { opacity: 1, scale: 1 } },
-    blurIn: {
-        initial: { opacity: 0, filter: 'blur(20px)', scale: 1.1 },
-        animate: { opacity: 1, filter: 'blur(0px)', scale: 1 },
-    },
-};
-
-
-/* ══════════════════════════════════════════════════════════════
-   MobileSlide — layout específico por slide en móvil
-══════════════════════════════════════════════════════════════ */
-function MobileSlide({ slide }) {
-    const mobileLayers = slide.layers.filter((l) => l.mobilesrc);
-    const layout = slide.mobileLayout || 'stack';
-
-    if (layout === 'acompanamos') {
-        return (
-            <div className="w-full flex flex-col" style={{ marginBottom: -20 , gap: 0 }}>
- 
-                {/* Badge E-COMMERCE — pequeño y centrado */}
-                {mobileLayers[0] && (
-                    <div className="flex justify-center" style={{ marginTop: -30, marginBottom: 0 }}>
-                        <div className="relative" style={{ width: '70%', aspectRatio: '12/4' }}>
-                            <Image
-                                src={mobileLayers[0].mobilesrc}
-                                alt="E-Commerce"
-                                fill
-                                unoptimized
-                                className="object-contain"
-                            />
-                        </div>
-                    </div>
-                )}
- 
-                {/* Texto descriptivo */}
-                <p style={{
-                    fontSize: '1.10em',
-                    lineHeight: 1.55,
-                    color: '#283777',
-                    textAlign: 'center',
-                    margin: '0 0 4px 0',
-                    padding: '0 8px',
-                    fontWeight: 400,
-                }}>
-                    Compra a través de nuestra tienda en línea con acceso a{' '}
-                    <strong>+50 marcas de renombre</strong>{' '}
-                    a la hr que quieras, desde el medio que quieras.
-                </p>
- 
-                {/* Robot + círculos*/}
-                {mobileLayers[1] && (
-                    <div className="w-full relative" style={{ aspectRatio: '1/1', marginTop: -30 }}>
-                        <Image
-                            src={mobileLayers[1].mobilesrc}
-                            alt="Robot"
-                            fill
-                            unoptimized
-                            className="object-contain"
-                        />
-                    </div>
-                )}
- 
-                {/* logo MepielConnect izquierda + texto derecha */}
-                {mobileLayers[2] && (
-                    <div
-                        className="w-full flex flex-row items-center"
-                        style={{ gap: 12, marginTop: -60, padding: '0 8px' }}
-                    >
-                        {/* Logo MepielConnect */}
-                        <div className="relative flex-shrink-0" style={{ width: '35%', aspectRatio: '1/1' }}>
-                            <Image
-                                src={mobileLayers[2].mobilesrc}
-                                alt="MepielConnect"
-                                fill
-                                unoptimized
-                                className="object-contain object-right"
-                            />
-                        </div>
-                        {/* Texto a la derecha */}
-                        <p style={{
-                            fontSize: '0.80em',
-                            lineHeight: 1.45,
-                            color: '#283777',
-                            margin: 0,
-                            // flex: 1,
-                            width: '65%',
-                            textAlign: 'center'
-                        }}>
-                            Recibe <strong>atención personalizada</strong> a través de nuestro chatbot las 24 hrs del día, los 365 días del año.
-                        </p>
-                    </div>
-                )}
-            </div>
-        );
-    }
-
-    /* ── TE VISITAMOS ── */
-    if (layout === 'visitamos') {
-        return (
-            <div className="w-full flex flex-col" style={{ gap: 0 }}>
-                {/* Texto descriptivo*/}
-                <p
-                    style={{
-                        fontSize: '1em',
-                        lineHeight: 1.55,
-                        color: '#283777',
-                        textAlign: 'center',
-                        padding: '0 4px 16px 4px',
-                        margin: 0,
-                        fontWeight: 400,
-                    }}
-                >
-                    Garantizamos la mejor atención a través de nuestro equipo de visita médica, los cuales pueden visitarte, asesorarte, levantar pedido por ti y visitarte las veces que necesites.
-                </p>
-
-                {/* Mapa*/}
-                {mobileLayers[0] && (
-                    <div className="w-full relative" style={{ aspectRatio: '3/3' }}>
-                        <Image
-                            src={mobileLayers[0].mobilesrc}
-                            alt="Mapa de zonas de visita"
-                            fill
-                            unoptimized
-                            className="object-contain object-top"
-                        />
-                    </div>
-                )}
-            </div>
-        );
-    }
-
-    /* ── TE ASESORAMOS ── */
-    if (layout === 'asesoramos') {
-        return (
-            <div className="w-full flex flex-col" style={{ gap: '0px', marginTop: -60, padding: '0 8px' }}>
-                
-              
-                {/* Badge E-COMMERCE */}
-                {mobileLayers[0] && (
-                    <div className="flex justify-center" style={{ marginTop: 30, marginBottom: 0 }}>
-                        <div className="relative" style={{ width: '70%', aspectRatio: '12/6' }}>
-                            <Image
-                                src={mobileLayers[0].mobilesrc}
-                                alt="Call Center"
-                                fill
-                                unoptimized
-                                className="object-contain"
-                            />
-                        </div>
-                    </div>
-                )}
-
-                {/* Texto explicativo */}
-                <div className="flex justify-center">
-                    <p style={{
-                        fontSize: '1.25em',
-                        lineHeight: 1.35,
-                        color: '#283776',
-                        marginTop: 8,    
-                        marginBottom: 0, 
-                        width: '65%',
-                        textAlign: 'center'
-                    }}>
-                        Te brindamos ayuda a {''}
-                        través de nuestros
-                    </p>
-                </div>
-                
-
-                {/* Imagen inferior*/}
-                {mobileLayers[1] && (
-                    <div className="w-full relative" style={{ aspectRatio: '1/1', marginTop: '-25px' }}>
-                        <Image 
-                            src={mobileLayers[1].mobilesrc} 
-                            alt="Ejecutivos Especializados" 
-                            fill 
-                            unoptimized 
-                            className="object-contain object-bottom" 
-                        />
-                    </div>
-                )}
-            </div>
-        );
-    }
-
-    /* ── Fallback ── */
-    return (
-        <div className="w-full flex flex-col items-center gap-2">
-            {mobileLayers.map((l, i) => (
-                <div key={i} className="w-full relative" style={{ aspectRatio: '16/9' }}>
-                    <Image src={l.mobilesrc} alt="" fill unoptimized className="object-contain" />
-                </div>
-            ))}
-        </div>
-    );
-}
+const CARD_COLORS = ['#06385F', '#F5A344', '#C90078', '#25C1C9'];
 
 export default function LayerSlider({
     slides = [],
-    interval = 10000,
+    interval = 4500,
     header,
 }) {
     const [index, setIndex] = useState(0);
     const [isPaused, setIsPaused] = useState(false);
-    const headerRef = useRef(null);
-    const [headerOffset, setHeaderOffset] = useState(0);
-    const [direction, setDirection] = useState(1);
-
     const [isMobile, setIsMobile] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
+    const [dragStartX, setDragStartX] = useState(0);
+    const [dragDeltaX, setDragDeltaX] = useState(0);
+    const [isVisible, setIsVisible] = useState(true);
+    
+    const autoplayTimerRef = useRef(null);
+    const inactivityTimerRef = useRef(null);
 
     useEffect(() => {
         const check = () => setIsMobile(window.innerWidth < 768);
         check();
-
-        window.addEventListener("resize", check);
-        return () => window.removeEventListener("resize", check);
+        window.addEventListener('resize', check);
+        return () => window.removeEventListener('resize', check);
     }, []);
 
-
     useEffect(() => {
-        if (!headerRef.current) return;
-        const updateOffset = () => {
-            if (!headerRef.current) return;
-            // Mover el section hacia arriba exactamente la mitad de la altura del badge
-            // para que quede centrado sobre el borde superior
-            setHeaderOffset(headerRef.current.offsetHeight / 2);
+        const handleVisibilityChange = () => {
+            setIsVisible(!document.hidden);
         };
-        updateOffset();
-        const ro = new ResizeObserver(updateOffset);
-        ro.observe(headerRef.current);
-        return () => ro.disconnect();
-    }, [header]);
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }, []);
 
     const nextSlide = useCallback(() => {
-        setDirection(1)
+        if (slides.length === 0) return;
         setIndex((prev) => (prev + 1) % slides.length);
     }, [slides.length]);
 
-    const prevSlide = () => {
-        setDirection(-1)
+    const prevSlide = useCallback(() => {
+        if (slides.length === 0) return;
         setIndex((prev) => (prev - 1 + slides.length) % slides.length);
-    };
+    }, [slides.length]);
+
+    const pauseAutoplay = useCallback(() => {
+        setIsPaused(true);
+        if (inactivityTimerRef.current) {
+            clearTimeout(inactivityTimerRef.current);
+        }
+    }, []);
+
+    const resumeAutoplayAfterInactivity = useCallback(() => {
+        pauseAutoplay();
+        if (inactivityTimerRef.current) {
+            clearTimeout(inactivityTimerRef.current);
+        }
+        inactivityTimerRef.current = setTimeout(() => {
+            setIsPaused(false);
+        }, 3000);
+    }, [pauseAutoplay]);
 
     useEffect(() => {
-        if (isPaused) return;
-        const timer = setInterval(nextSlide, interval);
-        return () => clearInterval(timer);
-    }, [nextSlide, interval, isPaused]);
+        if (isPaused || !isVisible || slides.length <= 1) return;
+        if (autoplayTimerRef.current) {
+            clearInterval(autoplayTimerRef.current);
+        }
+        autoplayTimerRef.current = setInterval(nextSlide, interval);
+        return () => {
+            if (autoplayTimerRef.current) {
+                clearInterval(autoplayTimerRef.current);
+            }
+        };
+    }, [nextSlide, interval, isPaused, isVisible, slides.length]);
+
+    const handleMouseDown = (e) => {
+        if (isMobile) return;
+        setIsDragging(true);
+        setDragStartX(e.clientX);
+        setDragDeltaX(0);
+        pauseAutoplay();
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging || isMobile) return;
+        e.preventDefault();
+        setDragDeltaX(e.clientX - dragStartX);
+    };
+
+    const handleMouseUp = () => {
+        if (!isDragging || isMobile) return;
+        setIsDragging(false);
+        if (Math.abs(dragDeltaX) > 80) {
+            if (dragDeltaX > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        }
+        setDragDeltaX(0);
+        resumeAutoplayAfterInactivity();
+    };
+
+    const handleTouchStart = (e) => {
+        setIsDragging(true);
+        setDragStartX(e.touches[0].clientX);
+        setDragDeltaX(0);
+        pauseAutoplay();
+    };
+
+    const handleTouchMove = (e) => {
+        if (!isDragging) return;
+        setDragDeltaX(e.touches[0].clientX - dragStartX);
+    };
+
+    const handleTouchEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        if (Math.abs(dragDeltaX) > 60) {
+            if (dragDeltaX > 0) {
+                prevSlide();
+            } else {
+                nextSlide();
+            }
+        }
+        setDragDeltaX(0);
+        resumeAutoplayAfterInactivity();
+    };
+
+    const handleArrowClick = (direction) => {
+        if (direction === 'next') {
+            nextSlide();
+        } else {
+            prevSlide();
+        }
+        resumeAutoplayAfterInactivity();
+    };
 
     if (!slides.length) return null;
 
-    const currentSlide = slides[index];
+    const getCardStyle = (position) => {
+        if (isMobile) {
+            return {
+                transform: 'scale(1)',
+                zIndex: 10,
+                opacity: 1,
+            };
+        }
+        if (position === 0) {
+            return {
+                transform: 'scale(1)',
+                zIndex: 20,
+                opacity: 1,
+            };
+        } else if (position === -1 || position === 1) {
+            return {
+                transform: 'scale(0.91)',
+                zIndex: 10,
+                opacity: 1,
+            };
+        } else {
+            return {
+                transform: 'scale(0.85)',
+                zIndex: 5,
+                opacity: 0,
+                pointerEvents: 'none',
+            };
+        }
+    };
 
     return (
         <section
+            className="w-full bg-white"
             style={{
-                paddingLeft: isMobile ? 16 : 130,
-                paddingRight: isMobile ? 16 : 130,
-                paddingBottom: 1,
-                overflow: 'visible',
-                backgroundColor: 'rgb(223 229 241)'
+                paddingTop: isMobile ? '40px' : '80px',
+                paddingBottom: isMobile ? '60px' : '80px',
             }}
         >
-            <div>
-                {header && (
-    <div className="relative flex items-center justify-center md:mb-2 md:pb-10 w-full px-4 md:px-20">
+            {header && (
+                <div className="w-full flex justify-center mb-10 md:mb-14 px-4">
+                    <h2
+                        className="font-poppins font-semibold uppercase text-center"
+                        style={{
+                            color: '#06385F',
+                            fontSize: isMobile ? '1.8rem' : '2.8rem',
+                            letterSpacing: '0.15em',
+                            fontWeight: 600,
+                        }}
+                    >
+                        {header}
+                    </h2>
+                </div>
+            )}
 
-        {/* La línea horizontal gris de fondo de la barra de título solo se muestra en escritorio */}
-        {!isMobile && (
-            <svg
-                className="absolute z-0"
-                style={{ width: '100%', height: '4px', marginTop: headerOffset ? `-${headerOffset}px` : 0 }}
-                viewBox="0 0 100 4"
-                preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <polygon
-                    points="0,2 10,0 90,0 100,2 90,4 10,4"
-                    fill="#d1d5db"
-                />
-            </svg>
-        )}
-
-        <span
-            ref={headerRef}
-            className="relative z-10 text-white font-poppins uppercase text-center"
-            style={
-                isMobile
-                    ? {
-                          /* ─── DISEÑO EXCLUSIVO MÓVIL (Como en tu imagen) ─── */
-                          background: 'linear-gradient(90deg, #5C39FF 0%, #00bb9cff 100%)', // Degradado Rosa a Azul
-                          //fontSize: '0.9em', // Tamaño compacto del texto
-                          color: '#FFFFFF',
-                          fontWeight: 400,
-                          letterSpacing: '2px', // Espaciado elegante y legible en móvil
-                          borderRadius: '12px', // Bordes totalmente redondeados (tipo píldora)
-                          padding: '6px 24px', // Padding pequeño
-                          width: 'auto', // Se ajusta al tamaño del texto en lugar de ocupar el 90%
-                          maxWidth: '100%',
-                          marginTop: 50,
-                          boxShadow: '0 4px 15px rgba(255, 255, 255, 0.25)', // Sombra con tono magenta suave
-                        
-                      }
-                    : {
-                          /* ─── DISEÑO ORIGINAL ESCRITORIO (Intacto) ─── */
-                          background: 'linear-gradient(to bottom, #80bdd0, #3a4a98)',
-                          marginTop: headerOffset ? `-${headerOffset}px` : 0,
-                          fontSize: '2.2em',
-                          borderRadius: '20px',
-                          fontWeight: 400,
-                          letterSpacing: '6px',
-                          width: 'auto',
-                          maxWidth: '100%',
-                          padding: '12px 72px', // Restituye el padding equivalente a px-18 py-3 de escritorio
-                          boxShadow: '0 10px 25px -5px rgba(58, 74, 152, 0.2)',
-                      }
-            }
-        >
-            {header}
-        </span>
-    </div>
-)}
-
-
-                {/* ── Título del slide actual ── */}
-                <AnimatePresence mode="wait">
-                    {currentSlide.title && (
-                        <motion.h2
-                            key={`title-${index}`}
-                            //className="channel-title text-center mb-1 mt-6 tracking-wide font-poppins"
-                            className="text-center mb-1 mt-6 tracking-wide font-poppins"
-                            initial={{ opacity: 0, y: -16 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 16 }}
-                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                            style={{ fontSize: isMobile ? '2em' : '4em', marginBottom: isMobile ? '30px' : '0px'}}
+            <div className="relative w-full max-w-7xl mx-auto px-4 md:px-20">
+                {!isMobile && (
+                    <>
+                        <button
+                            onClick={() => handleArrowClick('prev')}
+                            className="absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-[190px] z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all duration-300"
+                            aria-label="Anterior"
                         >
-                            {currentSlide.title}
-                        </motion.h2>
-                    )}
-                </AnimatePresence>
+                            <ChevronLeft className="w-5 h-5" style={{ color: '#06385F' }} />
+                        </button>
+                        <button
+                            onClick={() => handleArrowClick('next')}
+                            className="absolute left-1/2 top-1/2 -translate-y-1/2 translate-x-[190px] z-30 w-12 h-12 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center hover:shadow-lg hover:scale-105 transition-all duration-300"
+                            aria-label="Siguiente"
+                        >
+                            <ChevronRight className="w-5 h-5" style={{ color: '#06385F' }} />
+                        </button>
+                    </>
+                )}
 
-                {/* ── Slider ── */}
-                {isMobile ? (
-                    <div className="w-full" style={{ marginBottom: 60 }}>
-                        {/* Flechas + contenido en fila */}
-                        <div className="flex items-center gap-2">
-                            {/* Flecha izquierda */}
-                            <button
-                                onClick={prevSlide}
-                                className="flex-shrink-0 z-20 p-2 rounded-full text-white transition-all active:scale-95"
-                                style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
-                                aria-label="Anterior"
-                            >
-                                <ChevronLeft className="w-5 h-5" />
-                            </button>
-
-                            {/* Slide */}
-                            <div className="flex-1 min-w-0">
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        key={`mobile-${index}`}
-                                        initial={{ opacity: 0, x: direction * 30 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: direction * -30 }}
-                                        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                                        className="w-full"
-                                    >
-                                        <MobileSlide slide={currentSlide} />
-                                    </motion.div>
-                                </AnimatePresence>
-                            </div>
-
-                            {/* Flecha derecha */}
-                            <button
-                                onClick={nextSlide}
-                                className="flex-shrink-0 z-20 p-2 rounded-full text-white transition-all active:scale-95"
-                                style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
-                                aria-label="Siguiente"
-                            >
-                                <ChevronRight className="w-5 h-5" />
-                            </button>
-                        </div>
-
-                        {/* Dots */}
-                        <div className="flex justify-center gap-3 mt-6">
-                            {slides.map((_, i) => (
-                                <button
-                                    key={i}
-                                    onClick={() => {setDirection(i > index ? 1 : -1); setIndex(i);}}
-                                    className={`h-2 transition-all rounded-full ${index === i ? 'w-8 bg-blue-600' : 'w-2 bg-gray-400/50'}`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                ) : (
                 <div
-                    className="group relative overflow-hidden touch-pan-y w-full max-w-full mx-auto"
-                    style={{ 
-                        aspectRatio: '16/9', 
-                        marginTop: '-50px',
-                        marginRight: 'auto',
-                        marginLeft: 'auto',
-                        marginBottom: '100px'
+                    className="relative w-full"
+                    style={{
+                        height: isMobile ? '340px' : '420px',
+                        overflow: 'visible',
+                        cursor: isDragging ? 'grabbing' : isMobile ? 'grab' : 'default',
+                        userSelect: 'none',
                     }}
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
+                    onMouseDown={handleMouseDown}
+                    onMouseMove={handleMouseMove}
+                    onMouseUp={handleMouseUp}
+                    onMouseLeave={handleMouseUp}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
+                    onTouchEnd={handleTouchEnd}
+                    onMouseEnter={() => pauseAutoplay()}
                 >
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={index}
-                            className="absolute inset-0 w-full h-full"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            {currentSlide.layers.map((layer, i) => {
-                                if (!layer.src) return null;
-                                const anim = animationTypes[layer.type] || animationTypes.fadeInUp;
-                                return (
-                                    <motion.div
-                                        key={`${index}-${i}`}
-                                        className="absolute inset-0 w-full h-full flex items-center justify-center"
-                                        initial={anim.initial}
-                                        animate={anim.animate}
-                                        transition={{
-                                            delay: layer.delay || 0,
-                                            duration: 0.8,
-                                            ease: [0.22, 1, 0.36, 1],
+                    <div className="relative w-full h-full flex items-center justify-center" style={{ overflow: 'visible' }}>
+                        {slides.map((slide, slideIndex) => {
+                            const offset = slideIndex - index;
+                            let normalizedOffset = offset;
+                            if (slides.length > 1) {
+                                if (normalizedOffset > 1) normalizedOffset -= slides.length;
+                                else if (normalizedOffset < -1) normalizedOffset += slides.length;
+                            }
+
+                            const cardStyle = getCardStyle(normalizedOffset);
+                            const color = CARD_COLORS[slideIndex % CARD_COLORS.length];
+
+                            return (
+                                <motion.div
+                                    key={slideIndex}
+                                    className="absolute"
+                                    initial={false}
+                                    animate={{
+                                        transform: cardStyle.transform,
+                                        zIndex: cardStyle.zIndex,
+                                        opacity: normalizedOffset === 0 || normalizedOffset === -1 || normalizedOffset === 1 ? 1 : 0,
+                                        x: isMobile ? 0 : normalizedOffset * 400,
+                                    }}
+                                    transition={{
+                                        duration: isDragging ? 0 : 0.7,
+                                        ease: [0.25, 0.46, 0.45, 0.94],
+                                    }}
+                                    style={{
+                                        width: isMobile ? '280px' : '380px',
+                                        height: isMobile ? '320px' : '400px',
+                                        pointerEvents: normalizedOffset === 0 ? 'auto' : (normalizedOffset === -1 || normalizedOffset === 1) && !isMobile ? 'auto' : 'none',
+                                    }}
+                                    onClick={() => {
+                                        if (!isMobile && normalizedOffset === -1) { prevSlide(); resumeAutoplayAfterInactivity(); }
+                                        if (!isMobile && normalizedOffset === 1) { nextSlide(); resumeAutoplayAfterInactivity(); }
+                                        if (normalizedOffset === 0) resumeAutoplayAfterInactivity();
+                                    }}
+                                >
+                                    <div
+                                        className="w-full h-full rounded-2xl bg-white overflow-hidden transition-all duration-300"
+                                        style={{
+                                            boxShadow: normalizedOffset === 0
+                                                ? '0 25px 50px -12px rgba(6, 56, 95, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.02)'
+                                                : '0 10px 30px -10px rgba(0, 0, 0, 0.15)',
+                                            border: '1px solid rgba(0, 0, 0, 0.04)',
                                         }}
                                     >
-                                        <Image
-                                            src={layer.src}
-                                            alt=""
-                                            fill
-                                            unoptimized
-                                            priority={index === 0}
-                                            className="object-cover md:object-contain w-full h-full"
-                                        />
-                                    </motion.div>
-                                );
-                            })}
-                        </motion.div>
-                    </AnimatePresence>
-
-                   {/* Flechas (Escritorio) */}
-                    <motion.button
-                        onClick={prevSlide}
-                        whileHover={{ scale: 1.08 }} // Se agranda sutilmente al pasar el mouse
-                        whileTap={{ scale: 0.92 }}   // Animación de presionado/click
-                        className="hidden md:block absolute left-10 top-1/2 -translate-y-1/2 z-20 p-4 text-white rounded-full transition-all"
-                        style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
-                    >
-                        <ChevronLeft className="w-5 h-5 md:w-8 md:h-8" />
-                    </motion.button>
-
-                    <motion.button
-                        onClick={nextSlide}
-                        whileHover={{ scale: 1.08 }} // Se agranda sutilmente al pasar el mouse
-                        whileTap={{ scale: 0.92 }}   // Animación de presionado/click
-                        className="hidden md:block absolute right-10 top-1/2 -translate-y-1/2 z-20 p-4 text-white rounded-full transition-all"
-                        style={{ background: 'linear-gradient(to left, #80bdd0, #3a4a98)' }}
-                    >
-                        <ChevronRight className="w-7 h-7 md:w-8 md:h-8" />
-                    </motion.button>
-
-                    {/* Dots */}
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-                        {slides.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setIndex(i)}
-                                className={`h-2 transition-all rounded-full ${index === i ? 'w-8 bg-blue-600' : 'w-2 bg-gray-400/50'}`}
-                            />
-                        ))}
+                                        <div className="w-full h-full flex flex-row">
+                                            <div
+                                                className="w-2/5 h-full relative flex items-center justify-center"
+                                                style={{ backgroundColor: color + '08' }}
+                                            >
+                                                <Image
+                                                    src="https://placehold.co/600x400"
+                                                    alt={slide.title || ''}
+                                                    fill
+                                                    className="object-cover"
+                                                    draggable={false}
+                                                />
+                                            </div>
+                                            <div className="w-3/5 p-6 md:p-8 flex flex-col justify-center">
+                                                <h3
+                                                    className="font-poppins font-semibold text-lg md:text-xl mb-3"
+                                                    style={{ color: '#06385F' }}
+                                                >
+                                                    {slide.title || `Canal ${slideIndex + 1}`}
+                                                </h3>
+                                                <p
+                                                    className="text-sm leading-relaxed"
+                                                    style={{ color: '#4a5568' }}
+                                                >
+                                                    {slide.description || 'Solución integral para tu negocio.'}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
+
+                <div className="flex justify-center mt-8 md:mt-10">
+                    <div className="w-48 h-1 bg-gray-200 rounded-full overflow-hidden">
+                        <motion.div
+                            className="h-full rounded-full"
+                            style={{ backgroundColor: CARD_COLORS[index % CARD_COLORS.length] }}
+                            animate={{
+                                width: `${((index + 1) / slides.length) * 100}%`,
+                            }}
+                            transition={{ duration: 0.4, ease: 'easeOut' }}
+                        />
+                    </div>
+                </div>
+
+                {isMobile && (
+                    <div className="flex justify-center gap-4 mt-6">
+                        <button
+                            onClick={() => handleArrowClick('prev')}
+                            className="w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center"
+                            aria-label="Anterior"
+                        >
+                            <ChevronLeft className="w-5 h-5" style={{ color: '#06385F' }} />
+                        </button>
+                        <button
+                            onClick={() => handleArrowClick('next')}
+                            className="w-10 h-10 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center"
+                            aria-label="Siguiente"
+                        >
+                            <ChevronRight className="w-5 h-5" style={{ color: '#06385F' }} />
+                        </button>
+                    </div>
                 )}
             </div>
         </section>

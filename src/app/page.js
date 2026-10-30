@@ -66,6 +66,7 @@ const slides = [
   {
     id: "banner-1",
     title: "TE ACOMPAÑAMOS",
+    description: "Compra a través de nuestra tienda en línea con acceso a más de 50 marcas de renombre, cuando quieras y desde donde quieras.",
     mobileLayout: "acompanamos",
     layers: [
       // { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
@@ -86,7 +87,8 @@ const slides = [
   {
     id: "banner-2",
     title: "TE VISITAMOS",
-     mobileLayout: "visitamos",
+    description: "Garantizamos la mejor atención a través de nuestro equipo de visita médica, quienes te visitan, asesoran, levantan tu pedido y te acompañan cuando lo necesites.",
+    mobileLayout: "visitamos",
     layers: [
       // { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
       { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1776438174/derecha_lt59nk.png', delay: 0.25, type: 'fadeInRight' },
@@ -98,6 +100,7 @@ const slides = [
   {
     id: "banner-3",
     title: "TE ASESORAMOS",
+    description: "Te brindamos ayuda a través de nuestros ejecutivos especializados para resolver tus dudas y darte el mejor servicio.",
     mobileLayout: "asesoramos",
     layers: [
       // { src: 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1776436357/background_f9qh8k.png', delay: 0, type: 'zoomIn' },
