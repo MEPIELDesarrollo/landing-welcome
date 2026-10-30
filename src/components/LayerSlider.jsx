@@ -18,6 +18,7 @@ const COPIES = 3;
 const TRANSITION_MS = 600;
 const RESUME_DELAY_MS = 3000;
 const FALLBACK_IMAGE = '/images/banner.png';
+const BACKGROUND_IMAGE = 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1793403284/LayerSliderBG_gl5z1a.jpg';
 
 const clamp = (min, value, max) => Math.min(Math.max(value, min), max);
 
@@ -501,7 +502,13 @@ export default function LayerSlider({
         <section
             aria-label="Canales de venta"
             className="relative w-full bg-white py-16 md:py-24"
-            style={{ overflowX: 'clip' }}
+            style={{
+                overflowX: 'clip',
+                backgroundImage: `url("${BACKGROUND_IMAGE}")`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}
         >
             {header && (
                 <div className="mb-10 flex w-full justify-center px-4 md:mb-14">
