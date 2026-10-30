@@ -18,7 +18,6 @@ const COPIES = 3;
 const TRANSITION_MS = 600;
 const RESUME_DELAY_MS = 3000;
 const FALLBACK_IMAGE = '/images/banner.png';
-const BACKGROUND_IMAGE = 'https://res.cloudinary.com/dpqlilgy6/image/upload/v1793403284/LayerSliderBG_gl5z1a.jpg';
 
 const clamp = (min, value, max) => Math.min(Math.max(value, min), max);
 
@@ -31,7 +30,6 @@ const subscribeToVisibility = (callback) => {
 };
 
 const getVisibilitySnapshot = () => !document.hidden;
-
 const getServerVisibilitySnapshot = () => true;
 
 function getDescription(slide) {
@@ -55,15 +53,54 @@ function getImage(slide) {
 function getAccent(slide, index) {
     return slide?.accent || CARD_COLORS[index % CARD_COLORS.length];
 }
+function ProgressBar({ slideCount, activeIndex, accent, prefersReducedMotion }) {
+    if (!slideCount) return null;
+    const width = ((activeIndex + 1) / slideCount) * 100;
 
-function ChannelCard({
-    slide,
-    accent,
-    isCenter,
-    isDragging,
-    reduceMotion,
-    onSelect,
-}) {
+    return (
+        <div className="mt-8 flex justify-center md:mt-10">
+            <div
+                className="h-1 w-60 overflow-hidden rounded-full bg-[#E5E7EB] md:w-70"
+                role="progressbar"
+                aria-label="Progreso del carrusel"
+                aria-valuemin={1}
+                aria-valuemax={slideCount}
+                aria-valuenow={activeIndex + 1}
+            >
+                <motion.div
+                    className="h-full rounded-full"
+                    style={{ backgroundColor: accent }}
+                    initial={false}
+                    animate={{ width: `${width}%` }}
+                    transition={{
+                        duration: prefersReducedMotion ? 0 : 0.5,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
+                />
+            </div>
+        </div>
+    );
+}
+
+function CarouselArrow({ direction, onClick, size = 'default', className = '', style }) {
+    const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
+    const isSmall = size === 'small';
+
+    return (
+        <button
+            type="button"
+            onClick={onClick}
+            onPointerDown={(event) => event.stopPropagation()}
+            aria-label={direction === 'prev' ? 'Anterior' : 'Siguiente'}
+            className={`absolute z-30 flex cursor-pointer items-center justify-center rounded-full border border-[#E5E7EB] bg-white shadow-[0_6px_20px_-8px_rgba(6,56,95,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_24px_-8px_rgba(6,56,95,0.3)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06385F]/30 focus-visible:ring-offset-2 ${isSmall ? 'h-9 w-9' : 'h-11 w-11'} ${className}`}
+            style={style}
+        >
+            <Icon className={isSmall ? 'h-4 w-4' : 'h-5 w-5'} style={{ color: '#06385F' }} strokeWidth={2} />
+        </button>
+    );
+}
+
+function ChannelCard({ slide, accent, isCenter, isDragging, reduceMotion, isMobile, onSelect }) {
     const [hovered, setHovered] = useState(false);
     const canHover = !isDragging && !reduceMotion;
     const imageFit = slide?.imageFit === 'cover' ? 'cover' : 'contain';
@@ -75,6 +112,8 @@ function ChannelCard({
     const hoverShadow = isCenter
         ? '0 32px 72px -24px rgba(6, 56, 95, 0.34), 0 0 0 1px rgba(6, 56, 95, 0.05)'
         : '0 20px 44px -18px rgba(6, 56, 95, 0.24)';
+    const imageWidth = isMobile ? 'w-[42%]' : 'w-[44%]';
+    const textWidth = isMobile ? 'w-[58%]' : 'w-[56%]';
 
     return (
         <div
@@ -88,17 +127,17 @@ function ChannelCard({
                 border: '1px solid rgba(6, 56, 95, 0.06)',
                 boxShadow: hovered && canHover ? hoverShadow : baseShadow,
                 cursor: isCenter ? 'default' : 'pointer',
-                transform:
-                    hovered && canHover ? 'translateY(-6px)' : 'translateY(0)',
-                transition: reduceMotion
-                    ? 'none'
-                    : 'transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1)',
+                transform: hovered && canHover ? 'translateY(-6px)' : 'translateY(0)',
+                transition:
+                    reduceMotion
+                        ? 'none'
+                        : 'transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1)',
                 willChange: 'transform, box-shadow',
             }}
         >
             <div className="flex h-full w-full">
                 <div
-                    className="relative h-full w-[44%] shrink-0 overflow-hidden"
+                    className={`relative h-full shrink-0 overflow-hidden ${imageWidth}`}
                     style={{ backgroundColor: `${accent}0D` }}
                 >
                     {imageFit === 'cover' ? (
@@ -126,21 +165,15 @@ function ChannelCard({
                     )}
                 </div>
 
-                <div className="flex h-full w-[56%] flex-col justify-center gap-2 p-4 md:p-6 xl:p-8">
-                    <span
-                        className="block h-[2px] w-8 rounded-full"
-                        style={{ backgroundColor: accent }}
-                    />
+                <div className={`flex h-full flex-col justify-center gap-2 p-4 md:p-6 xl:p-8 ${textWidth}`}>
+                    <span className="block h-[2px] w-8 rounded-full" style={{ backgroundColor: accent }} />
                     <h3
                         className="font-poppins font-semibold leading-snug text-[18px] md:text-[20px]"
                         style={{ color: '#06385F' }}
                     >
                         {slide?.title}
                     </h3>
-                    <p
-                        className="text-[13px] md:text-[14px] leading-relaxed"
-                        style={{ color: '#4A5568' }}
-                    >
+                    <p className="text-[13px] md:text-[14px] leading-relaxed" style={{ color: '#4A5568' }}>
                         {getDescription(slide)}
                     </p>
                 </div>
@@ -149,45 +182,7 @@ function ChannelCard({
     );
 }
 
-function CarouselArrow({
-    direction,
-    onClick,
-    className = '',
-    style,
-    compact,
-    small,
-}) {
-    const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
-    const sizeClass = small
-        ? 'h-8 w-8'
-        : compact
-          ? 'h-9 w-9'
-          : 'h-11 w-11';
-    const iconClass = small || compact ? 'h-4 w-4' : 'h-5 w-5';
-
-    return (
-        <button
-            type="button"
-            onClick={onClick}
-            onPointerDown={(event) => event.stopPropagation()}
-            aria-label={direction === 'prev' ? 'Anterior' : 'Siguiente'}
-            className={`absolute z-30 flex cursor-pointer items-center justify-center rounded-full border border-[#E5E7EB] bg-white shadow-[0_6px_20px_-8px_rgba(6,56,95,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_24px_-8px_rgba(6,56,95,0.3)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06385F]/30 focus-visible:ring-offset-2 ${sizeClass} ${className}`}
-            style={style}
-        >
-            <Icon
-                className={iconClass}
-                style={{ color: '#06385F' }}
-                strokeWidth={2}
-            />
-        </button>
-    );
-}
-
-export default function LayerSlider({
-    slides = [],
-    interval = 4500,
-    header,
-}) {
+export default function LayerSlider({ slides = [], interval = 4500, header }) {
     const slideCount = slides.length;
     const prefersReducedMotion = useReducedMotion();
     const isVisible = useSyncExternalStore(
@@ -223,9 +218,8 @@ export default function LayerSlider({
         [slides]
     );
 
-    const activeIndex = slideCount
-        ? ((virtualIndex % slideCount) + slideCount) % slideCount
-        : 0;
+    const activeIndex =
+        slideCount > 0 ? ((virtualIndex % slideCount) + slideCount) % slideCount : 0;
     const activeAccent = getAccent(slides[activeIndex], activeIndex);
 
     useIsomorphicLayoutEffect(() => {
@@ -325,12 +319,7 @@ export default function LayerSlider({
 
     // Autoplay is a single timeout that resets after every slide change.
     useEffect(() => {
-        if (
-            isPaused ||
-            !isVisible ||
-            slideCount <= 1 ||
-            prefersReducedMotion
-        ) {
+        if (isPaused || !isVisible || slideCount <= 1 || prefersReducedMotion) {
             return undefined;
         }
 
@@ -358,11 +347,7 @@ export default function LayerSlider({
         if (isMobile) {
             cardWidth = Math.min(containerWidth - 32, 360);
         } else if (isTablet) {
-            cardWidth = clamp(
-                220,
-                (containerWidth - gap * 2) / 2.82,
-                300
-            );
+            cardWidth = clamp(220, (containerWidth - gap * 2) / 2.82, 300);
         } else {
             cardWidth = clamp(
                 240,
@@ -377,8 +362,7 @@ export default function LayerSlider({
         : clamp(240, Math.round(cardWidth * 0.72), 300);
     const step = cardWidth + gap;
     const clusterHalf = 0.955 * cardWidth + gap;
-    const arrowsAtEdge =
-        isMobile && containerWidth > 0 && containerWidth < 440;
+    const arrowOffset = clusterHalf + 32;
     const viewportHeight = cardHeight + 32;
     const trackX =
         containerWidth / 2 - (virtualIndex * step + cardWidth / 2) + dragX;
@@ -498,17 +482,14 @@ export default function LayerSlider({
 
     if (!slideCount) return null;
 
+    const arrowDesktopClass = 'top-1/2 -translate-x-1/2 -translate-y-1/2';
+    const arrowOverlayClass = 'top-1/2 -translate-y-1/2';
+
     return (
         <section
             aria-label="Canales de venta"
             className="relative w-full bg-white py-16 md:py-24"
-            style={{
-                overflowX: 'clip',
-                backgroundImage: `url("${BACKGROUND_IMAGE}")`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-            }}
+            style={{ overflowX: 'clip' }}
         >
             {header && (
                 <div className="mb-10 flex w-full justify-center px-4 md:mb-14">
@@ -554,18 +535,14 @@ export default function LayerSlider({
                     }}
                     onFocusCapture={pauseAutoplay}
                     onBlurCapture={(event) => {
-                        if (
-                            !event.currentTarget.contains(event.relatedTarget)
-                        ) {
+                        if (!event.currentTarget.contains(event.relatedTarget)) {
                             scheduleResume();
                         }
                     }}
                     onKeyDown={handleKeyDown}
                 >
-                    <div
-                        className="absolute inset-x-0 top-1/2"
-                        style={{ transform: 'translateY(-50%)' }}
-                    >
+
+                    <div className="absolute inset-x-0 top-1/2" style={{ transform: 'translateY(-50%)' }}>
                         <motion.div
                             className="flex items-center"
                             style={{
@@ -627,9 +604,8 @@ export default function LayerSlider({
                                             accent={accent}
                                             isCenter={isCenter}
                                             isDragging={isDragging}
-                                            reduceMotion={
-                                                prefersReducedMotion
-                                            }
+                                            reduceMotion={prefersReducedMotion}
+                                            isMobile={isMobile}
                                             onSelect={() =>
                                                 handleCardSelect(
                                                     distance < 0
@@ -651,19 +627,12 @@ export default function LayerSlider({
                             pauseAutoplay();
                             scheduleResume();
                         }}
-                        compact={!isDesktop}
-                        small={isMobile}
-                        className={
-                            arrowsAtEdge
-                                ? 'left-0.5 top-1/2 -translate-y-1/2'
-                                : 'top-1/2 -translate-x-1/2 -translate-y-1/2'
-                        }
+                        size={isDesktop ? 'default' : 'small'}
+                        className={isDesktop ? arrowDesktopClass : `${arrowOverlayClass} left-2`}
                         style={
-                            arrowsAtEdge
-                                ? undefined
-                                : {
-                                      left: `calc(50% - ${clusterHalf + 32}px)`,
-                                  }
+                            isDesktop
+                                ? { left: `calc(50% - ${arrowOffset}px)` }
+                                : undefined
                         }
                     />
                     <CarouselArrow
@@ -673,55 +642,28 @@ export default function LayerSlider({
                             pauseAutoplay();
                             scheduleResume();
                         }}
-                        compact={!isDesktop}
-                        small={isMobile}
-                        className={
-                            arrowsAtEdge
-                                ? 'right-0.5 top-1/2 -translate-y-1/2'
-                                : 'top-1/2 -translate-x-1/2 -translate-y-1/2'
-                        }
+                        size={isDesktop ? 'default' : 'small'}
+                        className={isDesktop ? arrowDesktopClass : `${arrowOverlayClass} right-2`}
                         style={
-                            arrowsAtEdge
-                                ? undefined
-                                : {
-                                      left: `calc(50% + ${clusterHalf + 32}px)`,
-                                  }
+                            isDesktop
+                                ? { left: `calc(50% + ${arrowOffset}px)` }
+                                : undefined
                         }
                     />
                 </div>
 
-                <div className="mt-8 flex justify-center md:mt-10">
-                    <div
-                        className="h-1 w-48 overflow-hidden rounded-full bg-[#E5E7EB] md:w-64"
-                        role="progressbar"
-                        aria-label="Progreso del carrusel"
-                        aria-valuemin={1}
-                        aria-valuemax={slideCount}
-                        aria-valuenow={activeIndex + 1}
-                    >
-                        <motion.div
-                            className="h-full rounded-full"
-                            style={{ backgroundColor: activeAccent }}
-                            initial={false}
-                            animate={{
-                                width: `${
-                                    ((activeIndex + 1) / slideCount) * 100
-                                }%`,
-                            }}
-                            transition={{
-                                duration: prefersReducedMotion ? 0 : 0.5,
-                                ease: [0.22, 1, 0.36, 1],
-                            }}
-                        />
-                    </div>
-                </div>
+                <ProgressBar
+                    slideCount={slideCount}
+                    activeIndex={activeIndex}
+                    accent={activeAccent}
+                    prefersReducedMotion={prefersReducedMotion}
+                />
 
                 <p className="sr-only" aria-live="polite">
-                    {`Slide ${activeIndex + 1} de ${slideCount}: ${
-                        slides[activeIndex]?.title || ''
-                    }`}
+                    Slide {activeIndex + 1} de {slideCount}: {slides[activeIndex]?.title || ''}
                 </p>
             </div>
         </section>
     );
 }
+
