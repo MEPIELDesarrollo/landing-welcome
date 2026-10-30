@@ -97,7 +97,7 @@ function ChannelCard({
         >
             <div className="flex h-full w-full">
                 <div
-                    className="relative h-full w-[42%] shrink-0 overflow-hidden"
+                    className="relative h-full w-[44%] shrink-0 overflow-hidden"
                     style={{ backgroundColor: `${accent}0D` }}
                 >
                     {imageFit === 'cover' ? (
@@ -125,19 +125,19 @@ function ChannelCard({
                     )}
                 </div>
 
-                <div className="flex h-full w-[58%] flex-col justify-center gap-2 p-4 md:p-4 xl:p-6">
+                <div className="flex h-full w-[56%] flex-col justify-center gap-2 p-4 md:p-6 xl:p-8">
                     <span
-                        className="block h-0.5 w-8 rounded-full"
+                        className="block h-[2px] w-8 rounded-full"
                         style={{ backgroundColor: accent }}
                     />
                     <h3
-                        className="font-poppins text-base font-semibold leading-snug md:text-lg xl:text-xl"
+                        className="font-poppins font-semibold leading-snug text-[18px] md:text-[20px]"
                         style={{ color: '#06385F' }}
                     >
                         {slide?.title}
                     </h3>
                     <p
-                        className="text-[12px] leading-relaxed lg:text-[13px] xl:text-sm"
+                        className="text-[13px] md:text-[14px] leading-relaxed"
                         style={{ color: '#4A5568' }}
                     >
                         {getDescription(slide)}
@@ -346,49 +346,36 @@ export default function LayerSlider({
     ]);
 
     const isDesktop = containerWidth >= 1024;
-    const isTablet = containerWidth >= 720 && containerWidth < 1024;
-    const isMobile = containerWidth > 0 && containerWidth < 720;
+    const isTablet = containerWidth >= 768 && containerWidth < 1024;
+    const isMobile = containerWidth > 0 && containerWidth < 768;
 
-    const gap = isDesktop ? 24 : isMobile ? 32 : 16;
-    const arrowGutter = isDesktop ? 56 : isTablet ? 42 : 0;
+    const gap = isDesktop ? 24 : 16;
+    const arrowGutter = isDesktop ? 56 : 0;
 
-    let cardWidth = 320;
+    let cardWidth = 240;
     if (containerWidth > 0) {
         if (isMobile) {
-            cardWidth = Math.max(
-                160,
-                Math.min(containerWidth - 72, 360)
-            );
+            cardWidth = Math.min(containerWidth - 32, 360);
         } else if (isTablet) {
             cardWidth = clamp(
-                190,
-                (containerWidth - gap * 2 - arrowGutter * 2) / 2.91,
+                220,
+                (containerWidth - gap * 2) / 2.82,
                 300
             );
         } else {
             cardWidth = clamp(
                 240,
-                (containerWidth - gap * 2 - arrowGutter * 2) / 2.91,
+                (containerWidth - gap * 2 - arrowGutter * 2) / 2.82,
                 380
             );
         }
     }
 
     const cardHeight = isMobile
-        ? cardWidth < 230
-            ? 360
-            : 320
-        : isTablet
-          ? clamp(360, Math.round(cardWidth * 1.2), 370)
-          : clamp(340, Math.round(cardWidth * 0.85), 360);
+        ? clamp(250, Math.round(cardWidth * 0.82), 340)
+        : clamp(240, Math.round(cardWidth * 0.72), 300);
     const step = cardWidth + gap;
-    const clusterHalf = cardWidth * 1.455 + gap;
-    const mobileArrowOffset = cardWidth / 2 + 24;
-    const arrowOffset = isDesktop
-        ? clusterHalf + 32
-        : isTablet
-          ? clusterHalf + 22
-          : mobileArrowOffset;
+    const clusterHalf = 0.955 * cardWidth + gap;
     const arrowsAtEdge =
         isMobile && containerWidth > 0 && containerWidth < 440;
     const viewportHeight = cardHeight + 32;
@@ -668,7 +655,7 @@ export default function LayerSlider({
                             arrowsAtEdge
                                 ? undefined
                                 : {
-                                      left: `calc(50% - ${arrowOffset}px)`,
+                                      left: `calc(50% - ${clusterHalf + 32}px)`,
                                   }
                         }
                     />
@@ -690,7 +677,7 @@ export default function LayerSlider({
                             arrowsAtEdge
                                 ? undefined
                                 : {
-                                      left: `calc(50% + ${arrowOffset}px)`,
+                                      left: `calc(50% + ${clusterHalf + 32}px)`,
                                   }
                         }
                     />
