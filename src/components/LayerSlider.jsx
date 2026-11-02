@@ -19,8 +19,6 @@ const TRANSITION_MS = 600;
 const RESUME_DELAY_MS = 3000;
 const FALLBACK_IMAGE = '/images/banner.png';
 
-const clamp = (min, value, max) => Math.min(Math.max(value, min), max);
-
 const useIsomorphicLayoutEffect =
     typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
@@ -84,7 +82,10 @@ function ProgressBar({ slideCount, activeIndex, accent, prefersReducedMotion }) 
 
 function CarouselArrow({ direction, onClick, size = 'default', className = '', style }) {
     const Icon = direction === 'prev' ? ChevronLeft : ChevronRight;
+    const isTiny = size === 'tiny';
     const isSmall = size === 'small';
+    const buttonSize = isTiny ? 'h-8 w-8' : isSmall ? 'h-9 w-9' : 'h-11 w-11';
+    const iconSize = isTiny ? 'h-3.5 w-3.5' : isSmall ? 'h-4 w-4' : 'h-5 w-5';
 
     return (
         <button
@@ -92,10 +93,10 @@ function CarouselArrow({ direction, onClick, size = 'default', className = '', s
             onClick={onClick}
             onPointerDown={(event) => event.stopPropagation()}
             aria-label={direction === 'prev' ? 'Anterior' : 'Siguiente'}
-            className={`absolute z-30 flex cursor-pointer items-center justify-center rounded-full border border-[#E5E7EB] bg-white shadow-[0_6px_20px_-8px_rgba(6,56,95,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_24px_-8px_rgba(6,56,95,0.3)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06385F]/30 focus-visible:ring-offset-2 ${isSmall ? 'h-9 w-9' : 'h-11 w-11'} ${className}`}
+            className={`absolute z-30 flex cursor-pointer items-center justify-center rounded-full border border-[#E5E7EB] bg-white shadow-[0_6px_20px_-8px_rgba(6,56,95,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_24px_-8px_rgba(6,56,95,0.3)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06385F]/30 focus-visible:ring-offset-2 ${buttonSize} ${className}`}
             style={style}
         >
-            <Icon className={isSmall ? 'h-4 w-4' : 'h-5 w-5'} style={{ color: '#06385F' }} strokeWidth={2} />
+            <Icon className={iconSize} style={{ color: '#06385F' }} strokeWidth={2} />
         </button>
     );
 }
@@ -145,7 +146,7 @@ function ChannelCard({ slide, accent, isCenter, isDragging, reduceMotion, isMobi
                             src={imageSrc}
                             alt=""
                             fill
-                            sizes="(max-width: 767px) 45vw, 200px"
+                            sizes="(max-width: 767px) 45vw, 300px"
                             draggable={false}
                             className="object-cover"
                             onDragStart={(event) => event.preventDefault()}
@@ -156,7 +157,7 @@ function ChannelCard({ slide, accent, isCenter, isDragging, reduceMotion, isMobi
                                 src={imageSrc}
                                 alt=""
                                 fill
-                                sizes="(max-width: 767px) 45vw, 200px"
+                                sizes="(max-width: 767px) 45vw, 300px"
                                 draggable={false}
                                 className="object-contain"
                                 onDragStart={(event) => event.preventDefault()}
@@ -336,33 +337,29 @@ export default function LayerSlider({ slides = [], interval = 4500, header }) {
     ]);
 
     const isDesktop = containerWidth >= 1024;
-    const isTablet = containerWidth >= 768 && containerWidth < 1024;
-    const isMobile = containerWidth > 0 && containerWidth < 768;
+    const isTablet = containerWidth >= 720 && containerWidth < 1024;
+    const isMobile = containerWidth > 0 && containerWidth < 720;
 
-    const gap = isDesktop ? 24 : 16;
-    const arrowGutter = isDesktop ? 56 : 0;
+    const gap = isMobile ? 32 : 40;
 
-    let cardWidth = 240;
-    if (containerWidth > 0) {
-        if (isMobile) {
-            cardWidth = Math.min(containerWidth - 32, 360);
-        } else if (isTablet) {
-            cardWidth = clamp(220, (containerWidth - gap * 2) / 2.82, 300);
-        } else {
-            cardWidth = clamp(
-                240,
-                (containerWidth - gap * 2 - arrowGutter * 2) / 2.82,
-                380
-            );
-        }
+    // 600px is intentionally large: on typical desktops the side cards are
+    // visible as peeks instead of complete cards.
+    let cardWidth = 600;
+    if (containerWidth > 0 && isMobile) {
+        cardWidth = Math.max(160, Math.min(containerWidth - 72, 600));
     }
 
     const cardHeight = isMobile
-        ? clamp(250, Math.round(cardWidth * 0.82), 340)
-        : clamp(240, Math.round(cardWidth * 0.72), 300);
+        ? cardWidth < 190
+            ? 520
+            : cardWidth < 230
+              ? 410
+              : cardWidth < 270
+                ? 340
+                : 320
+        : 340;
     const step = cardWidth + gap;
-    const clusterHalf = 0.955 * cardWidth + gap;
-    const arrowOffset = clusterHalf + 32;
+    const arrowOffset = cardWidth / 2 + 10 + (isDesktop ? 22 : 18);
     const viewportHeight = cardHeight + 32;
     const trackX =
         containerWidth / 2 - (virtualIndex * step + cardWidth / 2) + dragX;
@@ -482,8 +479,9 @@ export default function LayerSlider({ slides = [], interval = 4500, header }) {
 
     if (!slideCount) return null;
 
-    const arrowDesktopClass = 'top-1/2 -translate-x-1/2 -translate-y-1/2';
-    const arrowOverlayClass = 'top-1/2 -translate-y-1/2';
+    const arrowCenteredClass = 'top-1/2 -translate-x-1/2 -translate-y-1/2';
+    const arrowEdgeClass = 'top-1/2 -translate-y-1/2';
+    const arrowVisibilityStyle = { opacity: containerWidth ? 1 : 0 };
 
     return (
         <section
@@ -627,12 +625,15 @@ export default function LayerSlider({ slides = [], interval = 4500, header }) {
                             pauseAutoplay();
                             scheduleResume();
                         }}
-                        size={isDesktop ? 'default' : 'small'}
-                        className={isDesktop ? arrowDesktopClass : `${arrowOverlayClass} left-2`}
+                        size={isMobile ? 'tiny' : isTablet ? 'small' : 'default'}
+                        className={isMobile ? `${arrowEdgeClass} left-0.5` : arrowCenteredClass}
                         style={
-                            isDesktop
-                                ? { left: `calc(50% - ${arrowOffset}px)` }
-                                : undefined
+                            isMobile
+                                ? arrowVisibilityStyle
+                                : {
+                                      ...arrowVisibilityStyle,
+                                      left: `calc(50% - ${arrowOffset}px)`,
+                                  }
                         }
                     />
                     <CarouselArrow
@@ -642,12 +643,15 @@ export default function LayerSlider({ slides = [], interval = 4500, header }) {
                             pauseAutoplay();
                             scheduleResume();
                         }}
-                        size={isDesktop ? 'default' : 'small'}
-                        className={isDesktop ? arrowDesktopClass : `${arrowOverlayClass} right-2`}
+                        size={isMobile ? 'tiny' : isTablet ? 'small' : 'default'}
+                        className={isMobile ? `${arrowEdgeClass} right-0.5` : arrowCenteredClass}
                         style={
-                            isDesktop
-                                ? { left: `calc(50% + ${arrowOffset}px)` }
-                                : undefined
+                            isMobile
+                                ? arrowVisibilityStyle
+                                : {
+                                      ...arrowVisibilityStyle,
+                                      left: `calc(50% + ${arrowOffset}px)`,
+                                  }
                         }
                     />
                 </div>
