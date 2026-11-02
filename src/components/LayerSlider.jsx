@@ -51,6 +51,15 @@ function getImage(slide) {
 function getAccent(slide, index) {
     return slide?.accent || CARD_COLORS[index % CARD_COLORS.length];
 }
+
+function getBadge(slide) {
+    const badgeMap = {
+        acompanamos: 'E-Commerce',
+        visitamos: 'Visita Médica',
+        asesoramos: 'Contact center',
+    };
+    return slide?.mobileLayout ? badgeMap[slide.mobileLayout] || '' : '';
+}
 function ProgressBar({ slideCount, activeIndex, accent, prefersReducedMotion }) {
     if (!slideCount) return null;
     const width = ((activeIndex + 1) / slideCount) * 100;
@@ -93,10 +102,10 @@ function CarouselArrow({ direction, onClick, size = 'default', className = '', s
             onClick={onClick}
             onPointerDown={(event) => event.stopPropagation()}
             aria-label={direction === 'prev' ? 'Anterior' : 'Siguiente'}
-            className={`absolute z-30 flex cursor-pointer items-center justify-center rounded-full border border-[#E5E7EB] bg-white shadow-[0_6px_20px_-8px_rgba(6,56,95,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_24px_-8px_rgba(6,56,95,0.3)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#06385F]/30 focus-visible:ring-offset-2 ${buttonSize} ${className}`}
+            className={`absolute z-30 flex cursor-pointer items-center justify-center rounded-full border-transparent bg-[#06385F] shadow-[0_6px_20px_-8px_rgba(6,56,95,0.25)] transition-all duration-300 hover:scale-105 hover:shadow-[0_10px_24px_-8px_rgba(6,56,95,0.3)] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ffffff]/30 focus-visible:ring-offset-2 ${buttonSize} ${className}`}
             style={style}
         >
-            <Icon className={iconSize} style={{ color: '#06385F' }} strokeWidth={2} />
+            <Icon className={iconSize} style={{ color: '#ffffff' }} strokeWidth={2} />
         </button>
     );
 }
@@ -167,6 +176,14 @@ function ChannelCard({ slide, accent, isCenter, isDragging, reduceMotion, isMobi
                 </div>
 
                 <div className={`flex h-full flex-col justify-center gap-2 p-4 md:p-6 xl:p-8 ${textWidth}`}>
+                    {getBadge(slide) && (
+                        <span
+                            className="inline-flex items-center gap-1 text-[10px] md:text-[11px] font-medium uppercase tracking-wider"
+                            style={{ color: accent }}
+                        >
+                            {getBadge(slide)}
+                        </span>
+                    )}
                     <span className="block h-[2px] w-8 rounded-full" style={{ backgroundColor: accent }} />
                     <h3
                         className="font-poppins font-semibold leading-snug text-[18px] md:text-[20px]"
@@ -342,11 +359,11 @@ export default function LayerSlider({ slides = [], interval = 4500, header }) {
 
     const gap = isMobile ? 32 : 40;
 
-    // 600px is intentionally large: on typical desktops the side cards are
+    // 800px is intentionally large: on typical desktops the side cards are
     // visible as peeks instead of complete cards.
-    let cardWidth = 600;
+    let cardWidth = 800;
     if (containerWidth > 0 && isMobile) {
-        cardWidth = Math.max(160, Math.min(containerWidth - 72, 600));
+        cardWidth = Math.max(160, Math.min(containerWidth - 72, 800));
     }
 
     const cardHeight = isMobile
@@ -357,7 +374,7 @@ export default function LayerSlider({ slides = [], interval = 4500, header }) {
               : cardWidth < 270
                 ? 340
                 : 320
-        : 340;
+        : 455;
     const step = cardWidth + gap;
     const arrowOffset = cardWidth / 2 + 10 + (isDesktop ? 22 : 18);
     const viewportHeight = cardHeight + 32;

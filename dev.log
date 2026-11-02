@@ -1,0 +1,11 @@
+▲ Next.js 16.2.3 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.16.92.116:3000
+✓ Ready in 397ms
+
+[browser] Image with src "https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808857/banner_01_ujgg3h.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808858/banner_2_yhgqvc.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808859/banner_03_ujpxhk.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[browser] Image with src "https://res.cloudinary.com/dpqlilgy6/image/upload/f_auto,q_auto/v1790808860/banner_04_dmboik.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+ GET / 200 in 891ms (next.js: 676ms, application-code: 215ms)
+ GET / 200 in 84ms (next.js: 7ms, application-code: 78ms)
