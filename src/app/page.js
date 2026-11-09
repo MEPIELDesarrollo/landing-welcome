@@ -92,7 +92,7 @@ const slides = [
     id: "banner-3",
     title: "TE ASESORAMOS",
     description: "Te brindamos ayuda a través de nuestros ejecutivos especializados para resolver tus dudas y darte el mejor servicio.",
-    image: "https://res.cloudinary.com/dpqlilgy6/image/upload/v1792625583/atencion-clientes_l54kqb.png",
+    image: "https://res.cloudinary.com/c3gk09a1/image/upload/v1793732751/CEDIS_Instalaciones.jpg",
     imageFit: "cover",
     accent: "#C90078",
     mobileLayout: "asesoramos",
