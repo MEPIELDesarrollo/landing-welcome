@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import MedicosForm, { NavButtons } from './MedicosForm';
 import FarmaciaForm from './FarmaciaForm';
 import EcommerceForm from './EcommerceForm';
@@ -36,8 +37,24 @@ const FORM_GRADIENT_DIR = {
 };
 
 export default function PreRegistroForm() {
-  const [activeTab, setActiveTab] = useState('medicos');
+  const searchParams = useSearchParams();
   const [navProps, setNavProps] = useState(null); // recibe step info desde MedicosForm
+
+  // Permite abrir un perfil específico desde el submenú del navbar (?perfil=medicos|farmacia|ecommerce).
+  const perfil = searchParams.get('perfil');
+  const perfilTab = TABS.some((tab) => tab.id === perfil) ? perfil : null;
+
+  // La selección manual del usuario tiene prioridad hasta que la URL cambie
+  // (por ejemplo, al elegir otro perfil desde el submenú del navbar).
+  const [selectedTab, setSelectedTab] = useState(null);
+  const [lastPerfil, setLastPerfil] = useState(perfil);
+  if (perfil !== lastPerfil) {
+    setLastPerfil(perfil);
+    setSelectedTab(null);
+  }
+
+  const activeTab = selectedTab ?? perfilTab ?? 'medicos';
+
   const colors   = TAB_COLORS[activeTab];
   const formBg   = colors.formBg;
   const gradDir  = FORM_GRADIENT_DIR[activeTab];
@@ -77,7 +94,7 @@ export default function PreRegistroForm() {
       return (
         <button
           key={tab.id}
-          onClick={() => setActiveTab(tab.id)}
+          onClick={() => setSelectedTab(tab.id)}
           className={`
             flex-1 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3
             px-1 sm:px-4 font-bold text-[10px] sm:text-xs tracking-wide transition-all duration-300 
